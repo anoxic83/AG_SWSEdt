@@ -1,0 +1,10 @@
+{"version":1,"strings":[
+{"hash":4691652,"name":"taboutfrm.caption","sourcebytes":[65,98,111,117,116],"value":"About"},
+{"hash":133833029,"name":"taboutfrm.lbabprgname.caption","sourcebytes":[108,98,65,98,80,114,103,78,97,109,101],"value":"lbAbPrgName"},
+{"hash":125823666,"name":"taboutfrm.lbabprgver.caption","sourcebytes":[108,98,65,98,80,114,103,86,101,114],"value":"lbAbPrgVer"},
+{"hash":124355099,"name":"taboutfrm.btabcheck.caption","sourcebytes":[98,116,65,98,67,104,101,99,107],"value":"btAbCheck"},
+{"hash":40331812,"name":"taboutfrm.lbabcod.caption","sourcebytes":[108,98,65,98,67,111,100],"value":"lbAbCod"},
+{"hash":40336048,"name":"taboutfrm.lbabsup.caption","sourcebytes":[108,98,65,98,83,117,112],"value":"lbAbSup"},
+{"hash":108437849,"name":"taboutfrm.lbabcopy.caption","sourcebytes":[108,98,65,98,67,111,112,121],"value":"lbAbCopy"},
+{"hash":42437063,"name":"taboutfrm.lbabbug.caption","sourcebytes":[108,98,97,98,98,117,103],"value":"lbabbug"}
+]}

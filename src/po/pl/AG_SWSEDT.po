@@ -1,0 +1,1337 @@
+# Anoxic <anoxic@atomicgroup.tk>, 2013.
+msgid ""
+msgstr ""
+"PO-Revision-Date: 2013-09-27 13:47+0200\n"
+"Last-Translator: Anoxic <anoxic@atomicgroup.tk>\n"
+"Language-Team: Atomic Group Software\n"
+"Language: pl\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=3; plural=(n==1 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 "
+"|| n%100>=20) ? 1 : 2);\n"
+"X-Generator: Virtaal 0.7.1\n"
+
+#: taboutfrm.btabcheck.caption
+msgid "btAbCheck"
+msgstr ""
+
+#: taboutfrm.caption
+msgid "About"
+msgstr "O programie"
+
+#: taboutfrm.lbabbug.caption
+msgid "lbabbug"
+msgstr ""
+
+#: taboutfrm.lbabcod.caption
+msgid "lbAbCod"
+msgstr ""
+
+#: taboutfrm.lbabcopy.caption
+msgid "lbAbCopy"
+msgstr ""
+
+#: taboutfrm.lbabprgname.caption
+msgid "lbAbPrgName"
+msgstr ""
+
+#: taboutfrm.lbabprgver.caption
+msgid "lbAbPrgVer"
+msgstr ""
+
+#: taboutfrm.lbabsup.caption
+msgid "lbAbSup"
+msgstr ""
+
+#: tfrmclip.btclearp.caption
+msgctxt "TFRMCLIP.BTCLEARP.CAPTION"
+msgid "Clear"
+msgstr "Wyczyść"
+
+#: tfrmclip.btcleart.caption
+msgctxt "tfrmclip.btcleart.caption"
+msgid "Clear"
+msgstr "Wyczyść"
+
+#: tfrmclip.btnaddtocar.caption
+msgid "Add To Carrer Job Offer"
+msgstr "Dodaj do Ofert w Karierze"
+
+#: tfrmclip.caption
+msgid "FrmClip"
+msgstr ""
+
+#: tfrmclip.lbclplayers.caption
+msgid "Players in Clipboard:"
+msgstr "Zawodników w Schowku:"
+
+#: tfrmclip.lbclteam.caption
+msgid "Teams in Clipboard:"
+msgstr "Drużyn w Schowku:"
+
+#: tlgestrform.btcmsav.caption
+msgctxt "tlgestrform.btcmsav.caption"
+msgid "Save and Exit"
+msgstr "Zapisz i zakończ"
+
+#: tlgestrform.btextoutsav.caption
+msgid "Exit whitout Saving"
+msgstr "Wyjdź bez zapisywania"
+
+#: tlgestrform.caption
+msgctxt "TLGESTRFORM.CAPTION"
+msgid "League Structure"
+msgstr "Struktura Ligi"
+
+#: tlgestrform.cbdiv.text
+msgid "cbDiv"
+msgstr ""
+
+#: tlgestrform.cbenmon.text
+msgid "cbEnMon"
+msgstr ""
+
+#: tlgestrform.cbfromsub.text
+msgid "cbFromSub"
+msgstr ""
+
+#: tlgestrform.cbpossub.text
+msgid "cbpossub"
+msgstr ""
+
+#: tlgestrform.cbstmon.text
+msgid "cbStMon"
+msgstr ""
+
+#: tlgestrform.ecmpnr.text
+msgid "EcmpNr"
+msgstr ""
+
+#: tlgestrform.emet.text
+msgid "EmeT"
+msgstr ""
+
+#: tlgestrform.eprom.text
+msgid "eprom"
+msgstr ""
+
+#: tlgestrform.eprompo.text
+msgid "Eprompo"
+msgstr ""
+
+#: tlgestrform.epts.text
+msgid "epts"
+msgstr ""
+
+#: tlgestrform.erel.text
+msgid "Erel"
+msgstr ""
+
+#: tlgestrform.erelpo.text
+msgid "Erelpo"
+msgstr ""
+
+#: tlgestrform.eteams.text
+msgid "eteams"
+msgstr ""
+
+#: tlgestrform.gbcomp.caption
+msgid "Competition"
+msgstr "Rozgrywki"
+
+#: tlgestrform.grdivs.caption
+msgid "Divisions"
+msgstr "Ligi"
+
+#: tlgestrform.lbcompnr.caption
+msgid "Competition Number:"
+msgstr "Nr Rozgrywek:"
+
+#: tlgestrform.lbenmon.caption
+msgid "End Sezon:"
+msgstr "Koniec Sezonu:"
+
+#: tlgestrform.lbfromsub.caption
+msgid "Reserves:"
+msgstr "Rezerwy:"
+
+#: tlgestrform.lbmet.caption
+msgid "Match Each Time:"
+msgstr "Liczba rund:"
+
+#: tlgestrform.lbpossub.caption
+msgid "Possible Subs:"
+msgstr "Zmiany:"
+
+#: tlgestrform.lbprom.caption
+msgid "Promoted:"
+msgstr "Awans:"
+
+#: tlgestrform.lbprompo.caption
+msgid "Promoted by Play-off:"
+msgstr "Awans przez Baraż:"
+
+#: tlgestrform.lbpts.caption
+msgid "Points for Win:"
+msgstr "Pkt za zwycięstwo:"
+
+#: tlgestrform.lbrel.caption
+msgid "Relegated:"
+msgstr "Spadek:"
+
+#: tlgestrform.lbrelpo.caption
+msgid "Relegated by Play-off:"
+msgstr "Spadek przez Baraż:"
+
+#: tlgestrform.lbstmon.caption
+msgid "Start Sezon:"
+msgstr "Pocz. Sezonu:"
+
+#: tlgestrform.lbteams.caption
+msgid "Teams:"
+msgstr "Drużyn:"
+
+#: tmainform.btcomporg.caption
+msgid "Compute Original Price"
+msgstr "Oblicz Oryginalne Ceny"
+
+#: tmainform.btedtleagstruc.caption
+msgid "Edit League Structure"
+msgstr "Edytuj Strukturę Ligi"
+
+#: tmainform.btnumber.caption
+msgid "Sort Player Numbers by Position"
+msgstr "Sortuj Nr zawodników wg Pozycji"
+
+#: tmainform.btorgpriceall.caption
+msgid "Compute Orginal Price for All Players"
+msgstr "Oblicz Ceny dla Wszystkich Zawodników"
+
+#: tmainform.btovrswschange.caption
+msgid "Change"
+msgstr "Zmień"
+
+#: tmainform.caption
+msgid "MainForm"
+msgstr ""
+
+#: tmainform.cbtpver.text
+msgid "CBTPVer"
+msgstr ""
+
+#: tmainform.d1t.caption
+msgid "D1T"
+msgstr ""
+
+#: tmainform.d2t.caption
+msgid "D2T"
+msgstr ""
+
+#: tmainform.d3t.caption
+msgid "D3T"
+msgstr ""
+
+#: tmainform.dnt.caption
+msgid "DNT"
+msgstr ""
+
+#: tmainform.dpt.caption
+msgid "DPT"
+msgstr ""
+
+#: tmainform.eatc.text
+msgctxt "TMAINFORM.EATC.TEXT"
+msgid "0"
+msgstr ""
+
+#: tmainform.eatf.text
+msgctxt "TMAINFORM.EATF.TEXT"
+msgid "0"
+msgstr ""
+
+#: tmainform.eath.text
+msgctxt "TMAINFORM.EATH.TEXT"
+msgid "0"
+msgstr ""
+
+#: tmainform.eatp.text
+msgctxt "tmainform.eatp.text"
+msgid "0"
+msgstr ""
+
+#: tmainform.eats.text
+msgctxt "TMAINFORM.EATS.TEXT"
+msgid "0"
+msgstr ""
+
+#: tmainform.eatt.text
+msgctxt "TMAINFORM.EATT.TEXT"
+msgid "0"
+msgstr ""
+
+#: tmainform.eatv.text
+msgctxt "TMAINFORM.EATV.TEXT"
+msgid "0"
+msgstr ""
+
+#: tmainform.findd.title
+msgid "Find Team bt Name"
+msgstr "Znajdź Drużynę"
+
+#: tmainform.gbattributess.caption
+msgid "Attributes"
+msgstr "Atrybuty"
+
+#: tmainform.gbchart.caption
+msgid "Attributes Chart"
+msgstr "Wykres Atrybutów"
+
+#: tmainform.grakitgfx.caption
+msgctxt "TMAINFORM.GRAKITGFX.CAPTION"
+msgid "Image"
+msgstr ""
+
+#: tmainform.grav.caption
+msgid "Shooting"
+msgstr "Strzały"
+
+#: tmainform.grawaykit.caption
+msgid "Away Kit"
+msgstr "Strój Wyjazdowy"
+
+#: tmainform.grhkitgfx.caption
+msgctxt "tmainform.grhkitgfx.caption"
+msgid "Image"
+msgstr ""
+
+#: tmainform.grhomekit.caption
+msgid "Home Kit"
+msgstr "Strój Domowy"
+
+#: tmainform.groverstats.caption
+msgid "Information"
+msgstr "Informacja"
+
+#: tmainform.grpa.caption
+msgid "Passing"
+msgstr "Podania"
+
+#: tmainform.grpa2.caption
+msgid "Heading"
+msgstr "Gra Głową"
+
+#: tmainform.grpa3.caption
+msgid "Tackling"
+msgstr "Wślizgi"
+
+#: tmainform.grpa4.caption
+msgid "B.Control"
+msgstr "Sterowanie"
+
+#: tmainform.grpa5.caption
+msgid "Speed"
+msgstr "Szybkość"
+
+#: tmainform.grpa6.caption
+msgid "Finishing"
+msgstr "Wykończenie"
+
+#: tmainform.grplaygen.caption
+msgid "General Player Information"
+msgstr "Informacje o Zawodniku"
+
+#: tmainform.grpstatic.caption
+msgid "Statistics"
+msgstr "Statystyki"
+
+#: tmainform.grtactics.caption
+msgid "Tactic"
+msgstr "Taktyka"
+
+#: tmainform.grteamgen.caption
+msgid "General Information"
+msgstr "Informacje ogólne"
+
+#: tmainform.grteamstats.caption
+msgid "Team Statistics"
+msgstr "Statystyki Drużyny"
+
+#: tmainform.grtmnavi.caption
+msgctxt "tmainform.grtmnavi.caption"
+msgid "Navigation Box"
+msgstr "Pasek nawigacji"
+
+#: tmainform.gsqnavi.caption
+msgctxt "TMAINFORM.GSQNAVI.CAPTION"
+msgid "Navigation Box"
+msgstr "Pasek nawigacji"
+
+#: tmainform.gsqnavi1.caption
+msgctxt "TMAINFORM.GSQNAVI1.CAPTION"
+msgid "Navigation Box"
+msgstr "Pasek nawigacji"
+
+#: tmainform.gteaminfo.caption
+msgid "Team File Info"
+msgstr "Info. o Pliku"
+
+#: tmainform.label1.caption
+msgid "Total Pack Data Version:"
+msgstr "Wersja Danych Total Pack:"
+
+#: tmainform.label38.caption
+msgctxt "tmainform.label38.caption"
+msgid "Teams"
+msgstr "Drużyny:"
+
+#: tmainform.label39.caption
+msgid "Prom - P-off"
+msgstr ""
+
+#: tmainform.label40.caption
+msgid "Rele  -   R-off"
+msgstr ""
+
+#: tmainform.lbakittyp.caption
+msgctxt "TMAINFORM.LBAKITTYP.CAPTION"
+msgid "Kit Typ:"
+msgstr "Typ:"
+
+#: tmainform.lbashcol.caption
+msgctxt "TMAINFORM.LBASHCOL.CAPTION"
+msgid "Shirt Colors:"
+msgstr "Kolory Koszulki:"
+
+#: tmainform.lbashocol.caption
+msgctxt "TMAINFORM.LBASHOCOL.CAPTION"
+msgid "Short Color:"
+msgstr "Kolor Spodenek:"
+
+#: tmainform.lbasockcol.caption
+msgctxt "TMAINFORM.LBASOCKCOL.CAPTION"
+msgid "Socks Color:"
+msgstr "Kolor Getrów:"
+
+#: tmainform.lbattch.caption
+msgid "lbAttCH"
+msgstr ""
+
+#: tmainform.lbattcode.caption
+msgid "FHS"
+msgstr ""
+
+#: tmainform.lbattcodestr.caption
+msgid "Attributtes Code:"
+msgstr "Kod Atrybutów:"
+
+#: tmainform.lbcoach.caption
+msgid "Team Coach:"
+msgstr "Trener:"
+
+#: tmainform.lbdivision.caption
+msgid "Team Division:"
+msgstr "Liga:"
+
+#: tmainform.lbfilesoverctp.caption
+msgid "Files Loaded/Files in Data Folder"
+msgstr "Plików Załadowanych / Wszystkich"
+
+#: tmainform.lbfind1.caption
+msgid "LbFind1"
+msgstr ""
+
+#: tmainform.lbfind2.caption
+msgid "LbFind2"
+msgstr ""
+
+#: tmainform.lbflfidf.caption
+msgid "lbFLFiDF"
+msgstr ""
+
+#: tmainform.lbform.caption
+msgid "Formation:"
+msgstr "Ustawienie:"
+
+#: tmainform.lbgetind1.caption
+msgid "Teams in Division One:"
+msgstr "Drużyn w Division One:"
+
+#: tmainform.lbgetind2.caption
+msgid "Teams in Division Two:"
+msgstr "Drużyn w Division Two:"
+
+#: tmainform.lbgetind3.caption
+msgid "Teams in Division Three:"
+msgstr "Drużyn w Division Three;"
+
+#: tmainform.lbgetinf.caption
+msgid "Number of Team in File:"
+msgstr "Drużyn w Pliku:"
+
+#: tmainform.lbgetinnl.caption
+msgid "Teams non in League:"
+msgstr "Drużyn Non-League:"
+
+#: tmainform.lbgetinpd.caption
+msgid "Teams in Premier Division:"
+msgstr "Drużyn w Premier Division:"
+
+#: tmainform.lbhkittyp.caption
+msgctxt "tmainform.lbhkittyp.caption"
+msgid "Kit Typ:"
+msgstr "Typ:"
+
+#: tmainform.lbhshcol.caption
+msgctxt "tmainform.lbhshcol.caption"
+msgid "Shirt Colors:"
+msgstr "Kolory Koszulki:"
+
+#: tmainform.lbhshocol.caption
+msgctxt "tmainform.lbhshocol.caption"
+msgid "Short Color:"
+msgstr "Kolor Spodenek:"
+
+#: tmainform.lbhsockcol.caption
+msgctxt "tmainform.lbhsockcol.caption"
+msgid "Socks Color:"
+msgstr "Kolor Getrów:"
+
+#: tmainform.lbnationnum.caption
+msgid "Team National Number:"
+msgstr "Nr Narodowy:"
+
+#: tmainform.lbnum.caption
+msgid "Player Number:"
+msgstr "Nr Zawodnika:"
+
+#: tmainform.lbovractswsdir.caption
+msgid "Actual SWOS Data Dir:"
+msgstr "Aktualny Katalog Data:"
+
+#: tmainform.lbplcnt.caption
+msgid "lbPlCnt"
+msgstr ""
+
+#: tmainform.lbplcntsq.caption
+msgid "lbPlCntSq"
+msgstr ""
+
+#: tmainform.lbpltoedt.caption
+msgid "Player To Edit:"
+msgstr "Zawodnik do Edycji:"
+
+#: tmainform.lbpname.caption
+msgid "Player Name:"
+msgstr "Imię i Nazwisko:"
+
+#: tmainform.lbpnat.caption
+msgid "Nationality:"
+msgstr "Narodowość:"
+
+#: tmainform.lbposition.caption
+msgid "Position:"
+msgstr "Pozycja:"
+
+#: tmainform.lbreserve.caption
+msgid "Reserve"
+msgstr "Rezerwy:"
+
+#: tmainform.lbselteam.caption
+msgid "Select Team to Load:"
+msgstr "Wybierz plik do wczytania:"
+
+#: tmainform.lbskin.caption
+msgid "Skin and Hair Color:"
+msgstr "Kolor Skóry i Włosów:"
+
+#: tmainform.lbsqcnt.caption
+msgid "LbSqCnt"
+msgstr ""
+
+#: tmainform.lbsqteamed.caption
+msgctxt "TMAINFORM.LBSQTEAMED.CAPTION"
+msgid "Team To Edit:"
+msgstr "Drużyna do Edycji:"
+
+#: tmainform.lbsquadinf.caption
+msgid "Squad:"
+msgstr "Skład:"
+
+#: tmainform.lbswsgennum.caption
+msgid "SWOS General Team Number:"
+msgstr "Nr SWOS General Team:"
+
+#: tmainform.lbteamlist.caption
+msgid "Team List:"
+msgstr "Lista Drużyn:"
+
+#: tmainform.lbteamname.caption
+msgid "Team Name:"
+msgstr "Nazwa zespołu:"
+
+#: tmainform.lbteamnum.caption
+msgid "Team Number in File:"
+msgstr "Nr Drużyny w Pliku:"
+
+#: tmainform.lbtmatpts.caption
+msgid "Team Attribute Points"
+msgstr "Pkt. Atrybutów Drużyny:"
+
+#: tmainform.lbtmattptsb7.caption
+msgid "lbtmAttPtsb7"
+msgstr ""
+
+#: tmainform.lbtmcnt.caption
+msgid "lbtmCnt"
+msgstr ""
+
+#: tmainform.lbtmteamed.caption
+msgctxt "tmainform.lbtmteamed.caption"
+msgid "Team To Edit:"
+msgstr "Drużyna do Edycji:"
+
+#: tmainform.lbvalue.caption
+msgid "Market Value (£)"
+msgstr "Cena Rynkowa (£)"
+
+#: tmainform.lbversws.caption
+msgid "Verification Teams in File and SWOS exe"
+msgstr "Weryfikacja Danych Plików i SWS.exe"
+
+#: tmainform.lbwam.caption
+msgid "Predictions:"
+msgstr "Rokowania:"
+
+#: tmainform.lbwamcalc.caption
+msgid "lbWAMcalc"
+msgstr ""
+
+#: tmainform.ltc.caption
+msgid "LTC"
+msgstr ""
+
+#: tmainform.mabout.caption
+msgid "About..."
+msgstr "O programie..."
+
+#: tmainform.maddteam.caption
+msgctxt "tmainform.maddteam.caption"
+msgid "Add Team"
+msgstr "Dodaj Drużynę:"
+
+#: tmainform.mchgteamnr.caption
+msgid "Change All Team National Numbers"
+msgstr "Zmień Wszystkie Nr. Narodowe"
+
+#: tmainform.mchleg.caption
+msgid "Verify All League Structures"
+msgstr "Weryfikacja Struktur Lig"
+
+#: tmainform.mclipshow.caption
+msgctxt "tmainform.mclipshow.caption"
+msgid "Show Clipboard"
+msgstr "Wyświetl schowek"
+
+#: tmainform.mclose.caption
+msgid "Close"
+msgstr "Zamknij"
+
+#: tmainform.mcpplayer.caption
+msgctxt "tmainform.mcpplayer.caption"
+msgid "Copy Player"
+msgstr "Kopiuj zawodnika"
+
+#: tmainform.mcpteam.caption
+msgctxt "tmainform.mcpteam.caption"
+msgid "Copy Team"
+msgstr "Kopiuj Drużynę:"
+
+#: tmainform.mcsvexp.caption
+msgid "CSV Export"
+msgstr "Eksport do CSV"
+
+#: tmainform.mcsvpl.caption
+msgid "Players"
+msgstr "Zawodnicy"
+
+#: tmainform.mcsvteam.caption
+msgctxt "TMAINFORM.MCSVTEAM.CAPTION"
+msgid "Teams"
+msgstr "Drużyny"
+
+#: tmainform.medit.caption
+msgid "Edit"
+msgstr "Edycja"
+
+#: tmainform.menuitem1.caption
+msgctxt "TMAINFORM.MENUITEM1.CAPTION"
+msgid "-"
+msgstr ""
+
+#: tmainform.menuitem10.caption
+msgctxt "TMAINFORM.MENUITEM10.CAPTION"
+msgid "-"
+msgstr ""
+
+#: tmainform.menuitem11.caption
+msgctxt "TMAINFORM.MENUITEM11.CAPTION"
+msgid "-"
+msgstr ""
+
+#: tmainform.menuitem2.caption
+msgctxt "tmainform.menuitem2.caption"
+msgid "-"
+msgstr ""
+
+#: tmainform.menuitem3.caption
+msgctxt "TMAINFORM.MENUITEM3.CAPTION"
+msgid "-"
+msgstr ""
+
+#: tmainform.menuitem4.caption
+msgctxt "TMAINFORM.MENUITEM4.CAPTION"
+msgid "-"
+msgstr ""
+
+#: tmainform.menuitem5.caption
+msgctxt "TMAINFORM.MENUITEM5.CAPTION"
+msgid "-"
+msgstr ""
+
+#: tmainform.menuitem6.caption
+msgctxt "TMAINFORM.MENUITEM6.CAPTION"
+msgid "-"
+msgstr ""
+
+#: tmainform.menuitem7.caption
+msgctxt "TMAINFORM.MENUITEM7.CAPTION"
+msgid "-"
+msgstr ""
+
+#: tmainform.menuitem8.caption
+msgctxt "TMAINFORM.MENUITEM8.CAPTION"
+msgid "-"
+msgstr ""
+
+#: tmainform.menuitem9.caption
+msgctxt "TMAINFORM.MENUITEM9.CAPTION"
+msgid "-"
+msgstr ""
+
+#: tmainform.mfile.caption
+msgid "File"
+msgstr "Plik"
+
+#: tmainform.mfindswsmax.caption
+msgid "Find Max SWOS General Number"
+msgstr "Znajdź Maksymalny Nr SWOS General"
+
+#: tmainform.mfpbyname.caption
+msgctxt "TMAINFORM.MFPBYNAME.CAPTION"
+msgid "Find Player by Name"
+msgstr "Znajdź Zawodnika"
+
+#: tmainform.mftbyname.caption
+msgctxt "TMAINFORM.MFTBYNAME.CAPTION"
+msgid "Find Team by Name"
+msgstr "Znajdź Drużynę"
+
+#: tmainform.mglobal.caption
+msgid "Global File"
+msgstr "Globalne Pliku"
+
+#: tmainform.mhelp.caption
+msgctxt "tmainform.mhelp.caption"
+msgid "Help"
+msgstr "Pomoc"
+
+#: tmainform.mhelpp.caption
+msgctxt "TMAINFORM.MHELPP.CAPTION"
+msgid "Help"
+msgstr "Pomoc"
+
+#: tmainform.mopenall.caption
+msgid "Open All"
+msgstr "Otwórz Wszytsko"
+
+#: tmainform.moptions.caption
+msgid "Options"
+msgstr "Opcje"
+
+#: tmainform.mpadd.caption
+msgctxt "TMAINFORM.MPADD.CAPTION"
+msgid "Add Team"
+msgstr "Dodaj Drużynę"
+
+#: tmainform.mpaplayer.caption
+msgctxt "tmainform.mpaplayer.caption"
+msgid "Paste Player"
+msgstr "Wklej Zawodnika"
+
+#: tmainform.mpateam.caption
+msgctxt "tmainform.mpateam.caption"
+msgid "Paste Team"
+msgstr "Wklej Drużynę"
+
+#: tmainform.mpcpplay.caption
+msgctxt "TMAINFORM.MPCPPLAY.CAPTION"
+msgid "Copy Player"
+msgstr "Kopiuj Zawodnika"
+
+#: tmainform.mpcpteam.caption
+msgctxt "TMAINFORM.MPCPTEAM.CAPTION"
+msgid "Copy Team"
+msgstr "Kopiuj Drużynę"
+
+#: tmainform.mpdel.caption
+msgctxt "TMAINFORM.MPDEL.CAPTION"
+msgid "Remove Team"
+msgstr "Usuń Drużynę"
+
+#: tmainform.mppaplay.caption
+msgctxt "TMAINFORM.MPPAPLAY.CAPTION"
+msgid "Paste Player"
+msgstr "Wklej Zawodnika"
+
+#: tmainform.mppateam.caption
+msgctxt "TMAINFORM.MPPATEAM.CAPTION"
+msgid "Paste Team"
+msgstr "Wklej Drużynę"
+
+#: tmainform.mpsclipshow.caption
+msgctxt "TMAINFORM.MPSCLIPSHOW.CAPTION"
+msgid "Show Clipboard"
+msgstr "Wyświetl schowek"
+
+#: tmainform.mpshclip.caption
+msgctxt "TMAINFORM.MPSHCLIP.CAPTION"
+msgid "Show Clipboard"
+msgstr "Wyświetl schowek"
+
+#: tmainform.mreadteam.caption
+msgid "Open Team"
+msgstr "Otwórz Team"
+
+#: tmainform.mreload.caption
+msgid "Reload Current"
+msgstr "Wgraj ponownie bieżący"
+
+#: tmainform.mremoveteam.caption
+msgctxt "tmainform.mremoveteam.caption"
+msgid "Remove Team"
+msgstr "Usuń Drużynę"
+
+#: tmainform.msearch.caption
+msgid "Search"
+msgstr "Wyszukiwanie"
+
+#: tmainform.msettings.caption
+msgctxt "tmainform.msettings.caption"
+msgid "Settings"
+msgstr "Ustawienia"
+
+#: tmainform.mshowpool.caption
+msgid "Show PoolPlyr"
+msgstr "Wyświetl PoolPlyr"
+
+#: tmainform.mshowrandom.caption
+msgid "Show Random Player"
+msgstr "Wyświetl Losowego Zawodnika"
+
+#: tmainform.mwriteall.caption
+msgid "Write All"
+msgstr "Zapisz Wszystko"
+
+#: tmainform.mwritecur.caption
+msgid "Write Current"
+msgstr "Zapisz bieżący"
+
+#: tmainform.reserve1.caption
+msgid "Reserve1"
+msgstr ""
+
+#: tmainform.reserve2.caption
+msgid "Reserve2"
+msgstr ""
+
+#: tmainform.reserve3.caption
+msgid "Reserve3"
+msgstr ""
+
+#: tmainform.reserve4.caption
+msgid "Reserve4"
+msgstr ""
+
+#: tmainform.reserve5.caption
+msgid "Reserve5"
+msgstr ""
+
+#: tmainform.swsver.caption
+msgid "SWS Exe Verification"
+msgstr "Weryfikacja SWS Exe"
+
+#: tmainform.tbgeneral.caption
+msgid "General"
+msgstr "Ogólne"
+
+#: tmainform.tbover.caption
+msgid "Overview"
+msgstr "Przegląd"
+
+#: tmainform.tbplayer.caption
+msgid "Player"
+msgstr "Zawodnik"
+
+#: tmainform.tbsquad.caption
+msgid "Squad"
+msgstr "Skład"
+
+#: tmainform.tbteam.caption
+msgid "Team"
+msgstr "Drużyna"
+
+#: tpoolform.bgenrand.caption
+msgid "Generate Randomize List"
+msgstr "Generuj Losową Listę"
+
+#: tpoolform.breplace.caption
+msgid "Replace Selected Player"
+msgstr "Zamień Wybranego Zawodnika"
+
+#: tpoolform.btloadpool.caption
+msgid "Load data from SWOS"
+msgstr "Załaduj dane z SWOS"
+
+#: tpoolform.btsavepool.caption
+msgid "Save data to SWOS"
+msgstr "Zapisz Dane do SWOS"
+
+#: tpoolform.caption
+msgid "PoolPlyr.dat"
+msgstr ""
+
+#: tsettingform.btbrowexe.caption
+msgctxt "tsettingform.btbrowexe.caption"
+msgid "..."
+msgstr ""
+
+#: tsettingform.btbrowsedata.caption
+msgctxt "TSETTINGFORM.BTBROWSEDATA.CAPTION"
+msgid "..."
+msgstr ""
+
+#: tsettingform.btrefrmanual.caption
+msgid "Refresh Manual"
+msgstr "Odśwież"
+
+#: tsettingform.button1.caption
+msgctxt "TSETTINGFORM.BUTTON1.CAPTION"
+msgid "Save and Exit"
+msgstr "Zapisz i zakończ"
+
+#: tsettingform.button2.caption
+msgid "Cancel"
+msgstr "Anuluj"
+
+#: tsettingform.button3.caption
+msgctxt "TSETTINGFORM.BUTTON3.CAPTION"
+msgid "..."
+msgstr ""
+
+#: tsettingform.caption
+msgctxt "TSETTINGFORM.CAPTION"
+msgid "Settings"
+msgstr "Ustawienia"
+
+#: tsettingform.cbautoupd.caption
+msgid "Automatic Check for Updates"
+msgstr "Automatycznie sprawdzaj aktualizacje"
+
+#: tsettingform.cbshowhint.caption
+msgid "Show Information and Hints"
+msgstr "Pokaż podpowiedzi informacyjne:"
+
+#: tsettingform.chautocopyexe.caption
+msgid "Auto Write LS To Exe and Exe++ if load TotalPack"
+msgstr "Automatycznie Zapisuj LS Do Exe i Exe++ (Dla TotalPack)"
+
+#: tsettingform.chbusetp.caption
+msgid "Use Total Pack (Version 1.33 or new)"
+msgstr "Użyj Total Pack (Wersja 1.33 lub nowsza)"
+
+#: tsettingform.chselauto.caption
+msgid "Automatic Select Cell on Enter"
+msgstr "Automatycznie podświetlaj pola po zaznaczeniu"
+
+#: tsettingform.eswsdata.text
+msgid "ESWSdata"
+msgstr ""
+
+#: tsettingform.eswsexe.text
+msgid "ESWSExe"
+msgstr ""
+
+#: tsettingform.etotalpack.text
+msgid "EtotalPack"
+msgstr ""
+
+#: tsettingform.grlink1.caption
+msgid "Link 1"
+msgstr ""
+
+#: tsettingform.grlink2.caption
+msgid "Link 2"
+msgstr ""
+
+#: tsettingform.grmanual.caption
+msgid "or Manual"
+msgstr "lub Ręcznie"
+
+#: tsettingform.groupbox1.caption
+msgid "Total Pack Options"
+msgstr "Opcje Total Pack"
+
+#: tsettingform.label1.caption
+msgctxt "tsettingform.label1.caption"
+msgid "Description:"
+msgstr "Opis:"
+
+#: tsettingform.label2.caption
+msgctxt "tsettingform.label2.caption"
+msgid "Format:"
+msgstr "Format:"
+
+#: tsettingform.label3.caption
+msgctxt "TSETTINGFORM.LABEL3.CAPTION"
+msgid "Description:"
+msgstr "Opis:"
+
+#: tsettingform.label4.caption
+msgctxt "TSETTINGFORM.LABEL4.CAPTION"
+msgid "Format:"
+msgstr "Format:"
+
+#: tsettingform.label5.caption
+msgid "Total Pack Directory"
+msgstr "Katalog Total Pack"
+
+#: tsettingform.lbswsdata.caption
+msgid "SWOS Data Directory:"
+msgstr "Katalog Data SWOSa:"
+
+#: tsettingform.lbswsexe.caption
+msgid "SWOS Executable File:"
+msgstr "Plik wykonywalny SWOSa:"
+
+#: tsettingform.lbswsver.caption
+msgid "lbSWSVer"
+msgstr ""
+
+#: tsettingform.tbeditor.caption
+msgid "Editor"
+msgstr "Edytor"
+
+#: tsettingform.tblinks.caption
+msgid "Links"
+msgstr "Odnośniki"
+
+#: tsettingform.tbpath.caption
+msgid "Directories"
+msgstr "Katalogi"
+
+#: tsplashload.caption
+msgid "SWSEDT"
+msgstr ""
+
+#: tsplashload.lbloaddata.caption
+msgid "lbLoadData"
+msgstr ""
+
+#: tsplashload.lbloading.caption
+msgctxt "TSPLASHLOAD.LBLOADING.CAPTION"
+msgid "Loading..."
+msgstr "Wczytywanie..."
+
+#: utextstr.rsa
+msgid "A"
+msgstr ""
+
+#: utextstr.rsaddnewteam
+msgid "Add New Team"
+msgstr "Dodaj Nową Drużynę"
+
+#: utextstr.rsallleaguesok
+msgid "All Leagues OK"
+msgstr "Wszystkie Ligi O.K."
+
+#: utextstr.rsattacker
+msgid "Attacker"
+msgstr "Napastnik"
+
+#: utextstr.rsblack
+msgid "BLACK"
+msgstr "CZARNY"
+
+#: utextstr.rsblackskinbla
+msgid "Black Skin / Black Hair"
+msgstr "Czarny / Czarne Włosy"
+
+#: utextstr.rsblue
+msgid "BLUE"
+msgstr "NIEBIESKI"
+
+#: utextstr.rsbrown
+msgid "BROWN"
+msgstr "BRĄZOWY"
+
+#: utextstr.rsd
+msgid "D"
+msgstr ""
+
+#: utextstr.rsdataerrorinx
+msgid "Data Error in XML file"
+msgstr "Błąd Danych w pliku XML"
+
+#: utextstr.rsdefender
+msgid "Defender"
+msgstr "Obrońca"
+
+#: utextstr.rsenternewteam
+msgid "Enter new teams national numer: "
+msgstr "Wpisz nowy nr narodowy:"
+
+#: utextstr.rsenterteamnam
+msgid "Enter Team Name:"
+msgstr "Wpisz Nazwę Drużyny:"
+
+#: utextstr.rserror
+msgid "Error"
+msgstr "Błąd"
+
+#: utextstr.rsfile
+msgid "File: "
+msgstr "Plik:"
+
+#: utextstr.rsfileisnotlea
+msgid "File is not League, or SWOS exe file not loaded."
+msgstr "Plik nie jest ligowy lub SWS.exe nie jest wczytany."
+
+#: utextstr.rsfileseditedd
+msgid "Files Edited: %d"
+msgstr "Plików Zmodyfikowanych: %d"
+
+#: utextstr.rsfilesloaded
+msgid "Files Loaded: "
+msgstr "Plików Wczytanych: "
+
+#: utextstr.rsfilessaved
+msgid "Files Saved: "
+msgstr "Plików Zapisanych: "
+
+#: utextstr.rsfindplayerby
+msgctxt "utextstr.rsfindplayerby"
+msgid "Find Player by Name"
+msgstr "Znajdź Zawodnika"
+
+#: utextstr.rsfindteambyna
+msgctxt "utextstr.rsfindteambyna"
+msgid "Find Team by Name"
+msgstr "Znajdź Drużynę"
+
+#: utextstr.rsgk
+msgid "GK"
+msgstr ""
+
+#: utextstr.rsgoal
+msgid "Goal"
+msgstr ""
+
+#: utextstr.rsgoalkeeper
+msgid "Goalkeeper"
+msgstr "Bramkarz"
+
+#: utextstr.rsgray
+msgid "GRAY"
+msgstr "SZARY"
+
+#: utextstr.rsgreen
+msgid "GREEN"
+msgstr "ZIELONY"
+
+#: utextstr.rshlines
+msgid "H-Lines"
+msgstr ""
+
+#: utextstr.rslangauthor
+msgid "Anoxic"
+msgstr ""
+
+#: utextstr.rslanguage
+msgid "English"
+msgstr "Polski"
+
+#: utextstr.rslb
+msgid "LB"
+msgstr ""
+
+#: utextstr.rsleaguestruct
+msgctxt "utextstr.rsleaguestruct"
+msgid "League Structure"
+msgstr "Struktura Ligi"
+
+#: utextstr.rsleaguesxmlfi
+msgid "Leagues.xml File is corupted. Please repair or download orginal"
+msgstr "Plik Leagues.xml jest uszkodzony. Napraw lub ściągnij oryginalny,"
+
+#: utextstr.rsleftback
+msgid "LeftBack"
+msgstr "Lewa Obrona"
+
+#: utextstr.rsleftwing
+msgid "LeftWing"
+msgstr "Lewe Skrzydło"
+
+#: utextstr.rslightblue
+msgid "LIGHTBLUE"
+msgstr "BŁĘKITNY"
+
+#: utextstr.rsloading
+msgctxt "utextstr.rsloading"
+msgid "Loading..."
+msgstr "Wczytywanie..."
+
+#: utextstr.rslw
+msgid "LW"
+msgstr ""
+
+#: utextstr.rsm
+msgid "M"
+msgstr ""
+
+#: utextstr.rsmaximalswosg
+msgid "First Free SWOS General Number is: "
+msgstr "Pierwszy wolny SWOS General Nr To:"
+
+#: utextstr.rsmidfielder
+msgid "Midfielder"
+msgstr "Pomocnik"
+
+#: utextstr.rsonlyleaguepl
+msgid "Only League Players"
+msgstr "Tylko Zawodnicy Ligowi"
+
+#: utextstr.rsopenallbefor
+msgid "Open All before use this function."
+msgstr "Otwórz Wszystko zanim użyjesz tej funkcji"
+
+#: utextstr.rsorange
+msgid "ORANGE"
+msgstr "POMARAŃCZOWY"
+
+#: utextstr.rsplain
+msgid "Plain"
+msgstr ""
+
+#: utextstr.rsplayernotfou
+msgid "Player not Found"
+msgstr "Nie znaleziono"
+
+#: utextstr.rsrb
+msgid "RB"
+msgstr ""
+
+#: utextstr.rsred
+msgid "RED"
+msgstr "CZERWONY"
+
+#: utextstr.rsrightback
+msgid "RightBack"
+msgstr "Prawa Obrona"
+
+#: utextstr.rsrightwing
+msgid "RightWing"
+msgstr "Prawe Skrzydło"
+
+#: utextstr.rsrw
+msgid "RW"
+msgstr ""
+
+#: utextstr.rssaving
+msgid "Saving..."
+msgstr "Zapisywanie..."
+
+#: utextstr.rsselectswosto
+msgid "Select SWOS TotalPack executable file (pc_swostp.exe)..."
+msgstr "Wybierz plik wykonywalny SWOS TotalPack (pc_swostp.exe)"
+
+#: utextstr.rsslaves
+msgid "Slaves"
+msgstr ""
+
+#: utextstr.rsswosver10ece
+msgid "SWOS ver. 1.0 (ECE)"
+msgstr ""
+
+#: utextstr.rsswosver20969
+msgid "SWOS ver. 2.0 (96/97)"
+msgstr ""
+
+#: utextstr.rsswosworksonl
+msgid "SWOS works only for even values"
+msgstr "SWOS działa tylko dla wartości parzystych"
+
+#: utextstr.rsteamattribut
+msgid "Team Attribute Point: %d"
+msgstr "Pkt. Atrybutów Drużyny: %d"
+
+#: utextstr.rsteamattribut2
+msgid "Team Attribute Point by 7: %d"
+msgstr "Pkt. Atrybutów Drużyny do 7: %d"
+
+#: utextstr.rsteamnotfound
+msgid "Team not Found"
+msgstr "Nie znaleziono"
+
+#: utextstr.rsteams
+msgid "Teams: "
+msgstr "Drużyny:"
+
+#: utextstr.rsthisvaluemus
+msgid "This value must be a number"
+msgstr "Wartość musi być liczbą"
+
+#: utextstr.rsunabletoload
+msgid "Unable to load XML file"
+msgstr "Nie można odczytać pliku XML"
+
+#: utextstr.rsunknownswosv
+msgid "Unknown SWOS version or path is not valid"
+msgstr "Nieznana wersja SWOS lub ścieżka jest błędna"
+
+#: utextstr.rsvlines
+msgid "V-Lines"
+msgstr ""
+
+#: utextstr.rswhite
+msgid "WHITE"
+msgstr "BIAŁY"
+
+#: utextstr.rswhiteskinbla
+msgid "White Skin / Black Hair"
+msgstr "Biały / Czarne Włosy"
+
+#: utextstr.rswhiteskinblo
+msgid "White Skin / Blond Hair"
+msgstr "Biały / Blond Włosy"
+
+#: utextstr.rswriteall
+msgid "WriteAll"
+msgstr "Zapisz Wszystko"
+
+#: utextstr.rswritealld
+msgid "Write All (%d)"
+msgstr "Zapisz Wszystko (%d)"
+
+#: utextstr.rsyellow
+msgid "YELLOW"
+msgstr "ŻÓŁTY"

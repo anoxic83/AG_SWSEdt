@@ -1,0 +1,55 @@
+program AG_SWSEDT;
+
+{$mode objfpc}{$H+}
+
+uses {$IFDEF UNIX} {$IFDEF UseCThreads}
+  cthreads, {$ENDIF} {$ENDIF}
+  Interfaces, // this includes the LCL widgetset
+  Forms,
+  umain,
+  uagswos,
+  DefaultTranslator,
+  pl_bgracontrols,
+  pl_excontrols, pl_synapse,
+  utextstr,
+  Classes,
+  SysUtils,
+  usettings,
+  upoolplyr,
+  uslpload,
+  uclipfrm,
+  ulgstufrm,
+  uabout, ueccfrm;
+
+{$R *.res}
+
+var
+  LangF: TStringList;
+
+begin
+  if FileExists('lang.ags') then
+  begin
+    LangF := TStringList.Create;
+    LangF.LoadFromFile('lang.ags');
+    if LangF.Count > 0 then begin
+      //SetDefaultLang(LangF.Strings[0]);
+      utextstr.DefLangStr:=Langf[0];
+    end;
+    LangF.Free;
+  end else begin
+    LangF := TStringList.Create;
+    LangF.Add('en');
+    LangF.SaveToFile('lang.ags');
+    LangF.Free;
+  end;
+
+  RequireDerivedFormResource := True;
+  Application.Initialize;
+  Application.CreateForm(TMainForm, MainForm);
+  Application.CreateForm(TSplashLoad, SplashLoad);
+  Application.CreateForm(TFrmClip, FrmClip);
+  Application.CreateForm(TLgeStrForm, LgeStrForm);
+  Application.CreateForm(TPoolForm, PoolForm);
+  Application.CreateForm(TECCFrm, ECCFrm);
+  Application.Run;
+end.

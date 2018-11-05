@@ -1,0 +1,41 @@
+********************************
+**                            **
+**    AG-SWSEDT CHANGE LOG    **
+**                            **
+********************************
+ver 2.2.0a
+----------
+* New Version
+* Add Total Pack Options
+* Add Load All Files in Data Directory
+* Add Find Player and Team
+* Add Player Predictions
+* Fixed Sorting
+* Add Search Player on Internet Sites
+* Add European Cup Competitions Edit
+
+ver 2.1.4a
+----------
+* Add Player Attributes Chart
+* Add SWS.exe League Structure Edit
+* Add Selection on Tactic Graphics
+* Add PopUp Edit Menu
+* Fixed Hint Error
+
+ver 2.1.3a
+----------
+* Change Overview structure to TreeView
+* Add Country Flags
+* Add Player Skin/Hair Icon
+* Add MainMenu Shortcuts
+
+ver 2.1.2a
+----------
+* Add Linux version
+* Poolplyr loaded automatic
+* Before load team, write option disable
+* Fixed Errors
+
+ver 2.1.1a
+----------
+* First public release version.
