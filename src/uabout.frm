@@ -1,7 +1,7 @@
 object AboutFrm: TAboutFrm
-  Left = 385
+  Left = 389
   Height = 247
-  Top = 236
+  Top = 232
   Width = 544
   BorderStyle = bsDialog
   Caption = 'About'
@@ -9,7 +9,7 @@ object AboutFrm: TAboutFrm
   ClientWidth = 544
   OnActivate = FormActivate
   OnCreate = FormCreate
-  LCLVersion = '6.6'
+  LCLVersion = '6.9'
   object Image1: TImage
     Left = 8
     Height = 184

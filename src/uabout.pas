@@ -53,9 +53,9 @@ begin
   lbAbPrgVer.Caption := GetStrVersion();
   lbAbCod.Caption := 'Programming: Anoxic';
   lbAbSup.Caption := 'Thanks for Support: Bliszka, Tom+ (www.swos.pl)';
-  lbAbBug.Caption := Format(rsPleaseReport, ['anoxic@atomicgroup.tk']);
+  lbAbBug.Caption := Format(rsPleaseReport, ['https://github.com/anoxic83/AG_SWSEdt']);
   lbAbCopy.Caption :=
-    '© 2013-18 Anoxic // Atomic Group Software. All rights reserved. Upper Silesia. Poland';
+    '© 2013-19 Anoxic . All rights reserved. Upper Silesia. Poland';
   if (eoAutoUpdate in EdtSett.EditOptions) then
   begin
     UpdNow := True;
