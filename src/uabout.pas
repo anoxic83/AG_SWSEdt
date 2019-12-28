@@ -84,7 +84,7 @@ end;
 procedure TAboutFrm.btAbCheckClick(Sender: TObject);
 begin
   if UpdNow then
-    OpenURL('http://www.atomicgroup.tk/')
+    OpenURL('https://github.com/anoxic83/AG_SWSEdt')
   else
   begin
     EUpdate := CheckForUpd();

@@ -189,6 +189,7 @@ begin
     case SWSDB.SWSExeVer of
       SWSECE: lbSWSVer.Caption := rsSWOSVer10ECE;
       SWS9697: lbSWSVer.Caption := rsSWOSVer20969;
+      SWS2020: lbSWSver.Caption := rsSWOSVer2020W;
       else
         lbSWSVer.Caption := rsUnknownSWOSV;
     end;

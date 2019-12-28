@@ -1,13 +1,13 @@
 object SettingForm: TSettingForm
-  Left = 608
+  Left = 389
   Height = 354
-  Top = 151
+  Top = 232
   Width = 511
   Caption = 'Settings'
   ClientHeight = 354
   ClientWidth = 511
   OnActivate = FormActivate
-  LCLVersion = '1.3'
+  LCLVersion = '6.9'
   object PageControl1: TPageControl
     Left = 0
     Height = 312
@@ -27,7 +27,7 @@ object SettingForm: TSettingForm
         Top = 128
         Width = 497
         Caption = 'or Manual'
-        ClientHeight = 134
+        ClientHeight = 132
         ClientWidth = 493
         TabOrder = 0
         object ESWSExe: TEdit
@@ -42,7 +42,7 @@ object SettingForm: TSettingForm
           Left = 14
           Height = 15
           Top = 104
-          Width = 50
+          Width = 49
           Caption = 'lbSWSVer'
           ParentColor = False
         end
@@ -95,7 +95,7 @@ object SettingForm: TSettingForm
         Top = 8
         Width = 497
         Caption = 'Total Pack Options'
-        ClientHeight = 95
+        ClientHeight = 93
         ClientWidth = 493
         TabOrder = 1
         object EtotalPack: TEdit
@@ -119,7 +119,7 @@ object SettingForm: TSettingForm
           Left = 14
           Height = 15
           Top = 48
-          Width = 106
+          Width = 105
           Caption = 'Total Pack Directory'
           ParentColor = False
         end
@@ -198,7 +198,7 @@ object SettingForm: TSettingForm
         Top = 8
         Width = 480
         Caption = 'Link 1'
-        ClientHeight = 79
+        ClientHeight = 77
         ClientWidth = 476
         TabOrder = 0
         object Label1: TLabel
@@ -240,7 +240,7 @@ object SettingForm: TSettingForm
         Top = 112
         Width = 481
         Caption = 'Link 2'
-        ClientHeight = 78
+        ClientHeight = 76
         ClientWidth = 477
         TabOrder = 1
         object Label3: TLabel
@@ -327,11 +327,11 @@ object SettingForm: TSettingForm
     TabOrder = 2
   end
   object opee: TOpenDialog
-    left = 432
-    top = 8
+    Left = 432
+    Top = 8
   end
   object seld: TSelectDirectoryDialog
-    left = 400
-    top = 8
+    Left = 400
+    Top = 8
   end
 end

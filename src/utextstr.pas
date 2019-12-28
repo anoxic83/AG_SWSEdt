@@ -51,7 +51,7 @@ type
     function GetLink(Index: integer): TSWLink;
     procedure SetLink(Index: integer; AValue: TSWLink);
   public
-    constructor Create(AOwner: TComponent);
+    constructor Create(AOwner: TComponent); override;
     destructor Destroy; override;
     function ReadSett(FN: string): boolean;
     function WriteSett(FN: string): boolean;
@@ -153,6 +153,7 @@ resourcestring
   rsSelectSWOSTo = 'Select SWOS TotalPack executable file (pc_swostp.exe)...';
   rsSWOSVer10ECE = 'SWOS ver. 1.0 (ECE)';
   rsSWOSVer20969 = 'SWOS ver. 2.0 (96/97)';
+  rsSWOSVer2020W = 'SWOS 2020 Win32 Port';
   rsOnlyLeaguePl = 'Only League Players';
   rsThisFeatureI = 'This feature is intended for advanced users.%'
     + 'sModifications may cause errors SWOS.';

@@ -32,7 +32,7 @@ uses
   uabout {$IFDEF DEBUG}, heaptrc{$ENDIF};
 
 const
-  SWSEdtVer = $0002000300000001;
+  SWSEdtVer = $0002000400000002;
 
 type
 
@@ -46,6 +46,7 @@ type
     AGeneral: TAction;
     AOverview: TAction;
     AdvLed1: TAdvLed;
+    btCompAttributtebyVal: TButton;
     btOvrSwsChange: TButton;
     btNumber: TButton;
     btGenPosVal: TButton;
@@ -339,6 +340,7 @@ type
     procedure ATeamExecute(Sender: TObject);
     procedure AGeneralExecute(Sender: TObject);
     procedure AOverviewExecute(Sender: TObject);
+    procedure btCompAttributtebyValClick(Sender: TObject);
     procedure btCompOrgClick(Sender: TObject);
     procedure btEdtLeagStrucClick(Sender: TObject);
     procedure btGenPosValClick(Sender: TObject);
@@ -465,6 +467,7 @@ type
     procedure MXMLPlClick(Sender: TObject);
     procedure pbTacPaint(Sender: TObject);
     procedure PCtrlChange(Sender: TObject);
+    procedure PCtrlChanging(Sender: TObject; var AllowChange: Boolean);
     procedure SpeedButton1Click(Sender: TObject);
     procedure SpeedButton2Click(Sender: TObject);
     procedure SpeedButton3Click(Sender: TObject);
@@ -1150,7 +1153,7 @@ end;
 
 procedure TMainForm.MHelpPClick(Sender: TObject);
 begin
-  OpenURL('http://www.atomicgroup.tk/');
+  OpenURL('https://github.com/anoxic83/AG_SWSEdt');
 end;
 
 procedure TMainForm.MOpenAllClick(Sender: TObject);
@@ -1684,7 +1687,15 @@ begin
           RefPlayer;
         end
         else
-          tbPlayer.Enabled := False;
+          tbPlayer.Enabled:= False;
+end;
+
+procedure TMainForm.PCtrlChanging(Sender: TObject; var AllowChange: Boolean);
+begin
+  AllowChange:= false;
+  if SWSDB.FileIndex > -1 then
+    if SWSDB.SWSFiles[SWSDB.FileIndex].TeamIndex > -1 then
+       AllowChange:= true;
 end;
 
 procedure TMainForm.SpeedButton1Click(Sender: TObject);
@@ -2177,6 +2188,7 @@ var
   BMPF: TBGRABitmap;
   FlgT: string;
 begin
+
   TIDX := SWSDB.SWSFiles[SWSDb.FileIndex].TeamIndex;
   CBTeams.ItemIndex := TIDX;
   CBHKitTyp.Clear;
@@ -2354,6 +2366,8 @@ begin
     end;
   end;
   pbTac.Canvas.Refresh;
+  if ((SWSDB.SWSFiles[SWSDb.FileIndex].Team[TIDX].PlayerIndex < 0) or (SWSDB.SWSFiles[SWSDb.FileIndex].Team[TIDX].PlayerIndex > 15)) then
+     SWSDB.SWSFiles[SWSDb.FileIndex].Team[TIDX].PlayerIndex:= 0;
   LBSquad.ItemIndex := SWSDB.SWSFiles[SWSDb.FileIndex].Team[TIDX].PlayerIndex;
   if (FileExists(FlagDir + '24' + PathDelim + FlgT)) then
   begin
@@ -2370,6 +2384,7 @@ begin
     [SWSDB.SWSFiles[SWSDb.FileIndex].Team[TIDX].PlayerIndex + 1, 16]);
   LbSqCnt.Caption := Format('%d/%d', [SWSDB.SWSFiles[SWSDb.FileIndex].TeamIndex +
     1, SWSDB.SWSFiles[SWSDb.FileIndex].TeamCount]);
+
 end;
 
 procedure TMainForm.RefPlayer;
@@ -2657,6 +2672,7 @@ end;
 procedure TMainForm.CBTeamsChange(Sender: TObject);
 begin
   if (CBTeams.ItemIndex<0) or (CBTeams.ItemIndex>CBTeams.Items.Count-1) then EXit;
+  CBSquad.ItemIndex:=CBTeams.ItemIndex;
   SWSDB.SWSFiles[SWSDb.FileIndex].TeamIndex := CBTeams.ItemIndex;
   RefTeam;
 end;
@@ -2867,6 +2883,19 @@ begin
   PCtrl.ActivePage:=tbOver;
 end;
 
+procedure TMainForm.btCompAttributtebyValClick(Sender: TObject);
+var
+  TDX, i: integer;
+begin
+  TDX := SWSDB.SWSFiles[SWSDb.FileIndex].TeamIndex;
+  for i := 0 to 15 do
+  begin
+    if SWSDB.SWSFiles[SWSDb.FileIndex].Team[TDX].Player[i].Position <> 0 then
+        SWSDB.SWSFiles[SWSDb.FileIndex].Team[TDX].Player[i].GenerateAttrbyValue;
+  end;
+  RefSquad;
+end;
+
 procedure TMainForm.AGeneralExecute(Sender: TObject);
 begin
   PCtrl.ActivePage:=tbGeneral;
@@ -3037,6 +3066,7 @@ end;
 procedure TMainForm.CBSquadChange(Sender: TObject);
 begin
   if (CBSquad.ItemIndex<0) or (CBSquad.ItemIndex>CBSquad.Items.Count-1) then EXit;
+  CBTeams.ItemIndex:=CBSquad.ItemIndex;
   SWSDB.SWSFiles[SWSDb.FileIndex].TeamIndex := CBSquad.ItemIndex;
   RefSquad;
   RefReserve;

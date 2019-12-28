@@ -1,7 +1,7 @@
 object MainForm: TMainForm
-  Left = 385
+  Left = 389
   Height = 733
-  Top = 236
+  Top = 232
   Width = 597
   BorderIcons = [biSystemMenu, biMinimize]
   BorderStyle = bsSingle
@@ -19,17 +19,18 @@ object MainForm: TMainForm
   OnDestroy = FormDestroy
   OnDropFiles = FormDropFiles
   OnPaint = FormPaint
-  LCLVersion = '6.6'
+  LCLVersion = '6.9'
   object PCtrl: TPageControl
     Left = 0
     Height = 713
     Top = 0
     Width = 597
-    ActivePage = tbOver
+    ActivePage = tbSquad
     Align = alClient
-    TabIndex = 0
+    TabIndex = 3
     TabOrder = 0
     OnChange = PCtrlChange
+    OnChanging = PCtrlChanging
     object tbOver: TTabSheet
       Caption = 'Overview'
       ClientHeight = 686
@@ -486,7 +487,7 @@ object MainForm: TMainForm
         Top = 138
         Width = 24
         Kind = lkGreenLight
-        State = lsOn
+        State = lsDisabled
         Blink = False
         AutoSize = False
       end
@@ -514,7 +515,7 @@ object MainForm: TMainForm
       ClientWidth = 589
       Enabled = False
       object grTmNavi: TGroupBox
-        Left = 4
+        Left = 3
         Height = 72
         Top = 8
         Width = 577
@@ -1141,22 +1142,31 @@ object MainForm: TMainForm
           ParentColor = False
         end
         object btOrgPriceAll: TButton
-          Left = 343
-          Height = 22
-          Top = 192
+          Left = 344
+          Height = 16
+          Top = 184
           Width = 216
           Caption = 'Compute Original Price for All Players'
           OnClick = btOrgPriceAllClick
           TabOrder = 1
         end
         object btNumber: TButton
-          Left = 343
-          Height = 22
-          Top = 168
+          Left = 344
+          Height = 16
+          Top = 160
           Width = 216
           Caption = 'Sort Player Numbers by Position'
           OnClick = btNumberClick
           TabOrder = 2
+        end
+        object btCompAttributtebyVal: TButton
+          Left = 344
+          Height = 16
+          Top = 200
+          Width = 216
+          Caption = 'Compute Attributtes for All Players'
+          OnClick = btCompAttributtebyValClick
+          TabOrder = 3
         end
       end
       object lbSquadInf: TLabel
@@ -5072,6 +5082,7 @@ object MainForm: TMainForm
     }
     Text = 'Text'
     Title = 'Caption'
+    TitleFont.Style = [fsBold]
     Visible = False
     Left = 432
   end

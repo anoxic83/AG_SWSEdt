@@ -1,11 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CONFIG>
   <ProjectOptions>
-    <Version Value="11"/>
+    <Version Value="12"/>
     <PathDelim Value="\"/>
     <General>
+      <Flags>
+        <CompatibilityMode Value="True"/>
+      </Flags>
       <SessionStorage Value="InProjectDir"/>
-      <MainUnit Value="0"/>
       <Title Value="AG_SWSEDT"/>
       <ResourceType Value="res"/>
       <UseXPManifest Value="True"/>
@@ -18,9 +20,10 @@
     <VersionInfo>
       <UseVersionInfo Value="True"/>
       <MajorVersionNr Value="2"/>
-      <MinorVersionNr Value="3"/>
+      <MinorVersionNr Value="4"/>
       <BuildNr Value="1"/>
-      <StringTable CompanyName="Atomic Group Software" InternalName="AG_SWSEDT" LegalCopyright="(c) 2013-18 Anoxic" LegalTrademarks="(c) 2013-18 Anoxic" OriginalFilename="AG_SWSEDT" ProductName="AG_SWSEDT" ProductVersion="2.3.0"/>
+      <Attributes pvaPreRelease="True"/>
+      <StringTable InternalName="AG_SWSEDT" LegalCopyright="(c) 2013-18 Anoxic" LegalTrademarks="(c) 2013-18 Anoxic" OriginalFilename="AG_SWSEDT" ProductName="AG_SWSEDT" ProductVersion="2.4.0.1"/>
     </VersionInfo>
     <BuildModes Count="2">
       <Item1 Name="Debug" Default="True"/>

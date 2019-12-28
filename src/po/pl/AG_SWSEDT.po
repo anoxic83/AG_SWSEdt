@@ -910,6 +910,10 @@ msgstr "Zapisz Dane do SWOS"
 msgid "PoolPlyr.dat"
 msgstr ""
 
+#: tmainform.btcompattributtebyval.caption
+msgid "Compute Attributtes for All Players"
+msgstr "Wylicz atrybuty dla wszystkich"
+
 #: tsettingform.btbrowexe.caption
 msgctxt "tsettingform.btbrowexe.caption"
 msgid "..."
