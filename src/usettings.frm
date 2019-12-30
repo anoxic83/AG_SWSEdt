@@ -13,9 +13,9 @@ object SettingForm: TSettingForm
     Height = 312
     Top = 0
     Width = 511
-    ActivePage = tbPath
+    ActivePage = tbLinks
     Align = alTop
-    TabIndex = 0
+    TabIndex = 2
     TabOrder = 0
     object tbPath: TTabSheet
       Caption = 'Directories'

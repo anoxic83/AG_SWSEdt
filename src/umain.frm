@@ -1096,7 +1096,7 @@ object MainForm: TMainForm
         object lbReserve: TLabel
           Left = 343
           Height = 14
-          Top = 56
+          Top = 48
           Width = 41
           Caption = 'Reserve'
           ParentColor = False
@@ -1104,15 +1104,15 @@ object MainForm: TMainForm
         object Reserve1: TLabel
           Left = 343
           Height = 14
-          Top = 78
+          Top = 72
           Width = 47
           Caption = 'Reserve1'
           ParentColor = False
         end
         object Reserve2: TLabel
-          Left = 343
+          Left = 344
           Height = 14
-          Top = 96
+          Top = 88
           Width = 47
           Caption = 'Reserve2'
           ParentColor = False
@@ -1120,7 +1120,7 @@ object MainForm: TMainForm
         object Reserve3: TLabel
           Left = 343
           Height = 14
-          Top = 112
+          Top = 104
           Width = 47
           Caption = 'Reserve3'
           ParentColor = False
@@ -1128,7 +1128,7 @@ object MainForm: TMainForm
         object Reserve4: TLabel
           Left = 343
           Height = 14
-          Top = 128
+          Top = 120
           Width = 47
           Caption = 'Reserve4'
           ParentColor = False
@@ -1136,7 +1136,7 @@ object MainForm: TMainForm
         object Reserve5: TLabel
           Left = 343
           Height = 14
-          Top = 144
+          Top = 136
           Width = 47
           Caption = 'Reserve5'
           ParentColor = False
@@ -1144,7 +1144,7 @@ object MainForm: TMainForm
         object btOrgPriceAll: TButton
           Left = 344
           Height = 16
-          Top = 184
+          Top = 168
           Width = 216
           Caption = 'Compute Original Price for All Players'
           OnClick = btOrgPriceAllClick
@@ -1153,7 +1153,7 @@ object MainForm: TMainForm
         object btNumber: TButton
           Left = 344
           Height = 16
-          Top = 160
+          Top = 152
           Width = 216
           Caption = 'Sort Player Numbers by Position'
           OnClick = btNumberClick
@@ -1162,11 +1162,20 @@ object MainForm: TMainForm
         object btCompAttributtebyVal: TButton
           Left = 344
           Height = 16
-          Top = 200
+          Top = 184
           Width = 216
           Caption = 'Compute Attributtes for All Players'
           OnClick = btCompAttributtebyValClick
           TabOrder = 3
+        end
+        object btCompAttributtebyVal1: TButton
+          Left = 343
+          Height = 16
+          Top = 200
+          Width = 216
+          Caption = 'Change Attributtes to 7 for All Players'
+          OnClick = btCompAttributtebyVal1Click
+          TabOrder = 4
         end
       end
       object lbSquadInf: TLabel

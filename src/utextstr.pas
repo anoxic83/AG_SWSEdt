@@ -178,6 +178,7 @@ resourcestring
     +' save after.';
   rsMustBe16Team = 'Must be 16 teams in CLipboard';
   rsMustBeOnTeam = 'Must be minimum one team in Clipboard';
+  rsChangedDivCo = 'Divisions Count Changed. This value cannot be write to orginal SWOS.exe file';
 
 
 function CheckisDir(Path: string): string;

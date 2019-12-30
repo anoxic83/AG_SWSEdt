@@ -220,12 +220,14 @@ type
     property Relegation_PO: byte read FrelPO write FRelPO;
   end;
 
+  TSWSDivisions = specialize TFPGObjectList<TSWSDivision>;
 
   { TSWSLeague }
 
   TSWSLeague = class(TPersistent)
   private
     FAddr: longword;
+    FOrginalDivisions: Byte;
     FSWSfile: string;
     FLeagues: byte;
     FCompet: byte;
@@ -237,16 +239,20 @@ type
     Fpts: byte;
     FPosSubs: byte;
     FFromSubs: byte;
-    FDivs: array of TSWSDivision;
+    FDivs: TSWSDivisions;
     FLoaded: boolean;
     function GetDiv(idx: integer): TSWSDivision;
     procedure SetDiv(idx: integer; AValue: TSWSDivision);
     procedure ReadDta;
+    procedure WriteDta(FSM: TFileStream);
   public
     constructor Create;
     destructor Destroy; override;
     procedure ReadData;
     procedure WriteData(FN: string = '');
+    procedure CreatePatch();
+    function AddDivision(): Boolean;
+    function DelDivision(): Boolean;
     property Leagues: byte read FLeagues;
     property Competition: byte read Fcompet;
     property CmpType: byte read FType;
@@ -261,6 +267,7 @@ type
     property Address: longword read FAddr write FAddr;
     property SWSExePath: string read FSWSFile write FSWSFile;
     property Loaded: boolean read FLoaded;
+    property OrginalDivisions: Byte read FOrginalDivisions;
   end;
 
 
@@ -408,6 +415,7 @@ type
     procedure Assign(ASource: TPersistent); override;
     function Get7p(val: byte): byte;
     function CalcPlay(by7: boolean): integer;
+    procedure ChangeAllTo7();
     function LoadPlayer(Ptm: TStream): boolean;
     function WritePlayer(Ptm: TStream): boolean;
     function ExportToCSV(var TS: TStringList; UniqID: integer): boolean;
@@ -558,10 +566,10 @@ type
     FFileNumber: byte;
     FFileEngineID: integer;
     FLeagueName: string;
-    FTeamCount: integer;
     FTeams: TSWSTeams;
     FEngine: TSWSEngine;
     FTeamIndex: integer;
+    FTMDCount: Integer;
     FisTMD: boolean;
     Fpool: integer;
     FHexVal: string;
@@ -569,11 +577,9 @@ type
     FonLoadFile: TOnLoadFile;
     FonSaveFile: TonSaveFile;
     FLeague: TSWSLeague;
-    function GetTeamCount: integer;
     function LoadFile: boolean;
+    procedure SetTeamIndex(AValue: integer);
     function WriteFile(AFN: string): boolean;
-    function GetTeam(Index: integer): TSWSTeam;
-    procedure SetTeam(Index: integer; AValue: TSWSTeam);
   public
     constructor Create(AOwner: TComponent); override;
     constructor Create(AOwner: TComponent; AFileName: string); overload;
@@ -595,11 +601,11 @@ type
     procedure ChangeAll(prop: string; AVal: variant);
     property FileName: string read FFileName write FFileName;
     property FileNumber: byte read FFileNumber write FFileNumber;
-    property TeamCount: integer read GetTeamCount;
-    property Team[Index: integer]: TSWSTeam read GetTeam write SetTeam;
+    function TeamCount: integer;
+    property Team: TSWSTeams read FTeams write FTeams;
     property Engine: TSWSEngine read FEngine write FEngine;
     property FileEngineID: integer read FFileEngineID write FFileEngineID;
-    property TeamIndex: integer read FTeamIndex write FTeamIndex;
+    property TeamIndex: integer read FTeamIndex write SetTeamIndex;
     property isTMD: boolean read FisTMD write FisTMD;
     property HexVal: string read FHexVal write FHexVal;
     property League: TSWSLeague read FLeague write FLeague;
@@ -638,10 +644,10 @@ type
     function GetFileCount: integer;
     function GetNextPlUniqiD: integer;
     function GetNextTmUniqID: integer;
-    function GetSWSFile(Index: integer): TSWSFile;
-    procedure SetSWSFile(Index: integer; AValue: TSWSFile);
+    function GetSWSFiles(Index: integer): TSWSFile;
     procedure OnLoadFile(Sender: TObject; Tidx, Tcount: integer);
     procedure OnSaveFile(Sender: TObject; Tidx, Tcount: integer);
+    procedure SetSWSFiles(Index: integer; AValue: TSWSFile);
   public
     constructor Create(AOwner: TComponent); override;
     destructor Destroy; override;
@@ -670,8 +676,8 @@ type
     property LeaguesDir: string read FLeaguesDir write FLeaguesDir;
     property LeaguesFile: TXMLDocument read FLeaguesFile write FLeaguesFile;
     property LeaguesVersion: string read FLeaguesVer;
-    property SWSFiles[Index: integer]: TSWSFile read GetSWSFile write SetSWSFile;
-    property FileCount: integer read GetFileCount;
+    property SWSFiles: TSWSFiles read FSWSFiles write FSWSFiles;
+    function FileCount: integer;
     property FileIndex: integer read FFileIndex write FFileIndex;
     property SWSExeVer: TSWSExeVer read FSWSexeVer write FSWSexeVer;
     property EuropeanCups: TSWSEurocup read FEuropeanCup write FEuropeanCup;
@@ -1005,6 +1011,7 @@ end;
 procedure TSWSLeague.ReadDta;
 var
   FStm: TFileStream;
+  Tmp: TSWSDivision;
   tmsub: byte;
   i: integer;
 begin
@@ -1022,23 +1029,52 @@ begin
   tmsub := Fstm.ReadByte;
   FPosSubs := tmsub div 16;
   FFromSubs := tmsub mod 16;
-  SetLength(Fdivs, Fleagues);
+  FOrginalDivisions:=FLeagues;
   for i := 0 to FLeagues - 1 do
   begin
-    FDivs[i] := TSWSDivision.Create;
-    FDivs[i].Teams := Fstm.ReadByte;
-    FDivs[i].FProm := FStm.ReadByte;
-    FDivs[i].FPromPO := Fstm.ReadByte;
-    FDivs[i].FRel := FStm.ReadByte;
-    FDivs[i].FRelPO := FStm.ReadByte;
+    Tmp:=TSWSDivision.Create;
+    Tmp.Teams := Fstm.ReadByte;
+    Tmp.FProm := FStm.ReadByte;
+    Tmp.FPromPO := Fstm.ReadByte;
+    Tmp.FRel := FStm.ReadByte;
+    Tmp.FRelPO := FStm.ReadByte;
     Fstm.ReadByte;
+    FDivs.Add(Tmp);
   end;
   Fstm.Free;
   FLoaded := True;
 end;
 
+procedure TSWSLeague.WriteDta(FSM: TFileStream);
+var
+  tmSub: byte;
+  i: integer;
+begin
+  FSM.WriteByte(FCompet);
+  FSM.WriteByte(FType);
+  FSM.WriteByte(FTeamNr);
+  FSM.WriteByte(FBMonth * 8);
+  FSM.WriteByte(FEMonth * 8);
+  FSM.WriteDWord(0);
+  FSM.WriteByte(FLeagues);
+  FSM.WriteByte(FMatEach);
+  FSM.WriteByte(Fpts);
+  tmSub := (FPosSubs * 16) + FFromSubs;
+  FSM.WriteByte(tmSub);
+  for i := 0 to FLeagues - 1 do
+  begin
+    FSM.WriteByte(Fdivs[i].Teams);
+    FSM.WriteByte(Fdivs[i].FProm);
+    FSM.WriteByte(Fdivs[i].FPromPO);
+    FSM.WriteByte(Fdivs[i].FRel);
+    FSM.WriteByte(Fdivs[i].FRelPO);
+    FSM.WriteByte(0);
+  end;
+end;
+
 constructor TSWSLeague.Create;
 begin
+  FDivs:=TSWSDivisions.Create();
   inherited Create;
 end;
 
@@ -1046,9 +1082,7 @@ destructor TSWSLeague.Destroy;
 var
   i: integer;
 begin
-  for i := 0 to FLeagues - 1 do
-    Fdivs[i].Free;
-  SetLength(FDivs, 0);
+  FDivs.Free;
   inherited Destroy;
 end;
 
@@ -1060,35 +1094,48 @@ end;
 procedure TSWSLeague.WriteData(FN: string);
 var
   FStm: TFileStream;
-  tmSub: byte;
-  i: integer;
 begin
   if (FN = '') then
     FStm := TFileStream.Create(FSWSfile, fmOpenReadWrite)
   else
     FStm := TFileStream.Create(FN, fmOpenReadWrite);
   Fstm.Seek(FAddr, soBeginning);
-  Fstm.WriteByte(FCompet);
-  Fstm.WriteByte(FType);
-  FStm.WriteByte(FTeamNr);
-  FStm.WriteByte(FBMonth * 8);
-  Fstm.WriteByte(FEMonth * 8);
-  Fstm.WriteDWord(0);
-  Fstm.WriteByte(FLeagues);
-  Fstm.WriteByte(FMatEach);
-  Fstm.WriteByte(Fpts);
-  tmSub := (FPosSubs * 16) + FFromSubs;
-  Fstm.WriteByte(tmSub);
-  for i := 0 to FLeagues - 1 do
-  begin
-    Fstm.WriteByte(Fdivs[i].Teams);
-    Fstm.WriteByte(Fdivs[i].FProm);
-    Fstm.WriteByte(Fdivs[i].FPromPO);
-    Fstm.WriteByte(Fdivs[i].FRel);
-    Fstm.WriteByte(Fdivs[i].FRelPO);
-    Fstm.WriteByte(0);
-  end;
+  WriteDta(FStm);
   Fstm.Free;
+end;
+
+procedure TSWSLeague.CreatePatch();
+var
+  FStm: TFileStream;
+begin
+  FStm := TFileStream.Create('LEAGUE.'+Format('%.*d', [3,FTeamNr]), fmCreate);
+  Fstm.Seek(0, soBeginning);
+  WriteDta(FStm);
+  Fstm.Free;
+end;
+
+function TSWSLeague.AddDivision(): Boolean;
+var
+   Tmp: TSWSDivision;
+begin
+   if (FLeagues>3) then Exit(false);
+   Tmp:=TSWSDivision.Create;
+   Tmp.Teams:=10;
+   Tmp.Promotion:=0;
+   Tmp.Promotion_PO:=0;
+   Tmp.Relegation:=0;
+   Tmp.Relegation_PO:=0;
+   FDivs.Add(Tmp);
+   FLeagues+=1;
+   Result:=True;
+end;
+
+function TSWSLeague.DelDivision(): Boolean;
+begin
+  if (FLeagues<2) then Exit(false);
+  FDivs.Delete(FLeagues-1);
+  FLeagues -= 1;
+  Result:=true;
 end;
 
 { TSWSDivision }
@@ -1428,12 +1475,6 @@ end;
 { TSWSEngine }
 
 
-function TSWSEngine.GetSWSFile(Index: integer): TSWSFile;
-begin
-  if (Index < 0) or (Index > FSWSFiles.Count - 1) then
-    Exit;
-  Result := FSWSFiles[Index];
-end;
 
 function TSWSEngine.GetNextPlUniqiD: integer;
 begin
@@ -1452,12 +1493,12 @@ begin
   Result := FTmUniqID;
 end;
 
-procedure TSWSEngine.SetSWSFile(Index: integer; AValue: TSWSFile);
+function TSWSEngine.GetSWSFiles(Index: integer): TSWSFile;
 begin
-  if (Index < 0) or (Index > FSWSFiles.Count - 1) then
-    Exit;
-  FSWSFiles[Index] := AValue;
+  if ((Index<0) or (Index>GetFileCount-1)) then Exit(nil);
+  Result:=FSWSFiles[Index];
 end;
+
 
 procedure TSWSEngine.OnLoadFile(Sender: TObject; Tidx, Tcount: integer);
 begin
@@ -1469,6 +1510,12 @@ procedure TSWSEngine.OnSaveFile(Sender: TObject; Tidx, Tcount: integer);
 begin
   if Assigned(FonSave) then
     OnSave(self, (Sender as TSWSFile), Tidx, Tcount);
+end;
+
+procedure TSWSEngine.SetSWSFiles(Index: integer; AValue: TSWSFile);
+begin
+  if ((Index<0) or (Index>GetFileCount-1)) then Exit;
+  FSWSFiles[Index]:=AValue;
 end;
 
 constructor TSWSEngine.Create(AOwner: TComponent);
@@ -1667,7 +1714,7 @@ var
   f, t: integer;
 begin
   for f:=0 to FSWSFiles.Count-1 do
-      for t:=0 to FSWSFiles[f].GetTeamCount-1 do
+      for t:=0 to FSWSFiles[f].TeamCount-1 do
         if FSWSFiles[f].Team[t].Coach = CoachN then begin
            FileIdx := f;
            TeamIdx := t;
@@ -1682,7 +1729,7 @@ var
 begin
   MaxN := 0;
   for i := 0 to FileCount - 1 do
-    for j := 0 to FSWSFiles[i].FTeamCount - 1 do
+    for j := 0 to FSWSFiles[i].TeamCount - 1 do
     begin
       if FSWSFiles[i].FTeams[j].FSws_gen_nr > MaxN then
         MaxN := FSWSFiles[i].FTeams[j].FSws_gen_nr;
@@ -1697,7 +1744,7 @@ begin
   TMNE := 0;
   if FLoadAll then
     for a := 0 to FileCount - 1 do
-      for i := 0 to FSWSFiles[a].FTeamCount - 1 do
+      for i := 0 to FSWSFiles[a].TeamCount - 1 do
         if FSWSFiles[a].FTeams[i].FSws_gen_nr = Num then
         begin
           Inc(tMnE);
@@ -1787,6 +1834,11 @@ begin
         Result := Flg;
     end;
   end;
+end;
+
+function TSWSEngine.FileCount: integer;
+begin
+  Result:=FSWSFiles.Count;
 end;
 
 { TSWSkits }
@@ -2013,6 +2065,18 @@ begin
       Get7p(FatC) + Get7p(FatS) + Get7p(FatF)
   else
     Result := FAtP + FAtV + FAtH + FAtT + FAtC + FAtS + FAtF;
+end;
+
+procedure TSWSPlayer.ChangeAllTo7();
+begin
+  Passing:=Get7p(Passing);
+  Shooting:=Get7p(Shooting);
+  Heading:=Get7p(Heading);
+  Tackling:=Get7p(Tackling);
+  Ball_Control:=Get7p(Ball_Control);
+  Speed:=Get7p(Speed);
+  Finishing:=Get7p(Finishing);
+  FChanged:=true;
 end;
 
 constructor TSWSPlayer.Create;
@@ -2668,6 +2732,7 @@ begin
   FAtS := AAtrr[APosA[5]];
   FAtF := AAtrr[APosA[6]];
   GetAttrStr;
+  FChanged:=true;
 end;
 
 procedure TSWSPlayer.GenerateAttrbyPosVal(Pos: integer);
@@ -2809,6 +2874,7 @@ begin
   FAtS := tmpAttr[5];
   FAtF := tmpAttr[6];
   GetAttrStr;
+  FChanged:=true;
 end;
 
 procedure TSWSPlayer.ClearPlayer(nr: integer);
@@ -3059,7 +3125,7 @@ begin
         FUniqID := FTeamFile.FEngine.NextTmUniqID;
     Fnation := Stm.ReadByte;
     FTeamNum := Stm.ReadByte;
-    FSws_gen_nr := Stm.ReadWord;
+    FSws_gen_nr := Swap(Stm.ReadWord);
     Stm.ReadByte;
     Stm.Read(Fctname, sizeof(Fctname));
     Fteamname := Fctname + #0;
@@ -3104,7 +3170,7 @@ begin
   try
     Stm.WriteByte(Fnation);
     Stm.WriteByte(FTeamNum);
-    Stm.WriteWord(FSws_gen_nr);
+    Stm.WriteWord(Swap(FSws_gen_nr));
     Stm.WriteByte(0);
     Fctname := UpperCase(Fteamname) + #0;
     Stm.Write(Fctname, sizeof(Fctname));
@@ -3195,6 +3261,7 @@ var
   FS: TFileStream;
   Tmp: TSWSTeam;
   i: integer;
+  TmpCount: byte;
 begin
   Result := False;
   try
@@ -3208,16 +3275,18 @@ begin
         Exit;
       end;
       FS.Seek(1, soBeginning);
-      FTeamCount := FS.ReadByte;
+      TmpCount := FS.ReadByte;
     end;
-    if FisTMD then
+    if FisTMD then begin
       if (FS.Size mod 684) <> 0 then
       begin
         FEngine.FLastError := seNotSWOSTEAM;
         Result := False;
         Exit;
       end;
-    for i := 0 to FTeamCount - 1 do
+      TmpCount:=FTMDCount;
+    end;
+    for i := 0 to TmpCount - 1 do
     begin
       Tmp := TSWSTeam.Create(self);
       Result := Tmp.LoadTeam(FS);
@@ -3229,7 +3298,7 @@ begin
         Exit;
       end;
       if Assigned(FonLoadFile) then
-        onLoadFile(self, i + 1, FTeamCount);
+        onLoadFile(self, i + 1, TmpCount);
       //Sleep(2);
     end;
   finally
@@ -3238,9 +3307,15 @@ begin
   Fchanged := False;
 end;
 
-function TSWSFile.GetTeamCount: integer;
+procedure TSWSFile.SetTeamIndex(AValue: integer);
 begin
-  Result:= FTeams.Count;
+  if FTeamIndex=AValue then Exit;
+  FTeamIndex:=AValue;
+end;
+
+function TSWSFile.TeamCount: integer;
+begin
+  Result:=FTeams.Count;
 end;
 
 function TSWSFile.WriteFile(AFN: string): boolean;
@@ -3259,13 +3334,13 @@ begin
     begin
       FS.Seek(0, soBeginning);
       FS.WriteByte(0);
-      FS.WriteByte(FTeamCount);
+      FS.WriteByte(FTeams.Count);
     end;
-    for i := 0 to FTeamCount - 1 do
+    for i := 0 to TeamCount - 1 do
     begin
       Result := FTeams[i].WriteTeam(FS);
       if Assigned(FonSaveFile) then
-        onSaveFile(self, i + 1, FTeamCount);
+        onSaveFile(self, i + 1, TeamCount);
       //sleep(2);
     end;
   finally
@@ -3274,19 +3349,6 @@ begin
   Fchanged := False;
 end;
 
-function TSWSFile.GetTeam(Index: integer): TSWSTeam;
-begin
-  if (Index < 0) or (Index > FTeamCount - 1) then
-    Exit;
-  Result := FTeams[Index];
-end;
-
-procedure TSWSFile.SetTeam(Index: integer; AValue: TSWSTeam);
-begin
-  if (Index < 0) or (Index > FteamCount - 1) then
-    Exit;
-  FTeams[Index] := AValue;
-end;
 
 constructor TSWSFile.Create(AOwner: TComponent);
 begin
@@ -3313,7 +3375,7 @@ end;
 
 procedure TSWSFile.SetTMDCount(ACount: integer);
 begin
-  FTeamCount := ACount;
+  FTMDCount := ACount;
 end;
 
 function TSWSFile.Load: boolean;
@@ -3341,7 +3403,7 @@ function TSWSFile.TeamByDiv(Division: byte): integer;
 var
   cou, a, tea: integer;
 begin
-  cou := FTeamCount;
+  cou := TeamCount;
   tea := 0;
   for a := 0 to cou - 1 do
   begin
@@ -3397,7 +3459,7 @@ begin
   Tmp.Nation := FFileNumber;
   Tmp.Coach := 'THE GREAT MANAGER';
   Tmp.SWS_Gen_Num := Round(Random(65535));
-  Tmp.TeamNum := FindMaxTeamNum + 1;
+  Tmp.TeamNum := TeamCount;
   Tmp.Formation := 0;
   Tmp.Fplposit := SWTypForm;
   for a := 0 to 15 do
@@ -3523,8 +3585,9 @@ var
   a: integer;
 begin
   if prop = 'nation' then
-    for a := 0 to FTeamCount - 1 do
+    for a := 0 to TeamCount - 1 do
       FTeams[a].Nation := AVal;
 end;
+
 
 end.

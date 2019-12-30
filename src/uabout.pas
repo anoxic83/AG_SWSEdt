@@ -95,7 +95,7 @@ end;
 
 procedure TAboutFrm.FormCreate(Sender: TObject);
 begin
-  UpdNow := False;
+  UpdNow := True;
 end;
 
 function TAboutFrm.GetStrVersion(WithBuild: boolean): string;

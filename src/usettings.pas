@@ -276,8 +276,8 @@ begin
   end;
   if Links[1].Form = '' then
   begin
-    Links[1].Form := 'http://www.90minut.pl/szukaj.php?tekst=%s';
-    Links[1].Desc := 'Find on 90minut.pl';
+    Links[1].Form := 'https://www.transfermarkt.com/schnellsuche/ergebnis/schnellsuche?query=%s';
+    Links[1].Desc := 'Find on TransferMarkt.com';
   end;
   if Links[0].Form = '' then
   begin

@@ -32,7 +32,7 @@ uses
   uabout {$IFDEF DEBUG}, heaptrc{$ENDIF};
 
 const
-  SWSEdtVer = $0002000400000002;
+  SWSEdtVer = $0002000400010004;
 
 type
 
@@ -47,6 +47,7 @@ type
     AOverview: TAction;
     AdvLed1: TAdvLed;
     btCompAttributtebyVal: TButton;
+    btCompAttributtebyVal1: TButton;
     btOvrSwsChange: TButton;
     btNumber: TButton;
     btGenPosVal: TButton;
@@ -340,6 +341,7 @@ type
     procedure ATeamExecute(Sender: TObject);
     procedure AGeneralExecute(Sender: TObject);
     procedure AOverviewExecute(Sender: TObject);
+    procedure btCompAttributtebyVal1Click(Sender: TObject);
     procedure btCompAttributtebyValClick(Sender: TObject);
     procedure btCompOrgClick(Sender: TObject);
     procedure btEdtLeagStrucClick(Sender: TObject);
@@ -759,6 +761,7 @@ begin
   LoadGeneral;
   PCtrl.ActivePage := tbOver;
   PCtrl.ActivePage := tbGeneral;
+  PCtrlChange(self);
   Show;
 end;
 
@@ -911,7 +914,8 @@ procedure TMainForm.LBTeamsClick(Sender: TObject);
 begin
   if LBTeams.Selected = nil then
     Exit;
-  SWSDB.SWSFiles[SWSDB.FileIndex].TeamIndex := PtrUInt(LBTeams.Selected.Data);
+  //SWSDB.SWSFiles[SWSDB.FileIndex].TeamIndex := PtrUInt(LBTeams.Selected.Data);
+  SWSDB.SWSFiles[SWSDB.FileIndex].TeamIndex := LBTeams.Selected.Index;
   CBTeams.ItemIndex := LBTeams.Selected.Index;
 end;
 
@@ -936,7 +940,8 @@ procedure TMainForm.LBTeamsDblClick(Sender: TObject);
 begin
   if LBTeams.Selected = nil then
     EXit;
-  SWSDB.SWSFiles[SWSDB.FileIndex].TeamIndex := PtrUInt(LBTeams.Selected.Data);
+  //SWSDB.SWSFiles[SWSDB.FileIndex].TeamIndex := PtrUInt(LBTeams.Selected.Data);
+  SWSDB.SWSFiles[SWSDB.FileIndex].TeamIndex := LBTeams.Selected.Index;
   tbTeam.Enabled := True;
   RefTeam;
   PCtrl.ActivePage := tbTeam;
@@ -962,12 +967,14 @@ end;
 procedure TMainForm.MaddTeamClick(Sender: TObject);
 var
   NTeam: string;
+  TI: Integer;
 begin
   NTeam := 'NEW TEAM';
   if InputQuery(rsAddNewTeam, rsEnterTeamNam, NTeam) then
   begin
     SWSDB.SWSFiles[SWSDB.FileIndex].AddTeam(NTeam);
-    SWSDB.SWSFiles[SWSDB.FileIndex].TeamIndex := SWSDB.SWSFiles[SWSDB.FileIndex].TeamCount - 1;
+    Ti:= SWSDB.SWSFiles[SWSDB.FileIndex].TeamCount - 1;
+    SWSDB.SWSFiles[SWSDB.FileIndex].TeamIndex := TI;
     LoadGeneral;
     RefTeam;
     RefSquad;
@@ -1474,13 +1481,14 @@ begin
     SWSDB.FileIndex := idn;
   end;
 
-
-  LoadOver;
-  SetEnables(False, True);
-  tbGeneral.Enabled := True;
-  PCtrl.ActivePage := tbGeneral;
-  PCtrlChange(self);
-  Show;
+  if SWSDB.FileCount > 0 then begin
+    LoadOver;
+    SetEnables(False, True);
+    tbGeneral.Enabled := True;
+    PCtrl.ActivePage := tbGeneral;
+    PCtrlChange(self);
+    Show;
+  end;
 end;
 
 procedure TMainForm.MreloadClick(Sender: TObject);
@@ -1644,50 +1652,33 @@ begin
     lbFLFiDF.Caption := Format('%d/%d', [SWSDB.FileCount, SWSDB.FilesInDta]);
     lbTeamEdited.Caption := Format(rsFilesEditedD, [SWSDB.ChangedFiles()]);
   end;
+  if SWSDB.FileIndex > -1 then
+     tbGeneral.Enabled:=true
+  else
+     tbGeneral.Enabled:=False;
   // GENERAL
-  if PCtrl.ActivePage = tbGeneral then
-    if SWSDB.FileIndex > -1 then
-    begin
+  if PCtrl.ActivePageIndex > 0 then BEGIN
+    tidd := SWSDB.SWSFiles[SWSDB.FileIndex].TeamIndex;
+    if SWSDB.SWSFiles[SWSDB.FileIndex].TeamCount>0 then begin
+      if ((tidd<0) or (tidd>SWSDB.SWSFiles[SWSDB.FileIndex].TeamCount-1)) then
+        SWSDB.SWSFiles[SWSDB.FileIndex].TeamIndex := 0;
+      tbTeam.Enabled:=true;
+      tbSquad.Enabled:=true;
       tidd := SWSDB.SWSFiles[SWSDB.FileIndex].TeamIndex;
-      tbGeneral.Enabled := True;
+      if SWSDB.SWSFiles[SWSDB.FileIndex].Team[tidd].PlayerIndex < 0 then
+        SWSDB.SWSFiles[SWSDB.FileIndex].Team[tidd].PlayerIndex:=0;
+      tbPlayer.Enabled:=true;
       LoadGeneral;
-      FocusControl(LBTeams);
+      RefTeam;
+      RefSquad;
+      RefPlayer;
     end
-    else
-      tbGeneral.Enabled := False;
-  // TEAM
-  if PCtrl.ActivePage = tbTeam then
-    if SWSDB.FileIndex > -1 then
-      if Tidd > -1 then
-      begin
-        tbTeam.Enabled := True;
-        RefTeam;
-      end
-      else
-        tbTeam.Enabled := False;
-  // SQUAD
-  if PCtrl.ActivePage = tbSquad then
-    if SWSDB.FileIndex > -1 then
-      if Tidd > -1 then
-      begin
-        tbSquad.Enabled := True;
-        Pidd := SWSDB.SWSFiles[SWSDB.FileIndex].Team[tidd].PlayerIndex;
-        RefSquad;
-        FocusControl(LBSquad);
-      end
-      else
-        tbSquad.Enabled := False;
-  // PLAYER
-  if PCtrl.ActivePage = tbPlayer then
-    if SWSDB.FileIndex > -1 then
-      if Tidd > -1 then
-        if (Pidd > -1) and (Pidd < 16) then
-        begin
-          tbPlayer.Enabled := True;
-          RefPlayer;
-        end
-        else
-          tbPlayer.Enabled:= False;
+    else begin
+      tbTeam.Enabled:=false;
+      tbSquad.Enabled:=false;
+    end;
+  end; // GEN
+
 end;
 
 procedure TMainForm.PCtrlChanging(Sender: TObject; var AllowChange: Boolean);
@@ -2083,7 +2074,10 @@ begin
       LBTeams.RowSelect := True;
     end;
   end;
-  if SWSDB.SWSFiles[SWSDB.FileIndex].TeamIndex > 0 then
+  if SWSDB.SWSFiles[SWSDB.FileIndex].TeamCount>0 then
+     if ((SWSDB.SWSFiles[SWSDB.FileIndex].TeamIndex < 0)or(SWSDB.SWSFiles[SWSDB.FileIndex].TeamIndex > SWSDB.SWSFiles[SWSDB.FileIndex].TeamCount-1)) then
+         SWSDB.SWSFiles[SWSDB.FileIndex].TeamIndex:=0;
+  if SWSDB.SWSFiles[SWSDB.FileIndex].TeamIndex > -1 then
   begin
     lbTeams.Items[SWSDB.SWSFiles[SWSDB.FileIndex].TeamIndex].Selected := True;
     LBTeams.ItemIndex := SWSDB.SWSFiles[SWSDB.FileIndex].TeamIndex;
@@ -2883,15 +2877,49 @@ begin
   PCtrl.ActivePage:=tbOver;
 end;
 
-procedure TMainForm.btCompAttributtebyValClick(Sender: TObject);
+procedure TMainForm.btCompAttributtebyVal1Click(Sender: TObject);
 var
   TDX, i: integer;
 begin
   TDX := SWSDB.SWSFiles[SWSDb.FileIndex].TeamIndex;
   for i := 0 to 15 do
+    SWSDB.SWSFiles[SWSDb.FileIndex].Team[TDX].Player[i].ChangeAllTo7();
+  RefSquad;
+end;
+
+procedure TMainForm.btCompAttributtebyValClick(Sender: TObject);
+var
+  TDX, i: integer;
+  pos: byte;
+  ll: integer;
+begin
+  TDX := SWSDB.SWSFiles[SWSDb.FileIndex].TeamIndex;
+  for i := 0 to 15 do
   begin
-    if SWSDB.SWSFiles[SWSDb.FileIndex].Team[TDX].Player[i].Position <> 0 then
-        SWSDB.SWSFiles[SWSDb.FileIndex].Team[TDX].Player[i].GenerateAttrbyValue;
+    if SWSDB.SWSFiles[SWSDb.FileIndex].Team[TDX].Player[i].Position <> 0 then begin
+        case SWSDB.SWSFiles[SWSDb.FileIndex].Team[TDX].Player[i].Position of
+             1: Pos:=0;
+             2: Pos:=0;
+             3: Pos:=1;
+             4: begin
+             ll:=Round(Random(2));
+             Pos:=2+ll;
+             end;
+             5: begin
+               ll:=Round(Random(2));
+             Pos:=2+ll;
+             end;
+             6: begin
+             ll:=Round(Random(3));
+             Pos:=4+ll;
+             end;
+             7: begin
+               ll:=Round(Random(2));
+             Pos:=7+ll;
+             end;
+        end;
+        SWSDB.SWSFiles[SWSDb.FileIndex].Team[TDX].Player[i].GenerateAttrbyPosVal(Pos);
+    end;
   end;
   RefSquad;
 end;

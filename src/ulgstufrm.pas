@@ -23,7 +23,7 @@ interface
 
 uses
   Classes, SysUtils, FileUtil, Forms, Controls, Graphics, Dialogs, StdCtrls,
-  utextstr, uagswos, LCLType;
+  utextstr, uagswos, LCLType, Spin, ComCtrls;
 
 type
 
@@ -34,12 +34,15 @@ type
   TLgeStrForm = class(TForm)
     btCmSav: TButton;
     btExtoutSav: TButton;
+    Button1: TButton;
     cbStMon: TComboBox;
     cbEnMon: TComboBox;
     cbpossub: TComboBox;
     cbFromSub: TComboBox;
     cbDiv: TComboBox;
     EcmpNr: TEdit;
+    ECmpID: TEdit;
+    Ediv: TEdit;
     Erelpo: TEdit;
     Erel: TEdit;
     Eprompo: TEdit;
@@ -49,6 +52,8 @@ type
     EmeT: TEdit;
     gbcomp: TGroupBox;
     grDivs: TGroupBox;
+    Label1: TLabel;
+    Label2: TLabel;
     lbrelpo: TLabel;
     lbRel: TLabel;
     lbprompo: TLabel;
@@ -61,8 +66,10 @@ type
     lbEnMon: TLabel;
     lbStMon: TLabel;
     lbCompNr: TLabel;
+    UpDown1: TUpDown;
     procedure btCmSavClick(Sender: TObject);
     procedure btExtoutSavClick(Sender: TObject);
+    procedure Button1Click(Sender: TObject);
     procedure cbDivChange(Sender: TObject);
     procedure cbEnMonChange(Sender: TObject);
     procedure cbFromSubChange(Sender: TObject);
@@ -77,6 +84,7 @@ type
     procedure eteamsExit(Sender: TObject);
     procedure FormActivate(Sender: TObject);
     procedure FormClose(Sender: TObject; var CloseAction: TCloseAction);
+    procedure UpDown1Click(Sender: TObject; Button: TUDBtnType);
   private
     { private declarations }
   public
@@ -109,6 +117,10 @@ procedure TLgeStrForm.btCmSavClick(Sender: TObject);
 var
   TmpS: String;
 begin
+  if (SWSDB.SWSFiles[SWSDB.FileIndex].League.Leagues <> SWSDB.SWSFiles[SWSDB.FileIndex].League.OrginalDivisions) then begin
+    Application.MessageBox(PChar(rsChangedDivCo),'Error',MB_OK);
+    Exit;
+  end;
   SWSDB.SWSFiles[SWSDB.FileIndex].League.WriteData;
   if (EdtSett.UseTP) then
   TmpS:='Saved To SWS++ Executable: '
@@ -129,6 +141,11 @@ end;
 procedure TLgeStrForm.btExtoutSavClick(Sender: TObject);
 begin
   Close;
+end;
+
+procedure TLgeStrForm.Button1Click(Sender: TObject);
+begin
+  SWSDB.SWSFiles[SWSDB.FileIndex].League.CreatePatch();
 end;
 
 procedure TLgeStrForm.cbEnMonChange(Sender: TObject);
@@ -295,6 +312,21 @@ procedure TLgeStrForm.FormClose(Sender: TObject; var CloseAction: TCloseAction);
 begin
 end;
 
+procedure TLgeStrForm.UpDown1Click(Sender: TObject; Button: TUDBtnType);
+begin
+  if Button = btNext then begin
+    if not SWSDB.SWSFiles[SWSDB.FileIndex].League.AddDivision() then
+       Application.MessageBox('Max Divions is 4','League');
+    RefrLeag;
+  end;
+
+  if Button = btPrev then begin
+    if not SWSDB.SWSFiles[SWSDB.FileIndex].League.DelDivision() then
+      Application.MessageBox('Minimum One Division.','League');
+    RefrLeag;
+  end;
+end;
+
 procedure TLgeStrForm.LoadLig(Fadd: longword);
 begin
   SWSDB.SWSFiles[SWSDB.FileIndex].League.ReadData;
@@ -311,6 +343,7 @@ procedure TLgeStrForm.RefrLeag;
 var
   i: integer;
 begin
+  ECmpID.Text := IntToStr(SWSDB.SWSFiles[SWSDB.FileIndex].League.Competition);
   EcmpNr.Text := IntToStr(SWSDB.SWSFiles[SWSDB.FileIndex].League.SWSTeamNr);
   cbStMon.Clear;
   cbEnMon.Clear;
@@ -335,6 +368,8 @@ begin
     cbpossub.Items.Add(IntToStr(i));
   end;
   cbpossub.ItemIndex := SWSDB.SWSFiles[SWSDB.FileIndex].League.PossibleSubs;
+  EDiv.Text:=IntToStr(SWSDB.SWSFiles[SWSDB.FileIndex].League.Leagues);
+  //DIVISIONS
   cbDiv.Clear;
   for i := 0 to SWSDB.SWSFiles[SWSDB.FileIndex].League.Leagues - 1 do
     cbDiv.Items.Add(CDiv[i]);

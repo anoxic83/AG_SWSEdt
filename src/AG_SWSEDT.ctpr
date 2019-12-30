@@ -21,9 +21,10 @@
       <UseVersionInfo Value="True"/>
       <MajorVersionNr Value="2"/>
       <MinorVersionNr Value="4"/>
-      <BuildNr Value="1"/>
+      <RevisionNr Value="1"/>
+      <BuildNr Value="4"/>
       <Attributes pvaPreRelease="True"/>
-      <StringTable InternalName="AG_SWSEDT" LegalCopyright="(c) 2013-18 Anoxic" LegalTrademarks="(c) 2013-18 Anoxic" OriginalFilename="AG_SWSEDT" ProductName="AG_SWSEDT" ProductVersion="2.4.0.1"/>
+      <StringTable InternalName="AG_SWSEDT" LegalCopyright="(c) 2013-19 Anoxic" LegalTrademarks="(c) 2013-19 Anoxic" OriginalFilename="AG_SWSEDT" ProductName="AG_SWSEDT" ProductVersion="2.4.1.4"/>
     </VersionInfo>
     <BuildModes Count="2">
       <Item1 Name="Debug" Default="True"/>
