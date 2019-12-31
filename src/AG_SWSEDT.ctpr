@@ -21,12 +21,12 @@
       <UseVersionInfo Value="True"/>
       <MajorVersionNr Value="2"/>
       <MinorVersionNr Value="4"/>
-      <RevisionNr Value="1"/>
-      <BuildNr Value="4"/>
+      <RevisionNr Value="2"/>
+      <BuildNr Value="3"/>
       <Attributes pvaPreRelease="True"/>
-      <StringTable InternalName="AG_SWSEDT" LegalCopyright="(c) 2013-19 Anoxic" LegalTrademarks="(c) 2013-19 Anoxic" OriginalFilename="AG_SWSEDT" ProductName="AG_SWSEDT" ProductVersion="2.4.1.4"/>
+      <StringTable InternalName="AG_SWSEDT" LegalCopyright="(c) 2013-19 Anoxic" LegalTrademarks="(c) 2013-19 Anoxic" OriginalFilename="AG_SWSEDT" ProductName="AG_SWSEDT" ProductVersion="2.4.2.3"/>
     </VersionInfo>
-    <BuildModes Count="2">
+    <BuildModes Count="3">
       <Item1 Name="Debug" Default="True"/>
       <Item2 Name="Release">
         <CompilerOptions>
@@ -58,6 +58,45 @@
           </Linking>
         </CompilerOptions>
       </Item2>
+      <Item3 Name="Release-Lin">
+        <MacroValues Count="1">
+          <Macro1 Name="LCLWidgetType" Value="gtk3"/>
+        </MacroValues>
+        <CompilerOptions>
+          <Version Value="11"/>
+          <PathDelim Value="\"/>
+          <Target>
+            <Filename Value="..\bin\$(TargetCPU)-$(TargetOS)\AG_SWSEDT"/>
+          </Target>
+          <SearchPaths>
+            <IncludeFiles Value="$(ProjOutDir)"/>
+            <Libraries Value="C:\codetyphon\binLibraries\x86_64-linux-gtk3\"/>
+            <UnitOutputDirectory Value="lib\$(TargetCPU)-$(TargetOS)"/>
+          </SearchPaths>
+          <CodeGeneration>
+            <TargetCPU Value="x86_64"/>
+            <TargetOS Value="linux"/>
+            <Optimizations>
+              <OptimizationLevel Value="3"/>
+            </Optimizations>
+          </CodeGeneration>
+          <Linking>
+            <Debugging>
+              <GenerateDebugInfo Value="False"/>
+              <StripSymbols Value="True"/>
+            </Debugging>
+            <LinkSmart Value="True"/>
+            <Options>
+              <Win32>
+                <GraphicApplication Value="True"/>
+              </Win32>
+            </Options>
+          </Linking>
+        </CompilerOptions>
+      </Item3>
+      <SharedMatrixOptions Count="1">
+        <Item1 ID="929963419258" Modes="Release-Lin" Type="IDEMacro" MacroName="LCLWidgetType" Value="gtk3"/>
+      </SharedMatrixOptions>
     </BuildModes>
     <PublishOptions>
       <Version Value="2"/>

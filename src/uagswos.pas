@@ -63,6 +63,12 @@ const
     'SWEEP', '5-2-3', 'ATTACK', 'DEFEND', 'USER A', 'USER B', 'USER C', 'USER D',
     'USER E', 'USER F');
 
+  CPos: array[0..7] of string = (
+        'GK', 'RB', 'D', 'LB', 'M', 'RW', 'LW', 'A');
+
+  CTMPos: array[0..7] of string = (
+        'GK', 'RB', 'LB', 'D', 'RW', 'LW', 'M', 'A');
+
   SWSExeHexDiff = $1C08;
   SWSExe2020Diff = $476C6;
   SWSExeHexCupD = $61E;
@@ -490,6 +496,7 @@ type
     function LoadTeam(Stm: TStream): boolean;
     function WriteTeam(Stm: TStream): boolean;
     function ExportToCSV(TS: TStringList): boolean;
+    function ImportTMEdtCSV(TS: TStringList): boolean;
     function Changed: boolean;
     function GetFormatPlace(playidx: byte): byte;
     property Nation: byte read Fnation write Setnation;
@@ -635,6 +642,8 @@ type
     FFilesInDta: integer;
     FLeaguesDir: string;
     FLeaguesVer: string;
+    FSWS2020Dif: DWORD;
+    FSWS2020Size: DWORD;
     FLeaguesFile: TXMLDocument;
     FFileIndex: integer;
     FLoadAll: boolean;
@@ -673,6 +682,7 @@ type
     function FlagName(TeamNr: integer): string;
     property SWSDataDir: string read FSWSDataDir write FSWSDataDir;
     property SWSExeDir: string read FSWSExeDir write FSWSExeDir;
+    property SWS2020Diff: DWORD read FSWS2020Dif;
     property LeaguesDir: string read FLeaguesDir write FLeaguesDir;
     property LeaguesFile: TXMLDocument read FLeaguesFile write FLeaguesFile;
     property LeaguesVersion: string read FLeaguesVer;
@@ -1556,9 +1566,14 @@ begin
     XMTmp := FLeaguesFile.DocumentElement.FindNode('config');
     Etmp := XMTmp.FindNode('Version');
     FLeaguesVer := Etmp.TextContent;
+    Etmp := XMTmp.FindNode('SWOS2020Diff');
+    FSWS2020Dif:= StrToInt(Trim(ETmp.TextContent));
+    Etmp := XMTmp.FindNode('SWOS2020Size');
+    FSWS2020Size:= StrToInt(Trim(ETmp.TextContent));
   finally
     XMTmp.Free;
   end;
+
   if FLeaguesVer <> '' then
     Result := True
   else
@@ -1638,13 +1653,19 @@ begin
   finally
     FS.Free;
   end;
+  {
   case FESize of
     2135087: FSWSExeVer := SWS9697;
     1920753: FSWSExeVer := SWSECE;
-    2220544: FSWSexeVer := SWS2020;
+    FSWS2020Size: FSWSexeVer := SWS2020;
     else
       FSWSExeVer := SWSUnknown;
   end;
+  }
+  FSWSExeVer := SWSUnknown;
+  if FESize = 2135087 then FSWSexeVer:=SWS9697;
+  if FESize = 1920753 then FSWSexeVer:=SWSECE;
+  if FESize = FSWS2020Size then FSWSexeVer:=SWS2020;
   Result := FSWSexeVer;
 end;
 
@@ -3008,16 +3029,23 @@ begin
 end;
 
 constructor TSWSTeam.Create;
+var
+  a: integer;
 begin
   FPlayerIndex := -1;
   FHomeKit := TSWSkits.Create;
   FAwayKit := TSWSkits.Create;
   FHomeKit.Fchanged := False;
   FAwayKit.Fchanged := False;
+  For a:=0 to 15 do begin
+    Fplayers[a]:=TSWSPlayer.Create;
+  end;
   inherited Create;
 end;
 
 constructor TSWSTeam.Create(ASWSFile: TSWSFile);
+var
+  a: integer;
 begin
   FTeamFile := ASWSFile;
   FPlayerIndex := -1;
@@ -3026,6 +3054,9 @@ begin
   FTactic := TSWStactic.Create(self);
   FHomeKit.Fchanged := False;
   FAwayKit.Fchanged := False;
+  For a:=0 to 15 do begin
+    Fplayers[a]:=TSWSPlayer.Create;
+  end;
   inherited Create;
 end;
 
@@ -3150,7 +3181,7 @@ begin
     Result := True;
     for i := 0 to 15 do
     begin
-      Fplayers[i] := TSWSPlayer.Create(self);
+      //Fplayers[i] := TSWSPlayer.Create(self);
       Result := Fplayers[i].LoadPlayer(Stm);
       Fplayers[i].PlayInTeam := i;
     end;
@@ -3226,6 +3257,63 @@ begin
   TmSt := TmSt + IntToStr(FAwayKit.SocksCol) + TS.Delimiter;
   TS.Add(TmSt);
   Result:=True;
+end;
+
+function TSWSTeam.ImportTMEdtCSV(TS: TStringList): boolean;
+var
+  TCS: TStringList;
+  p, a, tmpi: integer;
+  tmpn: byte;
+begin
+  TCS:=TStringList.Create;
+  TCS.Delimiter:=',';
+  TCS.StrictDelimiter:=true;
+  TCS.DelimitedText:=TS[0];
+  Fteamname:=TCS[0];
+  //FTeamNum:=StrToInt(TCS[2]);
+  //Fnation:=StrToInt(TCS[1]);
+  tmpi:=0;
+  for a:=0 to 17 do begin
+    if TCS[3]=Ctac[a] then
+       tmpi:=a;
+  end;
+  Fformation:=tmpi;
+  Fcoach:=TCS[4];
+  For p:=0 to 15 do BEGIN
+    TCS.Clear;
+    TCS.Delimiter:=',';
+    TCS.StrictDelimiter:=true;
+    TCS.DelimitedText:=TS[p+1];
+    Fplayers[p].PName:=TCS[2];
+    tmpn:=0;
+    for a:=0 to 152 do begin
+      if TCS[0]=CNat[a] then
+         tmpn:=a;
+    end;
+    Fplayers[p].National:=tmpn;
+    Fplayers[p].Number:=StrToInt(TCS[1]);
+    tmpi:=0;
+    for a:=0 to 7 do begin
+      if TCS[3]=CTMPos[a] then
+         tmpi:=a;
+    end;
+    Fplayers[p].Position:=tmpi;
+    Fplayers[p].Passing:=StrToInt(TCS[5]);
+    Fplayers[p].Shooting:=StrToInt(TCS[6]);
+    Fplayers[p].Heading:=StrToInt(TCS[7]);
+    Fplayers[p].Tackling:=StrToInt(TCS[8]);
+    Fplayers[p].Ball_Control:=StrToInt(TCS[9]);
+    Fplayers[p].Speed:=StrToInt(TCS[10]);
+    Fplayers[p].Finishing:=StrToInt(TCS[11]);
+    tmpi:=0;
+    for a:=0 to $31 do begin
+      if TCS[12]=CVal[a] then
+         tmpi:=a;
+    end;
+    Fplayers[p].Value:=tmpi;
+  end;
+  for a:=0 to 15 do
+  Fplposit[a]:=a;
 end;
 
 function TSWSTeam.Changed: boolean;
@@ -3462,8 +3550,8 @@ begin
   Tmp.TeamNum := TeamCount;
   Tmp.Formation := 0;
   Tmp.Fplposit := SWTypForm;
-  for a := 0 to 15 do
-    Tmp.Fplayers[a] := TSWSPlayer.Create(Tmp);
+  //for a := 0 to 15 do
+    //Tmp.Fplayers[a] := TSWSPlayer.Create(Tmp);
   for a := 0 to 15 do
   begin
     Tmp.Fplayers[Tmp.PlPosition[a]].PName :=
@@ -3520,7 +3608,7 @@ begin
   case FEngine.SWSExeVer of
     SWSECE: FLeague.Address := HexToDec(FHexVal) - $D - SWSExeHexDiff;
     SWS9697: FLeague.Address := HexToDec(FHexVal) - $D;
-    SWS2020: FLeague.Address := HexToDec(FHexVal) - $D - SWSExe2020Diff;
+    SWS2020: FLeague.Address := HexToDec(FHexVal) - $D - Engine.SWS2020Diff;
     SWSUnknown:
     begin
       Result := False;

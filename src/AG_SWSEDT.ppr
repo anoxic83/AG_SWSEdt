@@ -2,6 +2,12 @@ program AG_SWSEDT;
 
 {$mode objfpc}{$H+}
 
+{$IFDEF FPC_CROSSCOMPILING}
+  {$IFDEF LINUX}
+    {$linklib libc_nonshared.a}
+  {$ENDIF}
+{$ENDIF}
+
 uses {$IFDEF UNIX} {$IFDEF UseCThreads}
   cthreads, {$ENDIF} {$ENDIF}
   Interfaces, // this includes the LCL widgetset

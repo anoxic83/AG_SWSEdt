@@ -1,5 +1,5 @@
 object MainForm: TMainForm
-  Left = 389
+  Left = 393
   Height = 733
   Top = 232
   Width = 597
@@ -2051,6 +2051,10 @@ object MainForm: TMainForm
         Caption = 'Add Team'
         ShortCut = 16491
         OnClick = MaddTeamClick
+      end
+      object MAddCSVTM: TMenuItem
+        Caption = 'Add Team TM Editor CSV'
+        OnClick = MAddCSVTMClick
       end
       object MRemoveTeam: TMenuItem
         Caption = 'Remove Team'

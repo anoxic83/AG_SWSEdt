@@ -32,7 +32,7 @@ uses
   uabout {$IFDEF DEBUG}, heaptrc{$ENDIF};
 
 const
-  SWSEdtVer = $0002000400010004;
+  SWSEdtVer = $0002000400020003;
 
 type
 
@@ -193,6 +193,7 @@ type
     MenuItem12: TMenuItem;
     MenuItem13: TMenuItem;
     MclrTeam: TMenuItem;
+    MAddCSVTM: TMenuItem;
     MXMLteam: TMenuItem;
     MXMLexp: TMenuItem;
     MXMLPl: TMenuItem;
@@ -435,6 +436,7 @@ type
     procedure McpTeamClick(Sender: TObject);
     procedure MCSVPlClick(Sender: TObject);
     procedure MCSVTeamClick(Sender: TObject);
+    procedure MAddCSVTMClick(Sender: TObject);
     procedure MenuItem7Click(Sender: TObject);
     procedure MEuroCupClick(Sender: TObject);
     procedure MFileClick(Sender: TObject);
@@ -1106,6 +1108,26 @@ begin
      if sav.FileName<>'' then
         TTS.SaveToFile(sav.FileName);
   TTS.Free;
+end;
+
+procedure TMainForm.MAddCSVTMClick(Sender: TObject);
+var
+  TI: Integer;
+  CSVTM: TStringList;
+begin
+  ope.Filter:='TM Editor CSV File|*.CSV|All Files|*.*';
+  if ope.Execute then
+     if ope.FileName<>'' then BEGIN
+        CSVTM:= TStringList.Create;
+        CSVTM.LoadFromFile(ope.FileName);
+        SWSDB.SWSFiles[SWSDB.FileIndex].AddTeam('CSV TEAM');
+        Ti:= SWSDB.SWSFiles[SWSDB.FileIndex].TeamCount - 1;
+        SWSDB.SWSFiles[SWSDB.FileIndex].Team[Ti].ImportTMEdtCSV(CSVTM);
+        SWSDB.SWSFiles[SWSDB.FileIndex].TeamIndex := TI;
+  end;
+  LoadGeneral;
+  RefTeam;
+  RefSquad;
 end;
 
 procedure TMainForm.MenuItem7Click(Sender: TObject);

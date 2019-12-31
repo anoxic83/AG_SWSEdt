@@ -132,6 +132,7 @@
 {"hash":4863637,"name":"tmainform.mclose.caption","sourcebytes":[67,108,111,115,101],"value":"Close"},
 {"hash":310020,"name":"tmainform.medit.caption","sourcebytes":[69,100,105,116],"value":"Edit"},
 {"hash":174436109,"name":"tmainform.maddteam.caption","sourcebytes":[65,100,100,32,84,101,97,109],"value":"Add Team"},
+{"hash":138381494,"name":"tmainform.maddcsvtm.caption","sourcebytes":[65,100,100,32,84,101,97,109,32,84,77,32,69,100,105,116,111,114,32,67,83,86],"value":"Add Team TM Editor CSV"},
 {"hash":204304157,"name":"tmainform.mremoveteam.caption","sourcebytes":[82,101,109,111,118,101,32,84,101,97,109],"value":"Remove Team"},
 {"hash":138480077,"name":"tmainform.mclrteam.caption","sourcebytes":[67,108,101,97,114,32,84,101,97,109],"value":"Clear Team"},
 {"hash":230164290,"name":"tmainform.mshowpool.caption","sourcebytes":[83,104,111,119,32,80,111,111,108,80,108,121,114],"value":"Show PoolPlyr"},

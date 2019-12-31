@@ -262,18 +262,16 @@ begin
   chSafeMode.Checked := (eoSafeMode in EdtSett.EditOptions);
   Links[0] := EdtSett.Link[0];
   Links[1] := EdtSett.Link[1];
-  if ESWSExe.Text = '' then
-    lbSWSVer.Caption := rsUnknownSWOSV
-  else
-  begin
+  if ESWSExe.Text <> '' then BEGIN
     SWSDB.CheckSWSVer(ESWSExe.Text);
     case SWSDB.SWSExeVer of
       SWSECE: lbSWSVer.Caption := rsSWOSVer10ECE;
       SWS9697: lbSWSVer.Caption := rsSWOSVer20969;
+      SWS2020: lbSWSVer.Caption := rsSWOSVer2020W;
       else
         lbSWSVer.Caption := rsUnknownSWOSV;
     end;
-  end;
+  END;
   if Links[1].Form = '' then
   begin
     Links[1].Form := 'https://www.transfermarkt.com/schnellsuche/ergebnis/schnellsuche?query=%s';
