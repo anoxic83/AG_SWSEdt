@@ -4,10 +4,15 @@ AG-SWSEdt is a **Sensible World of Soccer** data editor.
 Is allows to editing teams, players and them attributtes.
 
 [First Steps](#first-steps)
+
 [Usage](#usage)
+
 [Advanced Options](#advanced)
+
 [Compilation](#compilation)
+
 [Change Log](#change-log)
+
 
 ----
 ### First Steps
