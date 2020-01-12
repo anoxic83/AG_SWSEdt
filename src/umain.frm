@@ -1,5 +1,5 @@
 object MainForm: TMainForm
-  Left = 393
+  Left = 389
   Height = 733
   Top = 232
   Width = 597
@@ -25,9 +25,9 @@ object MainForm: TMainForm
     Height = 713
     Top = 0
     Width = 597
-    ActivePage = tbSquad
+    ActivePage = tbOver
     Align = alClient
-    TabIndex = 3
+    TabIndex = 0
     TabOrder = 0
     OnChange = PCtrlChange
     OnChanging = PCtrlChanging
@@ -2180,6 +2180,11 @@ object MainForm: TMainForm
         Caption = 'Find Max SWOS General Number'
         Enabled = False
         OnClick = MFindSWSMaxClick
+      end
+      object MFindGenSWSDupl: TMenuItem
+        Caption = 'Find SWOS General Duplicates'
+        Enabled = False
+        OnClick = MFindGenSWSDuplClick
       end
     end
     object MOptions: TMenuItem

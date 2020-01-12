@@ -7,7 +7,7 @@ Is allows to editing teams, players and them attributtes.
 
 [Usage](#usage)
 
-[Advanced Options](#advanced)
+[Advanced Options](#advanced-options)
 
 [Compilation](#compilation)
 
@@ -19,6 +19,8 @@ Is allows to editing teams, players and them attributtes.
 
 Select the **SWOS DATA** directory or click **Change** to open Settings window or
 load TEAM manualy with **File->Open Team**.
+For Total-Pack 2020 go to settings, Select total pack directory (file new_total_pack.exe) click Refresh Manual, and check use new Total Pack.
+All team data configuration will be access from combo box on tab overview.
 Optional select the swos executable file to enable league structure verification.
 If SWOS DATA directory is selected:
 option File-Open All is enable. (Load all SWOS Database).
@@ -61,6 +63,11 @@ To compilation download [CodeTyphon](https://www.pilotlogic.com/sitejoom/index.p
 CodeTyphon is the Next Generation "Pascal Visual Programming Studio".
 
 ### Change Log
+**ver 2.4.3a**
+- Add Support to New-Total-Pack (team sets can be edited by switch in editor).
+- Add Find SWS Gen.No Duplicates. (Generates txt file with FileName::TeamName duplicate).
+- Fix errors with reloading after change settings.
+
 **ver 2.4.2a**
 - Change Leagues.xml, add dynamic support to SWOS 2020 1.0.1 update (File version and League Pos Vector Difference).
 - Function Add Team TM Editor CSV added.

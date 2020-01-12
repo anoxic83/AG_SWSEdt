@@ -13,9 +13,9 @@ object SettingForm: TSettingForm
     Height = 312
     Top = 0
     Width = 511
-    ActivePage = tbLinks
+    ActivePage = tbPath
     Align = alTop
-    TabIndex = 2
+    TabIndex = 0
     TabOrder = 0
     object tbPath: TTabSheet
       Caption = 'Directories'
@@ -127,15 +127,15 @@ object SettingForm: TSettingForm
           Left = 14
           Height = 19
           Top = 16
-          Width = 210
-          Caption = 'Use Total Pack (Version 1.33 or new)'
+          Width = 447
+          Caption = 'Use New Total Pack (team verification is optional, executable corrects diffrences).'
           OnChange = chbUseTPChange
           TabOrder = 2
         end
         object btRefrManual: TButton
           Left = 366
           Height = 17
-          Top = 16
+          Top = 40
           Width = 120
           Caption = 'Refresh Manual'
           OnClick = btRefrManualClick

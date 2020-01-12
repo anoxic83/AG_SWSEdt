@@ -32,7 +32,7 @@ uses
   uabout {$IFDEF DEBUG}, heaptrc{$ENDIF};
 
 const
-  SWSEdtVer = $0002000400020003;
+  SWSEdtVer = $0002000400030014;
 
 type
 
@@ -194,6 +194,7 @@ type
     MenuItem13: TMenuItem;
     MclrTeam: TMenuItem;
     MAddCSVTM: TMenuItem;
+    MFindGenSWSDupl: TMenuItem;
     MXMLteam: TMenuItem;
     MXMLexp: TMenuItem;
     MXMLPl: TMenuItem;
@@ -440,6 +441,7 @@ type
     procedure MenuItem7Click(Sender: TObject);
     procedure MEuroCupClick(Sender: TObject);
     procedure MFileClick(Sender: TObject);
+    procedure MFindGenSWSDuplClick(Sender: TObject);
     procedure MFindSWSMaxClick(Sender: TObject);
     procedure MFPbyNameClick(Sender: TObject);
     procedure MFTbyNameClick(Sender: TObject);
@@ -1151,6 +1153,17 @@ begin
 
 end;
 
+procedure TMainForm.MFindGenSWSDuplClick(Sender: TObject);
+begin
+  if not SWSDB.LoadedAll then
+  begin
+    ShowMessage(rsOpenAllBefor);
+    Exit;
+  end;
+  SWSDB.FindSWSGenDuplic;
+  ShowMessage('Finded duplicates in File: SWS_GenNr_Duplicates.txt');
+end;
+
 procedure TMainForm.MFindSWSMaxClick(Sender: TObject);
 begin
   if not SWSDB.LoadedAll then
@@ -1542,6 +1555,8 @@ begin
   SettingForm.PageControl1.ActivePageIndex := 0;
   if SettingForm.ShowModal = mrOk then
   if Application.MessageBox(Pchar('Reload All? You lost all not saved changes.'),Pchar('Reload?'),MB_YESNO)=IDYES then begin
+    SWSDB.SWSExeDir := EdtSett.SWSExePath;
+    SWSDB.SWSDataDir := EdtSett.SWSDataPath;
     SWSDB.CloseAll;
     SWSDB.ReadConf('leagues.xml');
     LoadOver;
@@ -1925,18 +1940,19 @@ begin
   TPDir := TStringList.Create;
   TPDir.Clear;
   SetLength(TPDirectorys, 0);
-  ListFileDir(EdtSett.TotalPackDir + 'launcher' + PathDelim + 'TEAM_SETS' + PathDelim, TPDir);
+  ListFileDir(EdtSett.TotalPackDir + 'custom' + PathDelim + 'team db' + PathDelim, TPDir);
   x := 0;
   for a := 0 to TPDir.Count - 1 do
   begin
-    if (TPDir.Strings[a])[1] = '@' then
+    if ((TPDir[a] <> '.')and(TPDir[a] <> '..')) then
     begin
       SetLength(TPDirectorys, x + 1);
-      TPDirectorys[x].Name := Copy(TPDir.strings[a], 5, Length(TPDir.Strings[a]));
-      TPDirectorys[x].Path := Copy(TPDir.strings[a], 2, 2);
+      TPDirectorys[x].Name := TPDir.Strings[a];
+      //TPDirectorys[x].Name := Copy(TPDir.strings[a], 1, Length(TPDir.Strings[a]));
+      TPDirectorys[x].Path := TPDir.Strings[a];
       Inc(x);
     end;
-  end;
+   end;
 end;
 
 procedure TMainForm.LoadOver;
@@ -2012,7 +2028,7 @@ begin
   except
     Application.MessageBox(PChar(rsUnableToLoad), PChar(rsError), MB_ICONERROR + MB_OK);
   end;
-  PCtrl.ActivePage := tbGeneral;
+  //PCtrl.ActivePage := tbGeneral;
   PCtrl.ActivePage := tbOver;
   Refresh;
 end;
@@ -2584,6 +2600,7 @@ begin
   MShowRandom.Enabled := ebn;
   //  if LoadAll then begin
   MFindSWSMax.Enabled := ebn;
+  MFindGenSWSDupl.Enabled:=ebn;
   MCHLEG.Enabled := ebn;
   MEuroCup.Enabled:=ebn;
   //  end;
@@ -2699,16 +2716,14 @@ begin
     if Application.MessageBox(PChar(rsYouHaveModif), 'Not Saved', MB_YESNO) = idNo then
       Exit;
   EdtSett.TotalPackIndex := CBTPVer.ItemIndex;
-  EdtSett.SWSDataPath := EdtSett.TotalPackDir + 'launcher' + PathDelim +
-    'TEAM_SETS' + PathDelim + TPDirectorys[CBTPVer.ItemIndex].Path + PathDelim;
-  EdtSett.SWSExePath := EdtSett.TotalPackDir + 'launcher' + PathDelim +
-    'TEAM_SETS' + PathDelim + TPDirectorys[CBTPVer.ItemIndex].Path + PathDelim +
-    'exe++' + PathDelim + 'sws.exe';
+  EdtSett.SWSDataPath := EdtSett.TotalPackDir + 'custom' + PathDelim +
+    'team db' + PathDelim + TPDirectorys[CBTPVer.ItemIndex].Path + PathDelim;
+  EdtSett.SWSExePath := EdtSett.TotalPackDir + 'swos' + PathDelim + 'swos-port-Release.exe';
   SWSDB.SWSExeDir := EdtSett.SWSExePath;
   SWSDB.SWSDataDir := EdtSett.SWSDataPath;
   SWSDB.CloseAll;
   SWSDB.ReadConf('leagues.xml');
-  SetEnables(True, False);
+  //SetEnables(True, False);
   LoadOver;
 end;
 

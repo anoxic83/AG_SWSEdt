@@ -145,7 +145,8 @@ end;
 
 procedure TLgeStrForm.Button1Click(Sender: TObject);
 begin
-  SWSDB.SWSFiles[SWSDB.FileIndex].League.CreatePatch();
+  SWSDB.SWSFiles[SWSDB.FileIndex].League.CreatePatch(ExtractFilePath(SWSDB.SWSFiles[SWSDB.FileIndex].FileName));
+  ShowMessage('League Created in: '+(ExtractFilePath(SWSDB.SWSFiles[SWSDB.FileIndex].FileName)+'LEAGUE.'+Format('%.*d', [3,SWSDB.SWSFiles[SWSDB.FileIndex].FileNumber])));
 end;
 
 procedure TLgeStrForm.cbEnMonChange(Sender: TObject);

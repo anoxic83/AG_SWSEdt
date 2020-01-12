@@ -32,6 +32,8 @@ type
   TSWSPoTac = array[0..1] of TSWSCtac;
   TAttrByte = array[0..6] of byte;
 
+  TGenSWSList = specialize TFPGList<Word>;
+
 const
   CVal: array[0..$31] of string = (
     '25K-', '25K', '30K', '40K', '50K', '65K', '75K', '85K', '100K', '110K', '130K',
@@ -256,7 +258,7 @@ type
     destructor Destroy; override;
     procedure ReadData;
     procedure WriteData(FN: string = '');
-    procedure CreatePatch();
+    procedure CreatePatch(FDir: String);
     function AddDivision(): Boolean;
     function DelDivision(): Boolean;
     property Leagues: byte read FLeagues;
@@ -674,7 +676,7 @@ type
       var FileIdx, TeamIdx: integer): boolean;
     function FindMaxSWSGenNum: integer;
     function CheckSWSGenNum(Num: integer): boolean;
-    function FindSWSGenDuplic: TStringList;
+    procedure FindSWSGenDuplic();
     function FindTeambyNumb(Nat,Team: integer): TSWSTeam;
     function FindFilebyNum(Anum: integer): integer;
     function FindTeambySWSGenNum(const ANum: integer;
@@ -1114,11 +1116,13 @@ begin
   Fstm.Free;
 end;
 
-procedure TSWSLeague.CreatePatch();
+procedure TSWSLeague.CreatePatch(FDir: String);
 var
   FStm: TFileStream;
+  FLP : String;
 begin
-  FStm := TFileStream.Create('LEAGUE.'+Format('%.*d', [3,FTeamNr]), fmCreate);
+  FLP:=FDir+'LEAGUE.'+Format('%.*d', [3,FTeamNr]);
+  FStm := TFileStream.Create(FLP, fmCreate);
   Fstm.Seek(0, soBeginning);
   WriteDta(FStm);
   Fstm.Free;
@@ -1776,12 +1780,32 @@ begin
     Result := True;
 end;
 
-function TSWSEngine.FindSWSGenDuplic: TStringList;
+procedure TSWSEngine.FindSWSGenDuplic();
 var
-  k, i, j, Dupl: integer;
-  TpS: string;
+  TmpStr: String;
+  Str: TStringList;
+  g: word;
+  f, t: integer;
+  GCount: Integer;
 begin
-
+  //GenList:= TGenSWSList.Create;
+  Str:=TStringList.Create;
+  Str.Add('Finded duplicates:');
+  Str.Add('INFO:: Ignore duplicates in TMD files, is correct.');
+  for g:=0 to $FFFF do begin
+    GCount:=0;
+    for f:=0 to FSWSFiles.Count-1 do begin
+      for t:=0 to FSWSFiles[f].TeamCount-1 do begin
+        if (FSWSFiles[f].Team[t].SWS_Gen_Num = g) then begin
+           GCount:=GCount+1;
+           if (GCount>1) then
+              Str.Add(FSWSFiles[f].FFileName+' :: '+FSWSFiles[f].Team[t].TeamNAme);
+        end;
+      end;
+    end;
+  end;
+  Str.SaveToFile('SWS_GenNr_Duplicates.txt');
+  Str.Free;
 end;
 
 function TSWSEngine.FindTeambyNumb(Nat, Team: integer): TSWSTeam;

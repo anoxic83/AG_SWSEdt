@@ -163,11 +163,9 @@ begin
       EdtSett.TotalPackIndex := 0;
   if MainForm.CBTPVer.ItemIndex > 0 then
     EdtSett.TotalPackIndex := MainForm.CBTPVer.ItemIndex;
-  EdtSett.SWSDataPath := EdtSett.TotalPackDir + 'launcher' + PathDelim +
-    'TEAM_SETS' + PathDelim + TPDirectorys[EdtSett.TotalPackIndex].Path + PathDelim;
-  EdtSett.SWSExePath := EdtSett.TotalPackDir + 'launcher' + PathDelim +
-    'TEAM_SETS' + PathDelim + TPDirectorys[EdtSett.TotalPackIndex].Path +
-    PathDelim + 'exe++' + PathDelim + 'sws.exe';
+  EdtSett.SWSDataPath := EdtSett.TotalPackDir + 'custom' + PathDelim +
+    'team db' + PathDelim + TPDirectorys[EdtSett.TotalPackIndex].Path + PathDelim;
+  EdtSett.SWSExePath := EdtSett.TotalPackDir + 'swos' + PathDelim + 'swos-port-Release.exe';
   SWSDB.SWSExeDir := EdtSett.SWSExePath;
   SWSDB.SWSDataDir := EdtSett.SWSDataPath;
   FormActivate(self);
@@ -203,7 +201,7 @@ end;
 procedure TSettingForm.Button3Click(Sender: TObject);
 begin
   opee.Title := rsSelectSWOSTo;
-  opee.Filter := 'TotalPack.exe|*.exe';
+  opee.Filter := 'new_total_pack.exe|*.exe';
   if opee.Execute then
     if opee.FileName <> '' then
     begin
