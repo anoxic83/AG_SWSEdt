@@ -118,6 +118,7 @@ var
   StrV: string;
   IntV: QWord;
 begin
+  Exit(false);
   Result := False;
   VerHTTP := THTTPSend.Create;
   with VerHTTP do

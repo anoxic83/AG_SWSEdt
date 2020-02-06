@@ -33,14 +33,17 @@ type
     btClearT: TButton;
     btClearP: TButton;
     btnAddToCar: TButton;
+    btnExp: TButton;
     ClbTeam: TListBox;
     clbPlayer: TListBox;
     lbClPlayers: TLabel;
     lbClTeam: TLabel;
     opec: TOpenDialog;
+    savc: TSaveDialog;
     procedure btClearPClick(Sender: TObject);
     procedure btClearTClick(Sender: TObject);
     procedure btnAddToCarClick(Sender: TObject);
+    procedure btnExpClick(Sender: TObject);
     procedure clbPlayerClick(Sender: TObject);
     procedure ClbTeamClick(Sender: TObject);
     procedure FormActivate(Sender: TObject);
@@ -105,6 +108,7 @@ begin
     FilCnt := SWSDB.Clipboard.TeamCount
   else
     FilCnt := 5;
+  opec.Filter:='Career Save|*.car|All Files|*.*';
   if opec.Execute then
     if opec.FileName <> '' then
     begin
@@ -140,5 +144,22 @@ begin
       ShowMessage('Write Successfull');
     end;
 end;
+
+procedure TFrmClip.btnExpClick(Sender: TObject);
+var
+  Stm: TFileStream;
+begin
+  if ((ClbTeam.ItemIndex<0)or(ClbTeam.ItemIndex>SWSDB.Clipboard.TeamCount-1)) then
+     Exit;
+  savc.Filter:='TEAM Export|*.TEAM|All Files|*.*';
+  if savc.Execute then
+     if savc.FileName<>'' then begin
+        Stm:=TFileStream.Create(savc.FileName,fmCreate);
+        SWSDB.Clipboard.Team[ClbTeam.ItemIndex].WriteTeam(Stm);
+        Stm.Free;
+     end;
+end;
+
+
 
 end.

@@ -26,13 +26,13 @@ interface
 uses
   Classes, SysUtils, FileUtil, Forms, Controls, Graphics, Dialogs, Menus,
   uagswos, LResources, ExtCtrls, ComCtrls, utextstr, laz2_DOM, laz2_XMLWrite,
-  Sensors, AdvLed, BGRABitmap, TplProgressBarUnit, BGRAImageList,
+  Sensors, AdvLed, BGRABitmap, TplProgressBarUnit, BGRAImageList, dynlibs,
   BGRASpeedButton, LCLType, LCLIntf, StdCtrls, ColorBox, PopupNotifier, Buttons,
   ActnList, usettings, uslpload, uclipfrm, ulgstufrm, upoolplyr, ueccfrm,
   uabout {$IFDEF DEBUG}, heaptrc{$ENDIF};
 
 const
-  SWSEdtVer = $0002000400030014;
+  SWSEdtVer = $0002000400040032;
 
 type
 
@@ -194,6 +194,8 @@ type
     MenuItem13: TMenuItem;
     MclrTeam: TMenuItem;
     MAddCSVTM: TMenuItem;
+    MAddRAWTeam: TMenuItem;
+    MFindPlayerDup: TMenuItem;
     MFindGenSWSDupl: TMenuItem;
     MXMLteam: TMenuItem;
     MXMLexp: TMenuItem;
@@ -427,6 +429,7 @@ type
     procedure LBTeamsMouseDown(Sender: TObject; Button: TMouseButton;
       Shift: TShiftState; X, Y: integer);
     procedure MAboutClick(Sender: TObject);
+    procedure MAddRAWTeamClick(Sender: TObject);
     procedure MaddTeamClick(Sender: TObject);
     procedure MChgTeamNrClick(Sender: TObject);
     procedure MCHLEGClick(Sender: TObject);
@@ -442,6 +445,7 @@ type
     procedure MEuroCupClick(Sender: TObject);
     procedure MFileClick(Sender: TObject);
     procedure MFindGenSWSDuplClick(Sender: TObject);
+    procedure MFindPlayerDupClick(Sender: TObject);
     procedure MFindSWSMaxClick(Sender: TObject);
     procedure MFPbyNameClick(Sender: TObject);
     procedure MFTbyNameClick(Sender: TObject);
@@ -511,6 +515,11 @@ type
     procedure OnSWSload(Sender: TObject; Afile: TSWSFile; Tinx, Tcnt: integer);
     procedure OnSWSSave(Sender: TObject; Afile: TSWSFile; Tinx, Tcnt: integer);
   end;
+
+  hCreateLibSWOS = function(path: PChar): Pointer; cdecl;
+  hDuplicateFind = procedure(db: Pointer); cdecl;
+  hFreeLibSWOS = procedure(db: Pointer); cdecl;
+  hLoadAllData = procedure(db: Pointer); cdecl;
 
 var
   MainForm: TMainForm;
@@ -968,6 +977,27 @@ begin
   AboutFrm.ShowModal;
 end;
 
+procedure TMainForm.MAddRAWTeamClick(Sender: TObject);
+var
+  Stm: TFileStream;
+  Ti: Integer;
+begin
+  ope.Filter:='TEAM IMPORT FILE|*.TEAM|All Files|*.*';
+  if ope.Execute then
+     if ope.FileName<>'' then begin
+       Stm:=TFileStream.Create(ope.FileName,fmOpenRead);
+       Stm.Seek(0, soBeginning);
+       SWSDB.SWSFiles[SWSDB.FileIndex].AddTeam('IMPORTED');
+       Ti:= SWSDB.SWSFiles[SWSDB.FileIndex].TeamCount - 1;
+       SWSDB.SWSFiles[SWSDB.FileIndex].Team[Ti].LoadTeam(Stm);
+       Stm.Free;
+       SWSDB.SWSFiles[SWSDB.FileIndex].TeamIndex := TI;
+     end;
+  LoadGeneral;
+  RefTeam;
+  RefSquad;
+end;
+
 procedure TMainForm.MaddTeamClick(Sender: TObject);
 var
   NTeam: string;
@@ -1162,6 +1192,44 @@ begin
   end;
   SWSDB.FindSWSGenDuplic;
   ShowMessage('Finded duplicates in File: SWS_GenNr_Duplicates.txt');
+end;
+
+procedure TMainForm.MFindPlayerDupClick(Sender: TObject);
+var
+  hL: TLibHandle;
+  cdb: Pointer;
+  createlib: hCreateLibSWOS;
+  freelib: hFreeLibSWOS;
+  dupllib: hDuplicateFind;
+  openlib: hLoadAllData;
+begin
+  SplashLoad.Show;
+  SplashLoad.lbLoading.Caption := 'Searching';
+  SplashLoad.pbload.Hide;
+  SplashLoad.lbLoadData.Caption := 'This may take a moment. Please wait.';
+  SplashLoad.Refresh;
+  Application.ProcessMessages;
+  hl := LoadLibrary('libSwosEdt.dll');
+  if (hl = 0) then begin
+    ShowMessage('Failed to load dll');
+    Exit;
+  end;
+  createlib := hCreateLibSWOS(GetProcedureAddress(hl, 'CreateDatabase'));
+  if (createlib=nil) then exit;
+  freelib := hFreeLibSWOS(GetProcedureAddress(hl, 'FreeDatabase'));
+  if (freelib=nil) then exit;
+  dupllib := hDuplicateFind(GetProcedureAddress(hl, 'FindDuplicates'));
+  if (dupllib=nil) then exit;
+  openlib := hLoadAllData(GetProcedureAddress(hl, 'LoadAllDatabase'));
+  if (openlib=nil) then exit;
+
+  cdb:=createlib(PChar(SWSDB.SWSDataDir));
+  openlib(cdb);
+  dupllib(cdb);
+  freelib(cdb);
+  SplashLoad.pbload.Show;
+  SplashLoad.Hide;
+  ShowMessage('Finded duplicates in File: duplicates.txt');
 end;
 
 procedure TMainForm.MFindSWSMaxClick(Sender: TObject);
@@ -2601,6 +2669,7 @@ begin
   //  if LoadAll then begin
   MFindSWSMax.Enabled := ebn;
   MFindGenSWSDupl.Enabled:=ebn;
+  MFindPlayerDup.Enabled:=ebn;
   MCHLEG.Enabled := ebn;
   MEuroCup.Enabled:=ebn;
   //  end;
@@ -2661,6 +2730,15 @@ begin
     SplashLoad.pbload.Position := tinx;
     SplashLoad.lbLoadData.Caption :=
       Format(rsFileSTeamsDD, [ExtractFileName(Afile.FileName), Tinx, Tcnt]);
+    SplashLoad.Refresh;
+    Application.ProcessMessages;
+  end
+  else begin
+    SplashLoad.lbLoading.Caption := rsLoading;
+    SplashLoad.pbload.Max := Tcnt;
+    SplashLoad.pbload.Position := tinx;
+    SplashLoad.lbLoadData.Caption :=
+      Format('Searching:   |   Teams: %d/%d', [Tinx, Tcnt]);
     SplashLoad.Refresh;
     Application.ProcessMessages;
   end;

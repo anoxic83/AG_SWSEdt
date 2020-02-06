@@ -669,9 +669,10 @@ type
     procedure CloseAll;
     function ChangedFiles(): integer;
     function CheckSWSVer(SFN: string): TSWSExeVer;
-    function FindTeambyName(const TN: string; var FileIdx, TeamIdx: integer): boolean;
+    function FindTeambyName(const TN: string; var FileIdx,TeamIdx: integer): boolean;
     function FindPlayerbyName(const TN: string;
       var FileIdx, TeamIdx, PlayIdx: integer): boolean;
+    function FindPlayers(pname: string; TL: TStringList): integer;
     function FindTeambyCoach(const CoachN: string;
       var FileIdx, TeamIdx: integer): boolean;
     function FindMaxSWSGenNum: integer;
@@ -1732,6 +1733,24 @@ begin
   end;
   Result := False;
 end;
+
+function TSWSEngine.FindPlayers(pname: string; TL: TStringList): integer;
+var
+  f, t, p: integer;
+  finded: integer;
+begin
+  finded := 0;
+  for f:=0 to FSWSFiles.Count-1 do
+      for t:=0 to FSWSFiles[f].TeamCount-1 do
+          for p:=0 to 16 do begin
+             if Uppercase(Name) = Uppercase(FSWSFiles[f].FTeams[t].Fplayers[p].Fpname) then begin
+                finded += 1;
+                TL.Add(IntToStr(finded)+','+Name+','+FSWSFiles[f].FTeams[t].TeamNAme);
+             end;
+          end;
+  Result:=finded;
+end;
+
 
 function TSWSEngine.FindTeambyCoach(const CoachN: string;
   var FileIdx, TeamIdx: integer): boolean;

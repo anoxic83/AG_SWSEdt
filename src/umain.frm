@@ -19,7 +19,7 @@ object MainForm: TMainForm
   OnDestroy = FormDestroy
   OnDropFiles = FormDropFiles
   OnPaint = FormPaint
-  LCLVersion = '6.9'
+  LCLVersion = '7.0'
   object PCtrl: TPageControl
     Left = 0
     Height = 713
@@ -2056,6 +2056,10 @@ object MainForm: TMainForm
         Caption = 'Add Team TM Editor CSV'
         OnClick = MAddCSVTMClick
       end
+      object MAddRAWTeam: TMenuItem
+        Caption = 'Add Raw Team'
+        OnClick = MAddRAWTeamClick
+      end
       object MRemoveTeam: TMenuItem
         Caption = 'Remove Team'
         ShortCut = 16493
@@ -2185,6 +2189,11 @@ object MainForm: TMainForm
         Caption = 'Find SWOS General Duplicates'
         Enabled = False
         OnClick = MFindGenSWSDuplClick
+      end
+      object MFindPlayerDup: TMenuItem
+        Caption = 'Find Player Duplicates'
+        Enabled = False
+        OnClick = MFindPlayerDupClick
       end
     end
     object MOptions: TMenuItem

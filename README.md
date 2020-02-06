@@ -63,6 +63,11 @@ To compilation download [CodeTyphon](https://www.pilotlogic.com/sitejoom/index.p
 CodeTyphon is the Next Generation "Pascal Visual Programming Studio".
 
 ### Change Log
+**ver 2.4.4a**
+- Function Add Raw Team added. (Added files EXPORTED by SwoEditorS v1.3).
+- Add Function Export in Show Clipboard menu (Format RAW/SwoEditorS v1.3).
+- Find duplicates function integrated from "C/C++" library SwosEdt.
+
 **ver 2.4.3a**
 - Add Support to New-Total-Pack (team sets can be edited by switch in editor).
 - Add Find SWS Gen.No Duplicates. (Generates txt file with FileName::TeamName duplicate).

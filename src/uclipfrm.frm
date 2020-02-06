@@ -1,15 +1,15 @@
 object FrmClip: TFrmClip
-  Left = 1048
-  Height = 318
-  Top = 182
+  Left = 389
+  Height = 308
+  Top = 232
   Width = 320
   BorderIcons = [biSystemMenu]
   BorderStyle = bsDialog
   Caption = 'FrmClip'
-  ClientHeight = 318
+  ClientHeight = 308
   ClientWidth = 320
   OnActivate = FormActivate
-  LCLVersion = '1.3'
+  LCLVersion = '7.0'
   object ClbTeam: TListBox
     Left = 8
     Height = 112
@@ -32,7 +32,7 @@ object FrmClip: TFrmClip
     Left = 8
     Height = 15
     Top = 8
-    Width = 106
+    Width = 105
     Caption = 'Teams in Clipboard:'
     ParentColor = False
   end
@@ -71,11 +71,21 @@ object FrmClip: TFrmClip
     OnClick = btnAddToCarClick
     TabOrder = 4
   end
+  object btnExp: TButton
+    Left = 208
+    Height = 17
+    Top = 48
+    Width = 104
+    Caption = 'Export'
+    OnClick = btnExpClick
+    TabOrder = 5
+  end
   object opec: TOpenDialog
-    FileName = 'H:\OLDGAMES\pc-swos-totalpack\run\p02_swos_97'
-    Filter = 'Carrer Save|*.car|All Files|*.*'
-    InitialDir = 'H:\OLDGAMES\pc-swos-totalpack\run\'
-    left = 258
-    top = 58
+    Left = 216
+    Top = 96
+  end
+  object savc: TSaveDialog
+    Left = 256
+    Top = 96
   end
 end
