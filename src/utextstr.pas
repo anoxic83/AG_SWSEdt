@@ -44,12 +44,14 @@ type
     FSettVer: cardinal;
     FEdtVer: cardinal;
     FToTalPack: string;
+    FUseColors: boolean;
     FUseTP: boolean;
     FEdtOption: TEditOptions;
     FTPIdx: integer;
     FLinks: array[0..1] of TSWLink;
     function GetLink(Index: integer): TSWLink;
     procedure SetLink(Index: integer; AValue: TSWLink);
+    procedure SetUseColors(AValue: boolean);
   public
     constructor Create(AOwner: TComponent); override;
     destructor Destroy; override;
@@ -64,6 +66,7 @@ type
     property Link[Index: integer]: TSWLink read GetLink write SetLink;
     property TotalPackDir: string read FToTalPack write FToTalPack;
     property UseTP: boolean read FUseTP write FUseTP;
+    property UseColors: boolean read FUseColors write SetUseColors;
     property TotalPackIndex: integer read FTPIdx write FTPIdx;
   end;
 
@@ -729,11 +732,18 @@ begin
   Flinks[Index] := AValue;
 end;
 
+procedure TEdtSett.SetUseColors(AValue: boolean);
+begin
+  if FUseColors=AValue then Exit;
+  FUseColors:=AValue;
+end;
+
 constructor TEdtSett.Create(AOwner: TComponent);
 begin
   FEdtOption := [eoAutoSel, eoShowHints, eoAutoUpdate, eoSafeMode];
   FSWSData := '';
   FSWSExe := '';
+  FUseColors:=true;
   inherited Create(AOwner);
 end;
 
@@ -768,6 +778,7 @@ begin
       end;
       FToTalPack := FS.ReadAnsiString;
       FUseTP := boolean(FS.ReadByte);
+      FUseColors:= Boolean(FS.ReadByte);
       FTPIdx := FS.ReadDWord;
       Result := True;
     finally
@@ -799,6 +810,7 @@ begin
     end;
     FS.WriteAnsiString(FToTalPack);
     FS.WriteByte(byte(FUseTP));
+    FS.WriteByte(byte(FUseColors));
     FS.WriteDWord(FTPIdx);
     Result := True
   finally

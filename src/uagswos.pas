@@ -496,8 +496,10 @@ type
     procedure ClearTeam;
     function CalcTeam(by7: boolean): integer;
     function LoadTeam(Stm: TStream): boolean;
+    function CalcTeamSkill(SkillNr : Integer; By7: boolean): integer;
     function WriteTeam(Stm: TStream): boolean;
     function ExportToCSV(TS: TStringList): boolean;
+    function ExportToXML(Doc: TXMLDocument; ParNode: TDOMNode): boolean;
     function ImportTMEdtCSV(TS: TStringList): boolean;
     function Changed: boolean;
     function GetFormatPlace(playidx: byte): byte;
@@ -2294,6 +2296,11 @@ var
   pNode, xNode, txtnod : TDOMNode;
 begin
   pNode:=Doc.CreateElement('Player');
+    //ID
+    xNode:= Doc.CreateElement('ID');
+    txtnod:=Doc.CreateTextNode(IntToStr(UniqID));
+    xNode.AppendChild(txtnod);
+    pNode.AppendChild(xNode);
     //Name
     xNode:= Doc.CreateElement('Name');
     txtnod:=Doc.CreateTextNode(trim(PName));
@@ -2301,10 +2308,46 @@ begin
     pNode.AppendChild(xNode);
     //Position
     xNode:= Doc.CreateElement('Position');
-    txtnod:=Doc.CreateTextNode(IntToStr(Position));
+    txtnod:=Doc.CreateTextNode(CPos[Position]);
     xNode.AppendChild(txtnod);
     pNode.AppendChild(xNode);
-    //
+    // Nationality
+    xNode:= Doc.CreateElement('Nationality');
+    txtnod:=Doc.CreateTextNode(CNat[National]);
+    xNode.AppendChild(txtnod);
+    pNode.AppendChild(xNode);
+    if (FTeam<>nil) then begin
+     // Club
+      xNode:= Doc.CreateElement('ClubName');
+      txtnod:=Doc.CreateTextNode(trim(FTeam.TeamNAme));
+      xNode.AppendChild(txtnod);
+      pNode.AppendChild(xNode);
+      // Club ID
+     xNode:= Doc.CreateElement('ClubGenID');
+     txtnod:=Doc.CreateTextNode(InTToStr(FTeam.SWS_Gen_Num));
+     xNode.AppendChild(txtnod);
+     pNode.AppendChild(xNode);
+    end;
+    // SquadNr
+    xNode:= Doc.CreateElement('SquadNo');
+    txtnod:=Doc.CreateTextNode(IntToStr(FNumber));
+    xNode.AppendChild(txtnod);
+    pNode.AppendChild(xNode);
+    // Attributtes
+    xNode:= Doc.CreateElement('Attributtes');
+    TDOMElement(xNode).SetAttribute('Passing', IntToStr(Passing));
+    TDOMElement(xNode).SetAttribute('Shooting', IntToStr(Shooting));
+    TDOMElement(xNode).SetAttribute('Heading', IntToStr(Heading));
+    TDOMElement(xNode).SetAttribute('Tackling', IntToStr(Tackling));
+    TDOMElement(xNode).SetAttribute('Ball_Control', IntToStr(Ball_Control));
+    TDOMElement(xNode).SetAttribute('Speed', IntToStr(Speed));
+    TDOMElement(xNode).SetAttribute('Finishing', IntToStr(Finishing));
+    pNode.AppendChild(xNode);
+    // SquadNr
+    xNode:= Doc.CreateElement('Value');
+    txtnod:=Doc.CreateTextNode(CVal[FValue]);
+    xNode.AppendChild(txtnod);
+    pNode.AppendChild(xNode);
   ParNode.AppendChild(pNode);
   Result:=True;
 end;
@@ -3081,7 +3124,7 @@ begin
   FHomeKit.Fchanged := False;
   FAwayKit.Fchanged := False;
   For a:=0 to 15 do begin
-    Fplayers[a]:=TSWSPlayer.Create;
+    Fplayers[a]:=TSWSPlayer.Create(self);
   end;
   inherited Create;
 end;
@@ -3098,7 +3141,7 @@ begin
   FHomeKit.Fchanged := False;
   FAwayKit.Fchanged := False;
   For a:=0 to 15 do begin
-    Fplayers[a]:=TSWSPlayer.Create;
+    Fplayers[a]:=TSWSPlayer.Create(self);
   end;
   inherited Create;
 end;
@@ -3237,6 +3280,91 @@ begin
   FPlayerIndex := -1;
 end;
 
+function TSWSTeam.CalcTeamSkill(SkillNr: Integer; By7: boolean): integer;
+var
+  a: integer;
+  Res, Att: Integer;
+begin
+  Res:=0;
+  Att:=0;
+  for a:=0 to 15 do begin
+    case SkillNr of
+      0: begin
+         if (by7) then begin
+            if Fplayers[a].Passing > 7 then
+               Att := Fplayers[a].Passing - 8
+            else
+                Att := Fplayers[a].Passing;
+         end
+         else
+           Att := Fplayers[a].Passing;
+      end;
+      1: begin
+         if (by7) then begin
+            if Fplayers[a].Passing > 7 then
+               Att := Fplayers[a].Shooting - 8
+            else
+                Att := Fplayers[a].Shooting;
+         end
+         else
+           Att := Fplayers[a].Shooting;
+      end;
+      2: begin
+         if (by7) then begin
+            if Fplayers[a].Heading > 7 then
+               Att := Fplayers[a].Heading - 8
+            else
+                Att := Fplayers[a].Heading;
+         end
+         else
+           Att := Fplayers[a].Heading;
+      end;
+      3: begin
+         if (by7) then begin
+            if Fplayers[a].Tackling > 7 then
+               Att := Fplayers[a].Tackling - 8
+            else
+                Att := Fplayers[a].Tackling;
+         end
+         else
+           Att := Fplayers[a].Tackling;
+      end;
+      4: begin
+         if (by7) then begin
+            if Fplayers[a].Ball_Control > 7 then
+               Att := Fplayers[a].Ball_Control - 8
+            else
+                Att := Fplayers[a].Ball_Control;
+         end
+         else
+           Att := Fplayers[a].Ball_Control;
+      end;
+      5: begin
+         if (by7) then begin
+            if Fplayers[a].Speed > 7 then
+               Att := Fplayers[a].Speed - 8
+            else
+                Att := Fplayers[a].Speed;
+         end
+         else
+           Att := Fplayers[a].Speed;
+      end;
+      6: begin
+         if (by7) then begin
+            if Fplayers[a].Finishing > 7 then
+               Att := Fplayers[a].Finishing - 8
+            else
+                Att := Fplayers[a].Finishing;
+         end
+         else
+           Att := Fplayers[a].Finishing;
+      end;
+    end;
+    Res:= Res+ Att;
+  end;
+  Result:= Res;
+end;
+
 function TSWSTeam.WriteTeam(Stm: TStream): boolean;
 var
   i: integer;
@@ -3300,6 +3428,67 @@ begin
   TmSt := TmSt + IntToStr(FAwayKit.SocksCol) + TS.Delimiter;
   TS.Add(TmSt);
   Result:=True;
+end;
+
+function TSWSTeam.ExportToXML(Doc: TXMLDocument; ParNode: TDOMNode): boolean;
+var
+  pNode, xNode, txtnod : TDOMNode;
+begin
+  pNode:=Doc.CreateElement('Team');
+    //ID
+    xNode:= Doc.CreateElement('ID');
+    txtnod:=Doc.CreateTextNode(IntToStr(FSws_gen_nr));
+    xNode.AppendChild(txtnod);
+    pNode.AppendChild(xNode);
+    //Name
+    xNode:= Doc.CreateElement('Name');
+    txtnod:=Doc.CreateTextNode(Trim(Fteamname));
+    xNode.AppendChild(txtnod);
+    pNode.AppendChild(xNode);
+    if (FTeamFile <> nil) then begin
+      //File
+      xNode:= Doc.CreateElement('Nation');
+      txtnod:=Doc.CreateTextNode(FTeamFile.LeagueName);
+      xNode.AppendChild(txtnod);
+      pNode.AppendChild(xNode);
+    end;
+    //NationNo
+    xNode:= Doc.CreateElement('NationNo');
+    txtnod:=Doc.CreateTextNode(IntToStr(Fnation));
+    xNode.AppendChild(txtnod);
+    pNode.AppendChild(xNode);
+    //Tactic
+    xNode:= Doc.CreateElement('Tactic');
+    txtnod:=Doc.CreateTextNode(Ctac[Fformation]);
+    xNode.AppendChild(txtnod);
+    pNode.AppendChild(xNode);
+    //Division
+    xNode:= Doc.CreateElement('Division');
+    txtnod:=Doc.CreateTextNode(CDiv[Fdivision]);
+    xNode.AppendChild(txtnod);
+    pNode.AppendChild(xNode);
+    //ColorsHome
+    xNode:= Doc.CreateElement('HomeColors');
+    TDOMElement(xNode).SetAttribute('ShirtColA',IntToHex(CSWScolors[FHomeKit.FTshcol1],8));
+    TDOMElement(xNode).SetAttribute('ShirtColB',IntToHex(CSWScolors[FHomeKit.FTshcol2],8));
+    TDOMElement(xNode).SetAttribute('ShortCol',IntToHex(CSWScolors[FHomeKit.ShortCol],8));
+    TDOMElement(xNode).SetAttribute('SocksCol',IntToHex(CSWScolors[FHomeKit.Fsockscl],8));
+    pNode.AppendChild(xNode);
+    //ColorsHome
+    xNode:= Doc.CreateElement('AwayColors');
+    TDOMElement(xNode).SetAttribute('ShirtColA',IntToHex(CSWScolors[FAwayKit.FTshcol1],8));
+    TDOMElement(xNode).SetAttribute('ShirtColB',IntToHex(CSWScolors[FAwayKit.FTshcol2],8));
+    TDOMElement(xNode).SetAttribute('ShortCol',IntToHex(CSWScolors[FAwayKit.ShortCol],8));
+    TDOMElement(xNode).SetAttribute('SocksCol',IntToHex(CSWScolors[FAwayKit.Fsockscl],8));
+    pNode.AppendChild(xNode);
+    //Coach
+    xNode:= Doc.CreateElement('Coach');
+    txtnod:=Doc.CreateTextNode(Trim(Fcoach));
+    xNode.AppendChild(txtnod);
+    pNode.AppendChild(xNode);
+    //
+    ParNode.AppendChild(pNode);
+    Result:=True;
 end;
 
 function TSWSTeam.ImportTMEdtCSV(TS: TStringList): boolean;

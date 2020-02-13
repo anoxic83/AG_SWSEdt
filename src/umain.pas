@@ -32,7 +32,7 @@ uses
   uabout {$IFDEF DEBUG}, heaptrc{$ENDIF};
 
 const
-  SWSEdtVer = $0002000400040032;
+  SWSEdtVer = $0002000400050022;
 
 type
 
@@ -414,6 +414,8 @@ type
     procedure LBSquadColumnClick(Sender: TObject; Column: TListColumn);
     procedure LBSquadCompare(Sender: TObject; Item1, Item2: TListItem;
       Data: integer; var Compare: integer);
+    procedure LBSquadCustomDrawItem(Sender: TCustomListView; Item: TListItem;
+      State: TCustomDrawState; var DefaultDraw: Boolean);
     procedure LBSquadDblClick(Sender: TObject);
     procedure LBSquadDragDrop(Sender, Source: TObject; X, Y: integer);
     procedure LBSquadDragOver(Sender, Source: TObject; X, Y: integer;
@@ -425,6 +427,8 @@ type
     procedure LBTeamsColumnClick(Sender: TObject; Column: TListColumn);
     procedure LBTeamsCompare(Sender: TObject; Item1, Item2: TListItem;
       Data: integer; var Compare: integer);
+    procedure LBTeamsCustomDrawItem(Sender: TCustomListView; Item: TListItem;
+      State: TCustomDrawState; var DefaultDraw: Boolean);
     procedure LBTeamsDblClick(Sender: TObject);
     procedure LBTeamsMouseDown(Sender: TObject; Button: TMouseButton;
       Shift: TShiftState; X, Y: integer);
@@ -475,6 +479,7 @@ type
     procedure MWriteAllClick(Sender: TObject);
     procedure MWriteCurClick(Sender: TObject);
     procedure MXMLPlClick(Sender: TObject);
+    procedure MXMLteamClick(Sender: TObject);
     procedure pbTacPaint(Sender: TObject);
     procedure PCtrlChange(Sender: TObject);
     procedure PCtrlChanging(Sender: TObject; var AllowChange: Boolean);
@@ -842,6 +847,29 @@ begin
   end;
 end;
 
+procedure TMainForm.LBSquadCustomDrawItem(Sender: TCustomListView;
+  Item: TListItem; State: TCustomDrawState; var DefaultDraw: Boolean);
+var
+  Tidx, Pidx: Integer;
+begin
+  TIDX := SWSDB.SWSFiles[SWSDb.FileIndex].TeamIndex;
+  Pidx := PtrUInt(Item.Data);
+  if EdtSett.UseColors then BEGIN
+    begin
+      if SWSDB.SWSFiles[SWSDb.FileIndex].Team[tidx].Player[pidx].Position = 0 then
+         sender.Canvas.Brush.Color:=$A0FFFF;
+
+      if ((SWSDB.SWSFiles[SWSDb.FileIndex].Team[tidx].Player[pidx].Position >= 1)and(SWSDB.SWSFiles[SWSDb.FileIndex].Team[tidx].Player[pidx].Position < 4)) then
+         sender.Canvas.Brush.Color:=$C0FFC0;
+      if ((SWSDB.SWSFiles[SWSDb.FileIndex].Team[tidx].Player[pidx].Position >= 4)and(SWSDB.SWSFiles[SWSDb.FileIndex].Team[tidx].Player[pidx].Position < 7)) then
+             sender.Canvas.Brush.Color:=$FFC0C0;
+      if SWSDB.SWSFiles[SWSDb.FileIndex].Team[tidx].Player[pidx].Position = 7 then
+             sender.Canvas.Brush.Color:=$C0C0FF;
+    end;
+  END;
+  DefaultDraw:=true;
+end;
+
 procedure TMainForm.LBSquadDblClick(Sender: TObject);
 var
   TIDx: integer;
@@ -924,11 +952,16 @@ begin
 end;
 
 procedure TMainForm.LBTeamsClick(Sender: TObject);
+var
+  idx: integer;
 begin
   if LBTeams.Selected = nil then
     Exit;
+  if (LBTeams.Selected.Data <> nil) then
+     idx := PtrUInt(LBTeams.Selected.Data);
   //SWSDB.SWSFiles[SWSDB.FileIndex].TeamIndex := PtrUInt(LBTeams.Selected.Data);
-  SWSDB.SWSFiles[SWSDB.FileIndex].TeamIndex := LBTeams.Selected.Index;
+  SWSDB.SWSFiles[SWSDB.FileIndex].TeamIndex := idx;
+  //SWSDB.SWSFiles[SWSDB.FileIndex].TeamIndex := LBTeams.Selected.Index;
   CBTeams.ItemIndex := LBTeams.Selected.Index;
 end;
 
@@ -946,15 +979,44 @@ begin
     2: Compare := SWSDB.SWSFiles[SWSDB.FileIndex].Team[PtrUint(Item1.Data)].Division - SWSDB.SWSFiles[SWSDB.FileIndex].Team[PtrUint(Item2.Data)].Division;
     3: Compare := StrToInt(Item2.SubItems[2]) - StrToInt(Item1.SubItems[2]);
     4: Compare := StrToInt(Item2.SubItems[3]) - StrToInt(Item1.SubItems[3]);
+    5: Compare := StrToInt(Item2.SubItems[4]) - StrToInt(Item1.SubItems[4]);
   end;
 end;
 
+procedure TMainForm.LBTeamsCustomDrawItem(Sender: TCustomListView;
+  Item: TListItem; State: TCustomDrawState; var DefaultDraw: Boolean);
+var
+  idx: integer;
+begin
+  if (Item.Data <> nil) then
+     idx := PtrUInt(Item.Data);
+  if EdtSett.UseColors then BEGIN
+     case (SWSDB.SWSFiles[SWSDB.FileIndex].Team[idx].Division) of
+       0: sender.Canvas.Brush.Color:=$B0FFFF;
+       1: sender.Canvas.Brush.Color:=$A8D8FF;
+       2: sender.Canvas.Brush.Color:=$A0C0FF;
+       3: sender.Canvas.Brush.Color:=$98A8FF;
+       4: sender.Canvas.Brush.Color:=$9090FF;
+     end;
+  end;
+
+  if (SWSDB.SWSFiles[SWSDB.FileIndex].Team[idx].CalcTeamSkill(5, true) > 82) then
+     Sender.Canvas.Brush.Color:=clRed;
+
+end;
+
 procedure TMainForm.LBTeamsDblClick(Sender: TObject);
+var
+  idx: integer;
 begin
   if LBTeams.Selected = nil then
-    EXit;
+    Exit;
+  if (LBTeams.Selected.Data <> nil) then
+     idx := PtrUInt(LBTeams.Selected.Data);
   //SWSDB.SWSFiles[SWSDB.FileIndex].TeamIndex := PtrUInt(LBTeams.Selected.Data);
-  SWSDB.SWSFiles[SWSDB.FileIndex].TeamIndex := LBTeams.Selected.Index;
+  SWSDB.SWSFiles[SWSDB.FileIndex].TeamIndex := idx;
+  //SWSDB.SWSFiles[SWSDB.FileIndex].TeamIndex := LBTeams.Selected.Index;
+  CBTeams.ItemIndex := LBTeams.Selected.Index;
   tbTeam.Enabled := True;
   RefTeam;
   PCtrl.ActivePage := tbTeam;
@@ -1703,17 +1765,43 @@ var
   XML2: TXMLDocument;
   Root: TDOMNode;
   a, i, k: integer;
+  uid: INt64;
 begin
   XML2:=TXMLDocument.Create;
 
   Root:=XML2.CreateElement('Players');
   XML2.AppendChild(Root);
-
+  uid:=0;
   for a := 0 to SWSDB.FileCount - 1 do
     for i := 0 to SWSDB.SWSFiles[a].TeamCount - 1 do
-      for k := 0 to 15 do
-        SWSDB.SWSFiles[a].Team[i].Player[k].ExportXML(XML2, Root, -1);
+      for k := 0 to 15 do begin
+        SWSDB.SWSFiles[a].Team[i].Player[k].ExportXML(XML2, Root, uid);
+        uid += 1;
+      end;
   sav.FileName:='players.xml';
+  sav.Filter:='XML File|*.xml|All Files|*.*';
+  if sav.Execute then
+     if sav.FileName<>'' then
+        WriteXMLFile(XML2, sav.FileName);
+end;
+
+procedure TMainForm.MXMLteamClick(Sender: TObject);
+var
+  XML2: TXMLDocument;
+  Root: TDOMNode;
+  a, i, k: integer;
+  uid: INt64;
+begin
+  XML2:=TXMLDocument.Create;
+
+  Root:=XML2.CreateElement('Teams');
+  XML2.AppendChild(Root);
+  uid:=0;
+  for a := 0 to SWSDB.FileCount - 1 do
+    for i := 0 to SWSDB.SWSFiles[a].TeamCount - 1 do
+        SWSDB.SWSFiles[a].Team[i].ExportToXML(XML2, Root);
+  sav.FileName:='teams.xml';
+  sav.Filter:='XML File|*.xml|All Files|*.*';
   if sav.Execute then
      if sav.FileName<>'' then
         WriteXMLFile(XML2, sav.FileName);
@@ -2150,15 +2238,20 @@ begin
   TC.Alignment := taLeftJustify;
   TC := LBTeams.Columns.Add;
   TC.Caption := 'Division';
-  TC.Width := 130;
+  TC.Width := 120;
   TC.Alignment := taLeftJustify;
   TC := LBTeams.Columns.Add;
   TC.Caption := 'Pts_Gen';
-  TC.Width := 70;
+  TC.Width := 60;
   TC.Alignment := taLeftJustify;
   TC := LBTeams.Columns.Add;
   TC.Caption := 'Pts_7';
-  TC.Width := 70;
+  TC.Width := 60;
+  TC.Alignment := taLeftJustify;
+  //
+  TC := LBTeams.Columns.Add;
+  TC.Caption := 'Speed';
+  TC.Width := 60;
   TC.Alignment := taLeftJustify;
   CBTeams.Clear;
   CBSquad.Clear;
@@ -2176,6 +2269,7 @@ begin
       TI.SubItems.Add(Cdiv[Division]);
       TI.SubItems.Add(IntToStr(CalcTeam(False)));
       TI.SubItems.Add(IntToStr(CalcTeam(True)));
+      TI.SubItems.Add(IntToStr(CalcTeamSkill(5, true)));
       TI.Data := Pointer(a);
       LBTeams.RowSelect := True;
     end;

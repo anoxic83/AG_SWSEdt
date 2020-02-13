@@ -25,9 +25,9 @@ object MainForm: TMainForm
     Height = 713
     Top = 0
     Width = 597
-    ActivePage = tbOver
+    ActivePage = tbGeneral
     Align = alClient
-    TabIndex = 0
+    TabIndex = 1
     TabOrder = 0
     OnChange = PCtrlChange
     OnChanging = PCtrlChanging
@@ -164,6 +164,7 @@ object MainForm: TMainForm
         OnClick = LBTeamsClick
         OnColumnClick = LBTeamsColumnClick
         OnCompare = LBTeamsCompare
+        OnCustomDrawItem = LBTeamsCustomDrawItem
         OnDblClick = LBTeamsDblClick
         OnMouseDown = LBTeamsMouseDown
       end
@@ -1054,6 +1055,7 @@ object MainForm: TMainForm
         OnClick = LBSquadClick
         OnColumnClick = LBSquadColumnClick
         OnCompare = LBSquadCompare
+        OnCustomDrawItem = LBSquadCustomDrawItem
         OnDblClick = LBSquadDblClick
         OnDragDrop = LBSquadDragDrop
         OnDragOver = LBSquadDragOver
@@ -2152,6 +2154,7 @@ object MainForm: TMainForm
         end
         object MXMLteam: TMenuItem
           Caption = 'Teams'
+          OnClick = MXMLteamClick
         end
       end
     end

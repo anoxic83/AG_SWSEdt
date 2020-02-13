@@ -7,15 +7,15 @@ object SettingForm: TSettingForm
   ClientHeight = 354
   ClientWidth = 511
   OnActivate = FormActivate
-  LCLVersion = '6.9'
+  LCLVersion = '7.0'
   object PageControl1: TPageControl
     Left = 0
     Height = 312
     Top = 0
     Width = 511
-    ActivePage = tbPath
+    ActivePage = tbEditor
     Align = alTop
-    TabIndex = 0
+    TabIndex = 1
     TabOrder = 0
     object tbPath: TTabSheet
       Caption = 'Directories'
@@ -186,6 +186,14 @@ object SettingForm: TSettingForm
         Width = 216
         Caption = 'Safe Mode (Verification Assistant On)'
         TabOrder = 4
+      end
+      object chUseCol: TCheckBox
+        Left = 12
+        Height = 19
+        Top = 120
+        Width = 295
+        Caption = 'Highlights teams by division and players by position'
+        TabOrder = 5
       end
     end
     object tbLinks: TTabSheet
