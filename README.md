@@ -63,6 +63,12 @@ To compilation download [CodeTyphon](https://www.pilotlogic.com/sitejoom/index.p
 CodeTyphon is the Next Generation "Pascal Visual Programming Studio".
 
 ### Change Log
+**ver 2.4.6a**
+- Add function Replace Team from CSV (TM Editor CSV struct)
+- Add highlight for warning/"dirty" team (player no > 16, player in first "11" has no > 11 or two players has this same number).
+- Add report to file for "dirty" teams.
+- Fix find player duplicates
+
 **ver 2.4.5a**
 - Add speed skill comparison, column in General Tab, and highlight column to red if value > 82
 - Fix CSV/XML Export to all Players and Teams.

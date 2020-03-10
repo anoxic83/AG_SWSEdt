@@ -399,9 +399,11 @@ type
     FTeam: TSWSTeam;
     FChanged: boolean;
     FAttrStr: string;
+    FWarning: boolean;
     function GetAttrStr: string;
     function GetPos(val: byte): byte;
     function GetSkin(val: byte): byte;
+    function GetWarning: boolean;
     procedure SetAtC(AValue: byte);
     procedure SetAtF(AValue: byte);
     procedure SetAtH(AValue: byte);
@@ -451,6 +453,7 @@ type
     property Team: TSWSTeam read FTeam;
     property AttrbcCode: string read GetAttrStr;
     property UniqueID: integer read FUniqID;
+    property Warning: boolean read GetWarning;
   end;
 
   { TSWSTeam }
@@ -474,8 +477,10 @@ type
     FPlayerIndex: integer;
     Fchanged: boolean;
     FTactic: TSWStactic;
+    function GetInFormation(Index: Integer): Byte;
     function Getplayer(Index: integer): TSWSPlayer;
     function GetPosition(Index: integer): byte;
+    function GetWarning: boolean;
     procedure SetAwayKit(AValue: TSWSkits);
     procedure Setcoach(AValue: string);
     procedure Setdivision(AValue: byte);
@@ -513,12 +518,13 @@ type
     property AwayKit: TSWSkits read FAwayKit write SetAwayKit;
     property Coach: string read Fcoach write Setcoach;
     property PlPosition[Index: integer]: byte read GetPosition write SetPosition;
+    property PlInFormation[Index: Integer]: Byte read GetInFormation;
     property Player[Index: integer]: TSWSPlayer read Getplayer write SetPlayer;
     property TeamFile: TSWSFile read FTeamFile write SetTeamFile;
     property PlayerIndex: integer read FPlayerIndex write FPlayerIndex;
     property Tactic: TSWStactic read FTactic write FTactic;
     property UniqueID: integer read FUniqID;
-
+    property Warning: boolean read GetWarning;
   end;
 
   { TSWSPoolPlyrRec }
@@ -1992,6 +1998,36 @@ begin
   GetSkin := (val and $18) shr 3;
 end;
 
+function TSWSPlayer.GetWarning: boolean;
+var
+  warn: boolean;
+begin
+  if FNumber > 16 then
+     warn:=true
+  else
+     warn:=false;
+
+  if (FTeam <> nil) then begin
+     if (FTeam.PlInFormation[FPlay_inTeam] < 11) then
+     begin // First eleven
+       if (FNumber > 11) then
+         warn := true
+       else
+         warn:=false;
+     end
+     else
+     begin // Reserve
+       if (FNumber < 12) then
+         warn := true
+       else
+         warn:=false;
+     end;
+
+  end;
+  FWarning := warn;
+  Result:= FWarning;
+end;
+
 procedure TSWSPlayer.SetAtC(AValue: byte);
 begin
   if FAtC = AValue then
@@ -3010,11 +3046,39 @@ begin
   Result := Fplayers[Index];
 end;
 
+function TSWSTeam.GetInFormation(Index: Integer): Byte;
+var
+  a: integer;
+begin
+  for a:=0 to 15 do
+      if Fplposit[a] = Index then
+         Exit(a);
+end;
+
 function TSWSTeam.GetPosition(Index: integer): byte;
 begin
   if (Index < 0) or (Index > 15) then
     Exit;
   Result := Fplposit[Index];
+end;
+
+function TSWSTeam.GetWarning: boolean;
+var
+  warn: boolean;
+  warp: boolean;
+  p, d: integer;
+begin
+  warn := false;
+  For p:=0 to 15 do
+      for d:=0 to 15 do begin
+          if p=d then
+            Continue;
+          if (Fplayers[p].Number = Fplayers[d].Number) then
+             warn := true;
+      end;
+  for p:=0 to 15 do
+      warp := Fplayers[p].Warning;
+  Result:= warp or warn;
 end;
 
 procedure TSWSTeam.SetAwayKit(AValue: TSWSkits);
@@ -3530,13 +3594,13 @@ begin
          tmpi:=a;
     end;
     Fplayers[p].Position:=tmpi;
-    Fplayers[p].Passing:=StrToInt(TCS[5]);
-    Fplayers[p].Shooting:=StrToInt(TCS[6]);
-    Fplayers[p].Heading:=StrToInt(TCS[7]);
-    Fplayers[p].Tackling:=StrToInt(TCS[8]);
-    Fplayers[p].Ball_Control:=StrToInt(TCS[9]);
-    Fplayers[p].Speed:=StrToInt(TCS[10]);
-    Fplayers[p].Finishing:=StrToInt(TCS[11]);
+    Fplayers[p].Passing:=StrToIntDef(TCS[5],0);
+    Fplayers[p].Shooting:=StrToIntDef(TCS[6],0);
+    Fplayers[p].Heading:=StrToIntDef(TCS[7],0);
+    Fplayers[p].Tackling:=StrToIntDef(TCS[8],0);
+    Fplayers[p].Ball_Control:=StrToIntDef(TCS[9],0);
+    Fplayers[p].Speed:=StrToIntDef(TCS[10],0);
+    Fplayers[p].Finishing:=StrToIntDef(TCS[11],0);
     tmpi:=0;
     for a:=0 to $31 do begin
       if TCS[12]=CVal[a] then

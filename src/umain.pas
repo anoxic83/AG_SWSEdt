@@ -32,7 +32,7 @@ uses
   uabout {$IFDEF DEBUG}, heaptrc{$ENDIF};
 
 const
-  SWSEdtVer = $0002000400050022;
+  SWSEdtVer = $0002000400060011;
 
 type
 
@@ -195,6 +195,8 @@ type
     MclrTeam: TMenuItem;
     MAddCSVTM: TMenuItem;
     MAddRAWTeam: TMenuItem;
+    MDirtyRep: TMenuItem;
+    MReplaceCSV: TMenuItem;
     MFindPlayerDup: TMenuItem;
     MFindGenSWSDupl: TMenuItem;
     MXMLteam: TMenuItem;
@@ -350,6 +352,8 @@ type
     procedure btCompOrgClick(Sender: TObject);
     procedure btEdtLeagStrucClick(Sender: TObject);
     procedure btGenPosValClick(Sender: TObject);
+    procedure btGenPosValKeyDown(Sender: TObject; var Key: Word;
+      Shift: TShiftState);
     procedure btGenPosValMouseDown(Sender: TObject; Button: TMouseButton;
       Shift: TShiftState; X, Y: Integer);
     procedure btNumberClick(Sender: TObject);
@@ -445,6 +449,7 @@ type
     procedure MCSVPlClick(Sender: TObject);
     procedure MCSVTeamClick(Sender: TObject);
     procedure MAddCSVTMClick(Sender: TObject);
+    procedure MDirtyRepClick(Sender: TObject);
     procedure MenuItem7Click(Sender: TObject);
     procedure MEuroCupClick(Sender: TObject);
     procedure MFileClick(Sender: TObject);
@@ -471,6 +476,7 @@ type
     procedure MreadTeamClick(Sender: TObject);
     procedure MreloadClick(Sender: TObject);
     procedure MRemoveTeamClick(Sender: TObject);
+    procedure MReplaceCSVClick(Sender: TObject);
     procedure MSettingsClick(Sender: TObject);
     procedure MShowPoolClick(Sender: TObject);
     procedure MShowRandomClick(Sender: TObject);
@@ -1003,6 +1009,8 @@ begin
   if (SWSDB.SWSFiles[SWSDB.FileIndex].Team[idx].CalcTeamSkill(5, true) > 82) then
      Sender.Canvas.Brush.Color:=clRed;
 
+  if (SWSDB.SWSFiles[SWSDB.FileIndex].Team[idx].Warning) then
+     Sender.Canvas.Brush.Color:=clFuchsia;
 end;
 
 procedure TMainForm.LBTeamsDblClick(Sender: TObject);
@@ -1224,6 +1232,24 @@ begin
   RefSquad;
 end;
 
+procedure TMainForm.MDirtyRepClick(Sender: TObject);
+var
+  TS: TStringList;
+  fi, ti: Integer;
+begin
+  if (SWSDB.LoadedAll) then BEGIN
+     TS:=TStringList.Create;
+       for fi:=0 to SWSDB.FileCount-1 do
+         for ti:=0 to SWSDB.SWSFiles[fi].TeamCount-1 do begin
+           if (SWSDB.SWSFiles[fi].Team[Ti].Warning) then
+              TS.Add(ExtractFileName(SWSDB.SWSFiles[fi].FileName)+'::'+SWSDB.SWSFiles[fi].Team[ti].TeamNAme);
+         end;
+     TS.SaveToFile('DirtyTeams.txt');
+     ShowMessage('"Dirty" Teams has saved to file <DirtyTeams.txt>');
+  end;
+end;
+
+
 procedure TMainForm.MenuItem7Click(Sender: TObject);
 begin
 
@@ -1253,7 +1279,7 @@ begin
     Exit;
   end;
   SWSDB.FindSWSGenDuplic;
-  ShowMessage('Finded duplicates in File: SWS_GenNr_Duplicates.txt');
+  ShowMessage('Found duplicates in File: SWS_GenNr_Duplicates.txt');
 end;
 
 procedure TMainForm.MFindPlayerDupClick(Sender: TObject);
@@ -1291,7 +1317,7 @@ begin
   freelib(cdb);
   SplashLoad.pbload.Show;
   SplashLoad.Hide;
-  ShowMessage('Finded duplicates in File: duplicates.txt');
+  ShowMessage('Found duplicates in File: duplicates.txt');
 end;
 
 procedure TMainForm.MFindSWSMaxClick(Sender: TObject);
@@ -1675,6 +1701,31 @@ begin
   SWSDB.SWSFiles[SWSDB.FileIndex].RemoveTeam(SWSDB.SWSFiles[SWSDB.FileIndex].TeamIndex);
   SWSDB.SWSFiles[SWSDB.FileIndex].TeamIndex := -1;
   LoadGeneral;
+end;
+
+procedure TMainForm.MReplaceCSVClick(Sender: TObject);
+var
+  TI, i: Integer;
+  CSVTM: TStringList;
+begin
+  ope.Filter:='TM Editor CSV File|*.CSV|All Files|*.*';
+  if ope.Execute then
+     if ope.FileName<>'' then BEGIN
+        CSVTM:= TStringList.Create;
+        CSVTM.LoadFromFile(ope.FileName);
+        Ti:= SWSDB.SWSFiles[SWSDB.FileIndex].TeamIndex;
+        SWSDB.SWSFiles[SWSDB.FileIndex].Team[Ti].ImportTMEdtCSV(CSVTM);
+        for i := 0 to 15 do
+        begin
+          if SWSDB.SWSFiles[SWSDb.FileIndex].Team[Ti].Player[i].Position <> 0 then
+            SWSDB.SWSFiles[SWSDb.FileIndex].Team[Ti].Player[i].Value :=
+              SWSDB.SWSFiles[SWSDb.FileIndex].Team[Ti].Player[i].CalcPlay(True);
+        end;
+        SWSDB.SWSFiles[SWSDB.FileIndex].TeamIndex := TI;
+  end;
+  LoadGeneral;
+  RefTeam;
+  RefSquad;
 end;
 
 procedure TMainForm.MSettingsClick(Sender: TObject);
@@ -3166,6 +3217,26 @@ begin
   MPGenPosVal.PopUp
   else
   Gener(GenerPos);
+end;
+
+procedure TMainForm.btGenPosValKeyDown(Sender: TObject; var Key: Word;
+  Shift: TShiftState);
+var
+  TIDX: Integer;
+begin
+  TIDX := SWSDB.SWSFiles[SWSDb.FileIndex].TeamIndex;
+  if Key = VK_TAB then begin
+    if SWSDB.SWSFiles[SWSDb.FileIndex].Team[TIDX].PlayerIndex < 15 then
+      SWSDB.SWSFiles[SWSDb.FileIndex].Team[TIDX].PlayerIndex :=
+        SWSDB.SWSFiles[SWSDb.FileIndex].Team[TIDX].PlayerIndex + 1
+    else
+      SWSDB.SWSFiles[SWSDb.FileIndex].Team[TIDX].PlayerIndex := 0;
+  LBSquad.ItemIndex := SWSDB.SWSFiles[SWSDb.FileIndex].Team[TIDX].PlayerIndex;
+  pbTacPaint(self);
+  RefReserve;
+  RefSquad;
+  RefPlayer;
+  end;
 end;
 
 procedure TMainForm.btGenPosValMouseDown(Sender: TObject; Button: TMouseButton;

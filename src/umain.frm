@@ -25,9 +25,9 @@ object MainForm: TMainForm
     Height = 713
     Top = 0
     Width = 597
-    ActivePage = tbGeneral
+    ActivePage = tbPlayer
     Align = alClient
-    TabIndex = 1
+    TabIndex = 4
     TabOrder = 0
     OnChange = PCtrlChange
     OnChanging = PCtrlChanging
@@ -1230,6 +1230,7 @@ object MainForm: TMainForm
           Height = 20
           Top = 24
           Width = 80
+          ArrowKeys = False
           Min = 0
           OnClick = UpDownPlayClick
           Orientation = udHorizontal
@@ -1978,7 +1979,7 @@ object MainForm: TMainForm
         object btCompOrg: TButton
           Left = 326
           Height = 20
-          Top = 355
+          Top = 352
           Width = 225
           Caption = 'Compute Original Price'
           Font.Height = -11
@@ -1993,6 +1994,7 @@ object MainForm: TMainForm
           Width = 224
           Caption = 'Generate Attributess by Value-Position'
           OnClick = btGenPosValClick
+          OnKeyDown = btGenPosValKeyDown
           OnMouseDown = btGenPosValMouseDown
           TabOrder = 12
         end
@@ -2111,6 +2113,10 @@ object MainForm: TMainForm
         ShortCut = 24663
         OnClick = MpaTeamClick
       end
+      object MReplaceCSV: TMenuItem
+        Caption = 'Replace From CSV'
+        OnClick = MReplaceCSVClick
+      end
     end
     object MGlobal: TMenuItem
       Caption = 'Global'
@@ -2197,6 +2203,10 @@ object MainForm: TMainForm
         Caption = 'Find Player Duplicates'
         Enabled = False
         OnClick = MFindPlayerDupClick
+      end
+      object MDirtyRep: TMenuItem
+        Caption = 'Report "Dirty" Teams'
+        OnClick = MDirtyRepClick
       end
     end
     object MOptions: TMenuItem
