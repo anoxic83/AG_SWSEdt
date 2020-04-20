@@ -63,6 +63,10 @@ To compilation download [CodeTyphon](https://www.pilotlogic.com/sitejoom/index.p
 CodeTyphon is the Next Generation "Pascal Visual Programming Studio".
 
 ### Change Log
+**ver 2.4.7a**
+- Add Compute Original Price for all loaded files.
+- Add option to export csv data (formation, position, etc) as raw string (optional in settings).
+
 **ver 2.4.6a**
 - Add function Replace Team from CSV (TM Editor CSV struct)
 - Add highlight for warning/"dirty" team (player no > 16, player in first "11" has no > 11 or two players has this same number).
