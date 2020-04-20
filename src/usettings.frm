@@ -1,7 +1,7 @@
 object SettingForm: TSettingForm
-  Left = 389
+  Left = 399
   Height = 354
-  Top = 232
+  Top = 221
   Width = 511
   Caption = 'Settings'
   ClientHeight = 354
@@ -194,6 +194,14 @@ object SettingForm: TSettingForm
         Width = 295
         Caption = 'Highlights teams by division and players by position'
         TabOrder = 5
+      end
+      object cbCSVString: TCheckBox
+        Left = 12
+        Height = 19
+        Top = 144
+        Width = 321
+        Caption = 'Export data (positions, tactic, nationality) in CSV as String'
+        TabOrder = 6
       end
     end
     object tbLinks: TTabSheet

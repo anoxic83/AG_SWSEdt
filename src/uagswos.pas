@@ -71,6 +71,9 @@ const
   CTMPos: array[0..7] of string = (
         'GK', 'RB', 'LB', 'D', 'RW', 'LW', 'M', 'A');
 
+  CSkin: array[0..2] of string = (
+         'White/Black', 'White/Blond', 'Black/Black');
+
   SWSExeHexDiff = $1C08;
   SWSExe2020Diff = $476C6;
   SWSExeHexCupD = $61E;
@@ -428,7 +431,7 @@ type
     procedure ChangeAllTo7();
     function LoadPlayer(Ptm: TStream): boolean;
     function WritePlayer(Ptm: TStream): boolean;
-    function ExportToCSV(var TS: TStringList; UniqID: integer): boolean;
+    function ExportToCSV(var TS: TStringList; UniqID: integer; AsString: boolean = false): boolean;
     function ExportXML(Doc: TXMLDocument ;ParNode: TDOMNode; UniqID: Integer): Boolean;
     function AttibutteCode(DefSwap: boolean = False): TAttrCode;
     function ShortName: string;
@@ -503,7 +506,7 @@ type
     function LoadTeam(Stm: TStream): boolean;
     function CalcTeamSkill(SkillNr : Integer; By7: boolean): integer;
     function WriteTeam(Stm: TStream): boolean;
-    function ExportToCSV(TS: TStringList): boolean;
+    function ExportToCSV(TS: TStringList; AsString: boolean = false): boolean;
     function ExportToXML(Doc: TXMLDocument; ParNode: TDOMNode): boolean;
     function ImportTMEdtCSV(TS: TStringList): boolean;
     function Changed: boolean;
@@ -2293,7 +2296,8 @@ begin
   FChanged := False;
 end;
 
-function TSWSPlayer.ExportToCSV(var TS: TStringList; UniqID: integer): boolean;
+function TSWSPlayer.ExportToCSV(var TS: TStringList; UniqID: integer;
+  AsString: boolean): boolean;
 var
   TmSt: string;
 begin
@@ -2301,12 +2305,22 @@ begin
     TmST := (IntToStr(UniqID) + TS.Delimiter)
   else
     TmSt := IntToStr(FUniqID) + TS.Delimiter;
-  tmSt := tmSt + IntToStr(National) + TS.Delimiter;
+  if AsString then
+      tmSt := tmSt + CNat[National] + TS.Delimiter
+  else
+      tmSt := tmSt + IntToStr(National) + TS.Delimiter;
+
   TmST := tmSt + IntToStr(Number) + TS.Delimiter;
   TmSt := tmSt + Trim(PName) + TS.Delimiter;
   // IF POSITION //
-  TmSt := tmSt + IntToStr(Fposition) + TS.Delimiter;
-  Tmst := tmSt + IntToStr(Fskin) + TS.Delimiter;
+  if AsString then
+     TmSt := tmSt + CTMPos[Fposition] + TS.Delimiter
+  else
+      TmSt := tmSt + IntToStr(Fposition) + TS.Delimiter;
+  if AsString then
+      Tmst := tmSt + Cskin[FSkin] + TS.Delimiter
+  else
+      Tmst := tmSt + IntToStr(Fskin) + TS.Delimiter;
   TmSt := tmSt + IntToStr(FatP) + TS.Delimiter;
   TmSt := tmSt + IntToStr(FatV) + TS.Delimiter;
   TmSt := tmSt + IntToStr(FatH) + TS.Delimiter;
@@ -2314,13 +2328,19 @@ begin
   TmSt := tmSt + IntToStr(FatC) + TS.Delimiter;
   TmSt := tmSt + IntToStr(FatS) + TS.Delimiter;
   TmSt := tmSt + IntToStr(FatF) + TS.Delimiter;
-  TmSt := tmSt + IntToStr(FValue) + TS.Delimiter;
+  if AsString then
+     TmSt := tmSt + CVal[FValue] + TS.Delimiter
+  else
+      TmSt := tmSt + IntToStr(FValue) + TS.Delimiter;
   if FTeam <> nil then
   begin
     TmSt := Tmst + IntToStr(FTeam.FSws_gen_nr) + TS.Delimiter;
     TmSt := Tmst + IntToStr(FTeam.Fnation) + TS.Delimiter;
     tmSt := Tmst + IntToStr(FTeam.FTeamNum) + TS.Delimiter;
-    tmSt := TmSt + IntToStr(FTeam.FUniqID) + TS.Delimiter;
+    if AsString then
+        tmSt := TmSt + Trim(FTeam.TeamNAme) + TS.Delimiter
+    else
+        tmSt := TmSt + IntToStr(FTeam.FUniqID) + TS.Delimiter
   end;
   TS.Add(TmSt);
   Result:=True;
@@ -3469,7 +3489,7 @@ begin
   AwayKit.Fchanged := False;
 end;
 
-function TSWSTeam.ExportToCSV(TS: TStringList): boolean;
+function TSWSTeam.ExportToCSV(TS: TStringList; AsString: boolean): boolean;
 var
   TmSt: string;
 begin
@@ -3479,7 +3499,14 @@ begin
   TmSt := TmSt + IntToStr(SWS_Gen_Num) + TS.Delimiter;
   TmSt := TmSt + Trim(TeamNAme) + TS.Delimiter;
   TmSt := TmSt + Trim(Fccoach) + TS.Delimiter;
-  tmSt := TmSt + IntToStr(Fformation) + TS.Delimiter;
+  if AsString then
+     tmSt := TmSt + Ctac[Fformation] + TS.Delimiter
+  else
+    tmSt := TmSt + IntToStr(Fformation) + TS.Delimiter;
+  if AsString then
+     TmSt := TmSt + CDiv[Fdivision] + TS.Delimiter
+  else
+      TmSt := TmSt + IntToStr(Fdivision) + TS.Delimiter;
   TmSt := TmSt + IntToStr(FHomeKit.Typ) + TS.Delimiter;
   TmSt := TmSt + IntToStr(FHomeKit.ShirtCol1) + TS.Delimiter;
   TmSt := TmSt + IntToStr(FHomeKit.ShirtCol2) + TS.Delimiter;

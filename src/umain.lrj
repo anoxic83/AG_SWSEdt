@@ -147,6 +147,7 @@
 {"hash":112734979,"name":"tmainform.mchgteamnr.caption","sourcebytes":[67,104,97,110,103,101,32,65,108,108,32,84,101,97,109,32,78,97,116,105,111,110,97,108,32,78,117,109,98,101,114,115],"value":"Change All Team National Numbers"},
 {"hash":24270867,"name":"tmainform.mchleg.caption","sourcebytes":[86,101,114,105,102,121,32,65,108,108,32,76,101,97,103,117,101,32,83,116,114,117,99,116,117,114,101,115],"value":"Verify All League Structures"},
 {"hash":260442933,"name":"tmainform.meurocup.caption","sourcebytes":[69,117,114,111,32,67,117,112,32,67,111,109,112,101,116,105,116,105,111,110,115,32,105,110,32,69,120,101],"value":"Euro Cup Competitions in Exe"},
+{"hash":219107635,"name":"tmainform.mcopall.caption","sourcebytes":[67,111,109,112,117,116,101,32,79,114,105,103,105,110,97,108,32,80,114,105,99,101,32,102,111,114,32,108,111,97,100,101,100,32,84,101,97,109,115],"value":"Compute Original Price for loaded Teams"},
 {"hash":80477716,"name":"tmainform.mcsvexp.caption","sourcebytes":[67,83,86,32,69,120,112,111,114,116],"value":"CSV Export"},
 {"hash":120126659,"name":"tmainform.mcsvpl.caption","sourcebytes":[80,108,97,121,101,114,115],"value":"Players"},
 {"hash":5945411,"name":"tmainform.mcsvteam.caption","sourcebytes":[84,101,97,109,115],"value":"Teams"},

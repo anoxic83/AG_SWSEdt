@@ -38,6 +38,7 @@ type
 
   TEdtSett = class(TComponent)
   private
+    FCSVString: boolean;
     FSWSData: string;
     FSWSExe: string;
     FFileName: string;
@@ -50,6 +51,7 @@ type
     FTPIdx: integer;
     FLinks: array[0..1] of TSWLink;
     function GetLink(Index: integer): TSWLink;
+    procedure SetCSVString(AValue: boolean);
     procedure SetLink(Index: integer; AValue: TSWLink);
     procedure SetUseColors(AValue: boolean);
   public
@@ -67,6 +69,7 @@ type
     property TotalPackDir: string read FToTalPack write FToTalPack;
     property UseTP: boolean read FUseTP write FUseTP;
     property UseColors: boolean read FUseColors write SetUseColors;
+    property CSVString: boolean read FCSVString write SetCSVString;
     property TotalPackIndex: integer read FTPIdx write FTPIdx;
   end;
 
@@ -725,6 +728,12 @@ begin
   Result := FLinks[Index];
 end;
 
+procedure TEdtSett.SetCSVString(AValue: boolean);
+begin
+  if FCSVString=AValue then Exit;
+  FCSVString:=AValue;
+end;
+
 procedure TEdtSett.SetLink(Index: integer; AValue: TSWLink);
 begin
   if (Index < 0) or (Index > 1) then
@@ -744,6 +753,7 @@ begin
   FSWSData := '';
   FSWSExe := '';
   FUseColors:=true;
+  FCSVString:=false;
   inherited Create(AOwner);
 end;
 

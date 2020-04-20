@@ -41,6 +41,7 @@ type
     CBShowHint: TCheckBox;
     chAutoCopyexe: TCheckBox;
     cbAutoUpd: TCheckBox;
+    cbCSVString: TCheckBox;
     chUseCol: TCheckBox;
     chSafeMode: TCheckBox;
     chSelAuto: TCheckBox;
@@ -119,6 +120,7 @@ begin
   if chSafeMode.Checked then
     EdtSett.EditOptions := EdtSett.EditOptions + [eoSafeMode];
   EdtSett.UseColors:=chUseCol.Checked;
+  EdtSett.CSVString:=cbCSVString.Checked;
   EdtSett.Link[0] := Links[0];
   EdtSett.Link[1] := Links[1];
   EdtSett.TotalPackDir := EtotalPack.Text;
@@ -261,6 +263,7 @@ begin
   cbAutoUpd.Checked := (eoAutoUpdate in EdtSett.EditOptions);
   chSafeMode.Checked := (eoSafeMode in EdtSett.EditOptions);
   chUseCol.Checked:= EdtSett.UseColors;
+  cbCSVString.Checked:= EdtSett.CSVString;
   Links[0] := EdtSett.Link[0];
   Links[1] := EdtSett.Link[1];
   if ESWSExe.Text <> '' then BEGIN

@@ -26,13 +26,13 @@ interface
 uses
   Classes, SysUtils, FileUtil, Forms, Controls, Graphics, Dialogs, Menus,
   uagswos, LResources, ExtCtrls, ComCtrls, utextstr, laz2_DOM, laz2_XMLWrite,
-  Sensors, AdvLed, BGRABitmap, TplProgressBarUnit, BGRAImageList, dynlibs,
+  AdvLed, BGRABitmap, TplProgressBarUnit, BGRAImageList, dynlibs,
   BGRASpeedButton, LCLType, LCLIntf, StdCtrls, ColorBox, PopupNotifier, Buttons,
   ActnList, usettings, uslpload, uclipfrm, ulgstufrm, upoolplyr, ueccfrm,
   uabout {$IFDEF DEBUG}, heaptrc{$ENDIF};
 
 const
-  SWSEdtVer = $0002000400060011;
+  SWSEdtVer = $0002000400070007;
 
 type
 
@@ -196,6 +196,8 @@ type
     MAddCSVTM: TMenuItem;
     MAddRAWTeam: TMenuItem;
     MDirtyRep: TMenuItem;
+    MCOPAll: TMenuItem;
+    MenuItem15: TMenuItem;
     MReplaceCSV: TMenuItem;
     MFindPlayerDup: TMenuItem;
     MFindGenSWSDupl: TMenuItem;
@@ -450,6 +452,9 @@ type
     procedure MCSVTeamClick(Sender: TObject);
     procedure MAddCSVTMClick(Sender: TObject);
     procedure MDirtyRepClick(Sender: TObject);
+    procedure MenuItem10Click(Sender: TObject);
+    procedure MCOPAllClick(Sender: TObject);
+    procedure MenuItem15Click(Sender: TObject);
     procedure MenuItem7Click(Sender: TObject);
     procedure MEuroCupClick(Sender: TObject);
     procedure MFileClick(Sender: TObject);
@@ -1181,11 +1186,14 @@ begin
   TTS := TStringList.Create;
   TTS.Delimiter := ';';
   TTS.Clear;
-  TTS.Add('ID;Nat;Num;Name;Pos;Skin;P;V;H;T;C;S;F;Value;TeamSWSGN;TeamNat;TeamNr;TeamUID;');
+  if EdtSett.CSVString then
+        TTS.Add('ID;Nat;Num;Name;Pos;Skin;P;V;H;T;C;S;F;Value;TeamSWSGN;TeamNat;TeamNr;TeamName;')
+  else
+      TTS.Add('ID;Nat;Num;Name;Pos;Skin;P;V;H;T;C;S;F;Value;TeamSWSGN;TeamNat;TeamNr;TeamUID;');
   for a := 0 to SWSDB.FileCount - 1 do
     for i := 0 to SWSDB.SWSFiles[a].TeamCount - 1 do
       for k := 0 to 15 do
-        SWSDB.SWSFiles[a].Team[i].Player[k].ExportToCSV(TTS, -1);
+        SWSDB.SWSFiles[a].Team[i].Player[k].ExportToCSV(TTS, -1, EdtSett.CSVString);
   sav.FileName:='players.csv';
   if sav.Execute then
      if sav.FileName<>'' then
@@ -1201,10 +1209,10 @@ begin
   TTS := TStringList.Create;
   TTS.Delimiter := ';';
   TTS.Clear;
-  TTS.Add('ID;Nat;Num;SWSGenNr;Name;Coach;Formation;HK_typ;HK_ShirtCol1;HK_ShirtCol2;HK_Short;HK_Socks;AK_Typ;AK_ShirtCol1;AK_ShirtCol2;AK_Short;AK_Socks;');
+  TTS.Add('ID;Nat;Num;SWSGenNr;Name;Coach;Formation;Division;HK_typ;HK_ShirtCol1;HK_ShirtCol2;HK_Short;HK_Socks;AK_Typ;AK_ShirtCol1;AK_ShirtCol2;AK_Short;AK_Socks;');
   for a := 0 to SWSDB.FileCount - 1 do
     for i := 0 to SWSDB.SWSFiles[a].TeamCount - 1 do
-      SWSDB.SWSFiles[a].Team[i].ExportToCSV(TTS);
+      SWSDB.SWSFiles[a].Team[i].ExportToCSV(TTS, EdtSett.CSVString);
   sav.FileName:='teams.csv';
   if sav.Execute then
      if sav.FileName<>'' then
@@ -1247,6 +1255,36 @@ begin
      TS.SaveToFile('DirtyTeams.txt');
      ShowMessage('"Dirty" Teams has saved to file <DirtyTeams.txt>');
   end;
+end;
+
+procedure TMainForm.MenuItem10Click(Sender: TObject);
+begin
+
+end;
+
+
+procedure TMainForm.MCOPAllClick(Sender: TObject);
+var
+  i, t, p: integer;
+begin
+  for i:=0 to SWSDB.FileCount -1 do
+    for t:=0 to SWSDB.SWSFiles[i].TeamCount-1 do
+      for p:=0 to 15 do begin
+          if (SWSDB.SWSFiles[i].Team[t].Player[p].Position<>0) then
+             SWSDB.SWSFiles[i].Team[t].Player[p].Value:=
+             SWSDB.SWSFiles[i].Team[t].Player[p].CalcPlay(true);
+      end;
+  if SWSDB.FileIndex > -1 then
+     if SWSDB.SWSFiles[SWSDB.FileIndex].TeamIndex>-1 then begin
+       RefTeam;
+       RefSquad;
+       RefPlayer;
+  end;
+end;
+
+procedure TMainForm.MenuItem15Click(Sender: TObject);
+begin
+
 end;
 
 
@@ -2809,8 +2847,10 @@ begin
   Mreload.Enabled:=ebn;
   MChgTeamNr.Enabled := ebn;
   MCSVExp.Enabled := ebn;
+  MCOPAll.Enabled:= ebn;
   MXMLexp.Enabled:= ebn;
   MShowRandom.Enabled := ebn;
+  MDirtyRep.Enabled:=ebn;
   //  if LoadAll then begin
   MFindSWSMax.Enabled := ebn;
   MFindGenSWSDupl.Enabled:=ebn;

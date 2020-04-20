@@ -1,7 +1,7 @@
 object MainForm: TMainForm
-  Left = 389
+  Left = 399
   Height = 733
-  Top = 232
+  Top = 221
   Width = 597
   BorderIcons = [biSystemMenu, biMinimize]
   BorderStyle = bsSingle
@@ -975,7 +975,7 @@ object MainForm: TMainForm
           Left = 14
           Height = 15
           Top = 8
-          Width = 71
+          Width = 69
           Caption = 'Team To Edit:'
           ParentColor = False
           ParentFont = False
@@ -1211,7 +1211,7 @@ object MainForm: TMainForm
           Left = 14
           Height = 15
           Top = 8
-          Width = 74
+          Width = 73
           Caption = 'Player To Edit:'
           ParentColor = False
           ParentFont = False
@@ -2135,6 +2135,15 @@ object MainForm: TMainForm
         Enabled = False
         OnClick = MEuroCupClick
       end
+      object MenuItem15: TMenuItem
+        Caption = '-'
+        OnClick = MenuItem15Click
+      end
+      object MCOPAll: TMenuItem
+        Caption = 'Compute Original Price for loaded Teams'
+        Enabled = False
+        OnClick = MCOPAllClick
+      end
       object MenuItem7: TMenuItem
         Caption = '-'
         OnClick = MenuItem7Click
@@ -2206,6 +2215,7 @@ object MainForm: TMainForm
       end
       object MDirtyRep: TMenuItem
         Caption = 'Report "Dirty" Teams'
+        Enabled = False
         OnClick = MDirtyRepClick
       end
     end
@@ -2225,6 +2235,7 @@ object MainForm: TMainForm
       end
       object MenuItem10: TMenuItem
         Caption = '-'
+        OnClick = MenuItem10Click
       end
       object MAbout: TMenuItem
         Caption = 'About...'
