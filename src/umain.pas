@@ -32,7 +32,7 @@ uses
   uabout {$IFDEF DEBUG}, heaptrc{$ENDIF};
 
 const
-  SWSEdtVer = $0002000400070007;
+  SWSEdtVer = $0002000400080007;
 
 type
 
@@ -197,7 +197,14 @@ type
     MAddRAWTeam: TMenuItem;
     MDirtyRep: TMenuItem;
     MCOPAll: TMenuItem;
+    MGNonLge: TMenuItem;
+    MGThree: TMenuItem;
+    MGTwo: TMenuItem;
+    MGone: TMenuItem;
+    MGPrem: TMenuItem;
+    MGChDiv: TMenuItem;
     MenuItem15: TMenuItem;
+    MenuItem16: TMenuItem;
     MReplaceCSV: TMenuItem;
     MFindPlayerDup: TMenuItem;
     MFindGenSWSDupl: TMenuItem;
@@ -360,12 +367,9 @@ type
       Shift: TShiftState; X, Y: Integer);
     procedure btNumberClick(Sender: TObject);
     procedure btOrgPriceAllClick(Sender: TObject);
-    procedure btOvrSwsChangeClick(Sender: TObject);
-    procedure btGenValClick(Sender: TObject);
     procedure CBDivisionChange(Sender: TObject);
     procedure cbFormChange(Sender: TObject);
     procedure CBHKitTypChange(Sender: TObject);
-    procedure CBHKitTypExit(Sender: TObject);
     procedure CBPlayerChange(Sender: TObject);
     procedure cbpNationChange(Sender: TObject);
     procedure CBpositChange(Sender: TObject);
@@ -452,17 +456,18 @@ type
     procedure MCSVTeamClick(Sender: TObject);
     procedure MAddCSVTMClick(Sender: TObject);
     procedure MDirtyRepClick(Sender: TObject);
-    procedure MenuItem10Click(Sender: TObject);
     procedure MCOPAllClick(Sender: TObject);
-    procedure MenuItem15Click(Sender: TObject);
-    procedure MenuItem7Click(Sender: TObject);
     procedure MEuroCupClick(Sender: TObject);
-    procedure MFileClick(Sender: TObject);
     procedure MFindGenSWSDuplClick(Sender: TObject);
     procedure MFindPlayerDupClick(Sender: TObject);
     procedure MFindSWSMaxClick(Sender: TObject);
     procedure MFPbyNameClick(Sender: TObject);
     procedure MFTbyNameClick(Sender: TObject);
+    procedure MGNonLgeClick(Sender: TObject);
+    procedure MGoneClick(Sender: TObject);
+    procedure MGPremClick(Sender: TObject);
+    procedure MGThreeClick(Sender: TObject);
+    procedure MGTwoClick(Sender: TObject);
     procedure MHelpPClick(Sender: TObject);
     procedure MOpenAllClick(Sender: TObject);
     procedure MPAMClick(Sender: TObject);
@@ -730,7 +735,7 @@ procedure TMainForm.LBOverDblClick(Sender: TObject);
 var
   AttNode: TDOMNode;
   TFN: string;
-  kTMD, kPool: boolean;
+  kTMD: boolean;
   idn, TMDCount: integer;
 begin
   if LBOver.Selected = nil then
@@ -939,8 +944,7 @@ begin
 end;
 
 procedure TMainForm.LBSquadKeyDown(Sender: TObject; var Key: word; Shift: TShiftState);
-var
-  TIDX: integer;
+
 begin
   pbTacPaint(self);
 end;
@@ -1024,8 +1028,7 @@ var
 begin
   if LBTeams.Selected = nil then
     Exit;
-  if (LBTeams.Selected.Data <> nil) then
-     idx := PtrUInt(LBTeams.Selected.Data);
+  idx := PtrUInt(LBTeams.Selected.Data);
   //SWSDB.SWSFiles[SWSDB.FileIndex].TeamIndex := PtrUInt(LBTeams.Selected.Data);
   SWSDB.SWSFiles[SWSDB.FileIndex].TeamIndex := idx;
   //SWSDB.SWSFiles[SWSDB.FileIndex].TeamIndex := LBTeams.Selected.Index;
@@ -1204,7 +1207,7 @@ end;
 procedure TMainForm.MCSVTeamClick(Sender: TObject);
 var
   TTS: TStringList;
-  a, i, k: integer;
+  a, i: integer;
 begin
   TTS := TStringList.Create;
   TTS.Delimiter := ';';
@@ -1257,12 +1260,6 @@ begin
   end;
 end;
 
-procedure TMainForm.MenuItem10Click(Sender: TObject);
-begin
-
-end;
-
-
 procedure TMainForm.MCOPAllClick(Sender: TObject);
 var
   i, t, p: integer;
@@ -1282,17 +1279,6 @@ begin
   end;
 end;
 
-procedure TMainForm.MenuItem15Click(Sender: TObject);
-begin
-
-end;
-
-
-procedure TMainForm.MenuItem7Click(Sender: TObject);
-begin
-
-end;
-
 procedure TMainForm.MEuroCupClick(Sender: TObject);
 begin
   if not SWSDB.LoadedAll then
@@ -1302,11 +1288,6 @@ begin
   end;
   ECCFrm.ReList;
   ECCFrm.Show;
-end;
-
-procedure TMainForm.MFileClick(Sender: TObject);
-begin
-
 end;
 
 procedure TMainForm.MFindGenSWSDuplClick(Sender: TObject);
@@ -1329,6 +1310,7 @@ var
   dupllib: hDuplicateFind;
   openlib: hLoadAllData;
 begin
+  // HERENOW
   SplashLoad.Show;
   SplashLoad.lbLoading.Caption := 'Searching';
   SplashLoad.pbload.Hide;
@@ -1387,6 +1369,61 @@ begin
   FindD.Execute;
 end;
 
+procedure TMainForm.MGNonLgeClick(Sender: TObject);
+var
+  idx : Integer;
+begin
+  if (LBTeams.Selected = nil) then
+     Exit;
+  idx := PtrUInt(LBTeams.Selected.Data);
+  SWSDB.SWSFiles[SWSDB.FileIndex].Team[idx].Division:=4;
+  LoadGeneral;
+end;
+
+procedure TMainForm.MGoneClick(Sender: TObject);
+var
+  idx : Integer;
+begin
+  if (LBTeams.Selected = nil) then
+     Exit;
+  idx := PtrUInt(LBTeams.Selected.Data);
+  SWSDB.SWSFiles[SWSDB.FileIndex].Team[idx].Division:=1;
+  LoadGeneral;
+end;
+
+procedure TMainForm.MGPremClick(Sender: TObject);
+var
+  idx : Integer;
+begin
+  if (LBTeams.Selected = nil) then
+     Exit;
+  idx := PtrUInt(LBTeams.Selected.Data);
+  SWSDB.SWSFiles[SWSDB.FileIndex].Team[idx].Division:=0;
+  LoadGeneral;
+end;
+
+procedure TMainForm.MGThreeClick(Sender: TObject);
+var
+  idx : Integer;
+begin
+  if (LBTeams.Selected = nil) then
+     Exit;
+  idx := PtrUInt(LBTeams.Selected.Data);
+  SWSDB.SWSFiles[SWSDB.FileIndex].Team[idx].Division:=3;
+  LoadGeneral;
+end;
+
+procedure TMainForm.MGTwoClick(Sender: TObject);
+var
+  idx : Integer;
+begin
+  if (LBTeams.Selected = nil) then
+     Exit;
+  idx := PtrUInt(LBTeams.Selected.Data);
+  SWSDB.SWSFiles[SWSDB.FileIndex].Team[idx].Division:=2;
+  LoadGeneral;
+end;
+
 procedure TMainForm.MHelpPClick(Sender: TObject);
 begin
   OpenURL('https://github.com/anoxic83/AG_SWSEdt');
@@ -1399,8 +1436,12 @@ var
   TFN: string;
   kTMD: boolean;
   idn, TMDCount: integer;
-  testpool: integer;
 begin
+  if (SWSDB.LoadedAll) then begin
+    ShowMessage('All Files already loaded.');
+    Exit();
+  end;
+  SplashLoad.FormStyle := fsNormal;
   SplashLoad.Show;
   Enabled := False;
   for i := 0 to LBOver.Items.Count - 1 do
@@ -1768,7 +1809,7 @@ end;
 
 procedure TMainForm.MSettingsClick(Sender: TObject);
 var
-  pcid: integer;
+  PCid : integer;
 begin
   PCid := PCtrl.ActivePageIndex;
   SettingForm.PageControl1.ActivePageIndex := 0;
@@ -1878,8 +1919,7 @@ procedure TMainForm.MXMLteamClick(Sender: TObject);
 var
   XML2: TXMLDocument;
   Root: TDOMNode;
-  a, i, k: integer;
-  uid: INt64;
+  a, i, uid: integer;
 begin
   XML2:=TXMLDocument.Create;
 
@@ -2359,7 +2399,7 @@ begin
       TI.SubItems.Add(IntToStr(CalcTeam(False)));
       TI.SubItems.Add(IntToStr(CalcTeam(True)));
       TI.SubItems.Add(IntToStr(CalcTeamSkill(5, true)));
-      TI.Data := Pointer(a);
+      TI.Data := Pointer(PtrUInt(a));
       LBTeams.RowSelect := True;
     end;
   end;
@@ -2554,8 +2594,7 @@ var
   TIDx, i: integer;
   LI: TListItem;
   LC: TListColumn;
-  a, XP: integer;
-  BMPF: TBGRABitmap;
+  a : integer;
   FlgT: string;
 begin
   TIDX := SWSDB.SWSFiles[SWSDb.FileIndex].TeamIndex;
@@ -2807,7 +2846,7 @@ end;
 
 procedure TMainForm.RefReserve;
 var
-  TIDx, i: integer;
+  TIDx: integer;
   a, XP: integer;
 begin
   TIDX := SWSDB.SWSFiles[SWSDb.FileIndex].TeamIndex;
@@ -2953,8 +2992,6 @@ begin
 end;
 
 procedure TMainForm.FormCloseQuery(Sender: TObject; var CanClose: boolean);
-var
-  TXT: string;
 begin
   CanClose := True;
   if SWSDB.ChangedFiles() > 0 then
@@ -3314,15 +3351,6 @@ begin
   RefSquad;
 end;
 
-procedure TMainForm.btOvrSwsChangeClick(Sender: TObject);
-begin
-
-end;
-
-procedure TMainForm.btGenValClick(Sender: TObject);
-begin
-end;
-
 procedure TMainForm.cbFormChange(Sender: TObject);
 begin
   SWSDB.SWSFiles[SWSDb.FileIndex].Team[
@@ -3357,11 +3385,6 @@ begin
     AwayKit.SocksCol := cbASockCol.ItemIndex;
   end;
   RefTeam;
-end;
-
-procedure TMainForm.CBHKitTypExit(Sender: TObject);
-begin
-
 end;
 
 procedure TMainForm.CBPlayerChange(Sender: TObject);

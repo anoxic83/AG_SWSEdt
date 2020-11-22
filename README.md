@@ -63,6 +63,10 @@ To compilation download [CodeTyphon](https://www.pilotlogic.com/sitejoom/index.p
 CodeTyphon is the Next Generation "Pascal Visual Programming Studio".
 
 ### Change Log
+**ver 2.4.8a**
+- Fix some errors
+- Add Change Division in General Tab -> TeamList -> (RMB)Popup Menu
+
 **ver 2.4.7a**
 - Add Compute Original Price for all loaded files.
 - Add option to export csv data (formation, position, etc) as raw string (optional in settings).

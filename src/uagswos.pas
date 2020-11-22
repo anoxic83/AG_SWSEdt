@@ -1642,8 +1642,9 @@ procedure TSWSEngine.CloseAll;
 var
   a: integer;
 begin
-  for a := 0 to FileCount - 1 do
+  for a := 0 to FSWSFiles.Count - 1 do
     FSWSFiles[a].Free;
+  FSWSFiles.Clear;
   FFileIndex := -1;
 end;
 
@@ -1910,6 +1911,7 @@ begin
     end;
   end;
 end;
+
 
 function TSWSEngine.FileCount: integer;
 begin
