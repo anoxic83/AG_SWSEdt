@@ -63,6 +63,10 @@ To compilation download [CodeTyphon](https://www.pilotlogic.com/sitejoom/index.p
 CodeTyphon is the Next Generation "Pascal Visual Programming Studio".
 
 ### Change Log
+**ver 2.4.9a**
+- Add Compare Report to original 96/97 data.
+- Support executable veryfication to version SWOS 2020 1.3.5
+
 **ver 2.4.8a**
 - Fix some errors
 - Add Change Division in General Tab -> TeamList -> (RMB)Popup Menu

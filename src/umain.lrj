@@ -162,6 +162,7 @@
 {"hash":127209411,"name":"tmainform.mfindgenswsdupl.caption","sourcebytes":[70,105,110,100,32,83,87,79,83,32,71,101,110,101,114,97,108,32,68,117,112,108,105,99,97,116,101,115],"value":"Find SWOS General Duplicates"},
 {"hash":149868067,"name":"tmainform.mfindplayerdup.caption","sourcebytes":[70,105,110,100,32,80,108,97,121,101,114,32,68,117,112,108,105,99,97,116,101,115],"value":"Find Player Duplicates"},
 {"hash":247251027,"name":"tmainform.mdirtyrep.caption","sourcebytes":[82,101,112,111,114,116,32,34,68,105,114,116,121,34,32,84,101,97,109,115],"value":"Report \"Dirty\" Teams"},
+{"hash":94063335,"name":"tmainform.mchecktc96.caption","sourcebytes":[82,101,112,111,114,116,32,67,111,109,112,97,114,105,110,103,32,116,111,32,57,54,47,57,55],"value":"Report Comparing to 96/97"},
 {"hash":108725763,"name":"tmainform.moptions.caption","sourcebytes":[79,112,116,105,111,110,115],"value":"Options"},
 {"hash":213582195,"name":"tmainform.msettings.caption","sourcebytes":[83,101,116,116,105,110,103,115],"value":"Settings"},
 {"hash":322608,"name":"tmainform.mhelp.caption","sourcebytes":[72,101,108,112],"value":"Help"},

@@ -32,7 +32,7 @@ uses
   uabout {$IFDEF DEBUG}, heaptrc{$ENDIF};
 
 const
-  SWSEdtVer = $0002000400080007;
+  SWSEdtVer = $0002000400090007;
 
 type
 
@@ -197,6 +197,7 @@ type
     MAddRAWTeam: TMenuItem;
     MDirtyRep: TMenuItem;
     MCOPAll: TMenuItem;
+    MCheckTC96: TMenuItem;
     MGNonLge: TMenuItem;
     MGThree: TMenuItem;
     MGTwo: TMenuItem;
@@ -445,6 +446,7 @@ type
     procedure MAboutClick(Sender: TObject);
     procedure MAddRAWTeamClick(Sender: TObject);
     procedure MaddTeamClick(Sender: TObject);
+    procedure MCheckTC96Click(Sender: TObject);
     procedure MChgTeamNrClick(Sender: TObject);
     procedure MCHLEGClick(Sender: TObject);
     procedure MClipShowClick(Sender: TObject);
@@ -780,6 +782,30 @@ begin
       SWSDB.SWSFiles[idn].LeagueName := AttNode.Attributes.GetNamedItem('Name').NodeValue;
     if SWSDB.SWSFiles[idn].HexVal <> '' then
       SWSDB.SWSFiles[idn].LoadLeague;
+    if (AttNode.Attributes.GetNamedItem('OrgTeams') <> nil) then
+       SWSDB.SWSFiles[idn].OrgTeamCount:= StrToInt(AttNode.Attributes.GetNamedItem('OrgTeams').NodeValue)
+    else
+       SWSDB.SWSFiles[idn].OrgTeamCount := -1;
+    if (AttNode.Attributes.GetNamedItem('OrgPrem') <> nil) then
+       SWSDB.SWSFiles[idn].OrgTeamsByDiv.Premier:= StrToInt(AttNode.Attributes.GetNamedItem('OrgPrem').NodeValue)
+    else
+       SWSDB.SWSFiles[idn].OrgTeamsByDiv.Premier:= 0;
+    if (AttNode.Attributes.GetNamedItem('OrgOne') <> nil) then
+       SWSDB.SWSFiles[idn].OrgTeamsByDiv.One:= StrToInt(AttNode.Attributes.GetNamedItem('OrgOne').NodeValue)
+    else
+       SWSDB.SWSFiles[idn].OrgTeamsByDiv.One:= 0;
+    if (AttNode.Attributes.GetNamedItem('OrgTwo') <> nil) then
+       SWSDB.SWSFiles[idn].OrgTeamsByDiv.Two:= StrToInt(AttNode.Attributes.GetNamedItem('OrgTwo').NodeValue)
+    else
+       SWSDB.SWSFiles[idn].OrgTeamsByDiv.Two:= 0;
+    if (AttNode.Attributes.GetNamedItem('OrgThree') <> nil) then
+       SWSDB.SWSFiles[idn].OrgTeamsByDiv.Three:= StrToInt(AttNode.Attributes.GetNamedItem('OrgThree').NodeValue)
+    else
+       SWSDB.SWSFiles[idn].OrgTeamsByDiv.Three:= 0;
+    if (AttNode.Attributes.GetNamedItem('OrgNL') <> nil) then
+       SWSDB.SWSFiles[idn].OrgTeamsByDiv.NonLge:= StrToInt(AttNode.Attributes.GetNamedItem('OrgNL').NodeValue)
+    else
+       SWSDB.SWSFiles[idn].OrgTeamsByDiv.NonLge:= 0;
     SplashLoad.Hide;
     Enabled := True;
     TDOMElement(AttNode).SetAttribute('DBId', IntToStr(idn));
@@ -1092,6 +1118,65 @@ begin
     RefSquad;
   end;
 
+end;
+
+procedure TMainForm.MCheckTC96Click(Sender: TObject);
+var
+  owndir: Utf8String;
+  tmpd: String;
+  repfile: TStringList;
+  i: integer;
+begin
+  //sab
+  if (not SWSDB.LoadedAll) then begin
+    ShowMessage('Load All First.');
+    Exit;
+  end;
+  {
+  if (MessageBox(nil, rsSelectCustom96, 'Compare to 96/97', MB_YESNO) = MB_YES) then begin
+     if SelectDirectory('Select 96/97 data folder', SWSDB.LeaguesDir, owndir) then begin
+
+     end;
+  end else begin
+
+  end;
+  }
+  repfile:= TStringList.Create;
+  repfile.Add('========================================================');
+  repfile.Add('AG-SWSEdt Teams Report');
+  repfile.Add('Loaded Data Directory: '+ SWSDB.SWSDataDir);
+  repfile.Add('Report Time: ' + DateToStr(Now) +' '+  TimeToStr(Now));
+  repfile.Add('========================================================');
+  repfile.Add('');
+  for i:=0 to SWSDB.FileCount -1 do begin
+    repfile.Add('========================================================');
+    repfile.Add(SWSDB.SWSFiles[i].LeagueName + '( ' + SWSDB.SWSFiles[i].FileName + ' )');
+    repfile.Add('--------------------------------------------------------');
+    if ((SWSDB.SWSFiles[i].TeamCount <> SWSDB.SWSFiles[i].OrgTeamCount)or(SWSDB.SWSFiles[i].TeamByDiv(0) <> SWSDB.SWSFiles[i].OrgTeamsByDiv.Premier)or
+    (SWSDB.SWSFiles[i].TeamByDiv(1) <> SWSDB.SWSFiles[i].OrgTeamsByDiv.One)or(SWSDB.SWSFiles[i].TeamByDiv(2) <> SWSDB.SWSFiles[i].OrgTeamsByDiv.Two)or
+    (SWSDB.SWSFiles[i].TeamByDiv(3) <> SWSDB.SWSFiles[i].OrgTeamsByDiv.Three)or(SWSDB.SWSFiles[i].TeamByDiv(4) <> SWSDB.SWSFiles[i].OrgTeamsByDiv.NonLge)) then
+      repfile.Add('WARNING!!! Diffrences');
+    tmpd:= IntToStr(SWSDB.SWSFiles[i].TeamByDiv(0)) + '/' + IntToStr(SWSDB.SWSFiles[i].TeamByDiv(1)) + '/' +IntToStr(SWSDB.SWSFiles[i].TeamByDiv(2)) + '/';
+    tmpd:= tmpd + IntToStr(SWSDB.SWSFiles[i].TeamByDiv(3)) + '/' + IntToStr(SWSDB.SWSFiles[i].TeamByDiv(4)) + '  SUM (' + IntToStr(SWSDB.SWSFiles[i].TeamCount) + ')';
+    repfile.Add('Loaded:   '+ tmpd);
+    //
+    {
+    tmpd:= 'OrgTeams="'+IntToStr(SWSDB.SWSFiles[i].TeamCount)+'" ';
+    tmpd:= tmpd + 'OrgPrem="'+IntToStr(SWSDB.SWSFiles[i].TeamByDiv(0))+'" ';
+    tmpd:= tmpd + 'OrgOne="'+IntToStr(SWSDB.SWSFiles[i].TeamByDiv(1))+'" ';
+    tmpd:= tmpd + 'OrgTwo="'+IntToStr(SWSDB.SWSFiles[i].TeamByDiv(2))+'" ';
+    tmpd:= tmpd + 'OrgThree="'+IntToStr(SWSDB.SWSFiles[i].TeamByDiv(3))+'" ';
+    tmpd:= tmpd + 'OrgNL="'+IntToStr(SWSDB.SWSFiles[i].TeamByDiv(4))+'"';
+    repfile.Add(tmpd);
+    }
+    //
+    tmpd:= IntToStr(SWSDB.SWSFiles[i].OrgTeamsByDiv.Premier) + '/' + IntToStr(SWSDB.SWSFiles[i].OrgTeamsByDiv.One) + '/' +IntToStr(SWSDB.SWSFiles[i].OrgTeamsByDiv.Two) + '/';
+    tmpd:= tmpd + IntToStr(SWSDB.SWSFiles[i].OrgTeamsByDiv.Three) + '/' + IntToStr(SWSDB.SWSFiles[i].OrgTeamsByDiv.NonLge) + '  SUM (' + IntToStr(SWSDB.SWSFiles[i].OrgTeamCount) + ')';
+    repfile.Add('Original:  '+ tmpd);
+    repfile.Add('========================================================');
+  end;
+  repfile.SaveToFile('Compare9697Report.txt');
+  ShowMessage('Report Complete in file: Compare9697Report.txt');
 end;
 
 procedure TMainForm.MChgTeamNrClick(Sender: TObject);
@@ -1484,6 +1569,32 @@ begin
         if AttNode.Attributes.GetNamedItem('Pool') <> nil then
           SWSDB.SWSFiles[idn].Pool :=
             StrToInt(AttNode.Attributes.GetNamedItem('Pool').NodeValue);
+        if (AttNode.Attributes.GetNamedItem('OrgTeams') <> nil) then
+           SWSDB.SWSFiles[idn].OrgTeamCount:= StrToInt(AttNode.Attributes.GetNamedItem('OrgTeams').NodeValue)
+        else
+           SWSDB.SWSFiles[idn].OrgTeamCount := -1;
+        if (AttNode.Attributes.GetNamedItem('OrgPrem') <> nil) then
+           SWSDB.SWSFiles[idn].OrgTeamsByDiv.Premier:= StrToInt(AttNode.Attributes.GetNamedItem('OrgPrem').NodeValue)
+        else
+           SWSDB.SWSFiles[idn].OrgTeamsByDiv.Premier:= 0;
+
+        if (AttNode.Attributes.GetNamedItem('OrgOne') <> nil) then
+           SWSDB.SWSFiles[idn].OrgTeamsByDiv.One:= StrToInt(AttNode.Attributes.GetNamedItem('OrgOne').NodeValue)
+        else
+           SWSDB.SWSFiles[idn].OrgTeamsByDiv.One:= 0;
+
+        if (AttNode.Attributes.GetNamedItem('OrgTwo') <> nil) then
+           SWSDB.SWSFiles[idn].OrgTeamsByDiv.Two:= StrToInt(AttNode.Attributes.GetNamedItem('OrgTwo').NodeValue)
+        else
+           SWSDB.SWSFiles[idn].OrgTeamsByDiv.Two:= 0;
+        if (AttNode.Attributes.GetNamedItem('OrgThree') <> nil) then
+           SWSDB.SWSFiles[idn].OrgTeamsByDiv.Three:= StrToInt(AttNode.Attributes.GetNamedItem('OrgThree').NodeValue)
+        else
+           SWSDB.SWSFiles[idn].OrgTeamsByDiv.Three:= 0;
+        if (AttNode.Attributes.GetNamedItem('OrgNL') <> nil) then
+           SWSDB.SWSFiles[idn].OrgTeamsByDiv.NonLge:= StrToInt(AttNode.Attributes.GetNamedItem('OrgNL').NodeValue)
+        else
+           SWSDB.SWSFiles[idn].OrgTeamsByDiv.NonLge:= 0;
         if SWSDB.SWSFiles[idn].HexVal <> '' then
           SWSDB.SWSFiles[idn].LoadLeague;
       end;
@@ -2291,6 +2402,7 @@ begin
       begin
         NFN := YNod.ChildNodes[a].Attributes.GetNamedItem('File').NodeValue;
         Flg := YNod.ChildNodes[a].Attributes.GetNamedItem('Flag').NodeValue;
+
         if Ynod.NodeName <> 'Load_Files' then
           NFN := EdtSett.SWSDataPath + NFN;
         if FileExists(NFN) then
@@ -2890,6 +3002,7 @@ begin
   MXMLexp.Enabled:= ebn;
   MShowRandom.Enabled := ebn;
   MDirtyRep.Enabled:=ebn;
+  MCheckTC96.Enabled:=ebn;
   //  if LoadAll then begin
   MFindSWSMax.Enabled := ebn;
   MFindGenSWSDupl.Enabled:=ebn;

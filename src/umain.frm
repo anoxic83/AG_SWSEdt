@@ -2215,6 +2215,11 @@ object MainForm: TMainForm
         Enabled = False
         OnClick = MDirtyRepClick
       end
+      object MCheckTC96: TMenuItem
+        Caption = 'Report Comparing to 96/97'
+        Enabled = False
+        OnClick = MCheckTC96Click
+      end
     end
     object MOptions: TMenuItem
       Caption = 'Options'

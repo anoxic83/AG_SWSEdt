@@ -19,10 +19,12 @@
     </i18n>
     <VersionInfo>
       <UseVersionInfo Value="True"/>
+      <AutoIncrementBuild Value="True"/>
       <MajorVersionNr Value="2"/>
       <MinorVersionNr Value="4"/>
-      <RevisionNr Value="8"/>
-      <StringTable InternalName="AG_SWSEDT" LegalCopyright="(c) 2013-20 Anoxic. GNU3 General Public License." LegalTrademarks="(c) 2013-20 Anoxic. GNU3 General Public License." OriginalFilename="AG_SWSEDT" ProductName="AG_SWSEDT" ProductVersion="2.4.8.0"/>
+      <RevisionNr Value="9"/>
+      <BuildNr Value="4"/>
+      <StringTable InternalName="AG_SWSEDT" LegalCopyright="(c) 2013-20 Anoxic. GNU3 General Public License." LegalTrademarks="(c) 2013-20 Anoxic. GNU3 General Public License." OriginalFilename="AG_SWSEDT" ProductName="AG_SWSEDT" ProductVersion="2.4.9.0"/>
     </VersionInfo>
     <BuildModes Count="3">
       <Item1 Name="Debug" Default="True"/>

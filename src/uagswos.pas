@@ -231,6 +231,30 @@ type
     property Relegation_PO: byte read FrelPO write FRelPO;
   end;
 
+  { TSWSTeamsLge }
+
+  TSWSTeamsLge = class(TPersistent)
+  private
+    FNonLge: Integer;
+    FOne: Integer;
+    FPremier: Integer;
+    FThree: Integer;
+    FTwo: Integer;
+    procedure SetNonLge(AValue: Integer);
+    procedure SetOne(AValue: Integer);
+    procedure SetPremier(AValue: Integer);
+    procedure SetThree(AValue: Integer);
+    procedure SetTwo(AValue: Integer);
+  public
+    constructor Create;
+    destructor Destroy; override;
+    property Premier: Integer read FPremier write SetPremier;
+    property One: Integer read FOne write SetOne;
+    property Two: Integer read FTwo write SetTwo;
+    property Three: Integer read FThree write SetThree;
+    property NonLge: Integer read FNonLge write SetNonLge;
+  end;
+
   TSWSDivisions = specialize TFPGObjectList<TSWSDivision>;
 
   { TSWSLeague }
@@ -586,6 +610,8 @@ type
     FFileNumber: byte;
     FFileEngineID: integer;
     FLeagueName: string;
+    FOrgTeamCount: Integer;
+    FOrgTeamsByDiv: TSWSTeamsLge;
     FTeams: TSWSTeams;
     FEngine: TSWSEngine;
     FTeamIndex: integer;
@@ -598,6 +624,8 @@ type
     FonSaveFile: TonSaveFile;
     FLeague: TSWSLeague;
     function LoadFile: boolean;
+    procedure SetOrgTeamCount(AValue: Integer);
+    procedure SetOrgTeamsByDiv(AValue: TSWSTeamsLge);
     procedure SetTeamIndex(AValue: integer);
     function WriteFile(AFN: string): boolean;
   public
@@ -628,6 +656,8 @@ type
     property TeamIndex: integer read FTeamIndex write SetTeamIndex;
     property isTMD: boolean read FisTMD write FisTMD;
     property HexVal: string read FHexVal write FHexVal;
+    property OrgTeamCount: Integer read FOrgTeamCount write SetOrgTeamCount;
+    property OrgTeamsByDiv: TSWSTeamsLge read FOrgTeamsByDiv write SetOrgTeamsByDiv;
     property League: TSWSLeague read FLeague write FLeague;
     property LeagueName: string read FLeagueName write FLeagueName;
     property onLoadFile: TOnLoadFile read FonLoadFile write FonLoadFile;
@@ -750,6 +780,48 @@ end;
 function HexToDec(hstr: string): integer;
 begin
   Result := Hex2Dec(hstr);
+end;
+
+{ TSWSTeamsLge }
+
+procedure TSWSTeamsLge.SetNonLge(AValue: Integer);
+begin
+  if FNonLge=AValue then Exit;
+  FNonLge:=AValue;
+end;
+
+procedure TSWSTeamsLge.SetOne(AValue: Integer);
+begin
+  if FOne=AValue then Exit;
+  FOne:=AValue;
+end;
+
+procedure TSWSTeamsLge.SetPremier(AValue: Integer);
+begin
+  if FPremier=AValue then Exit;
+  FPremier:=AValue;
+end;
+
+procedure TSWSTeamsLge.SetThree(AValue: Integer);
+begin
+  if FThree=AValue then Exit;
+  FThree:=AValue;
+end;
+
+procedure TSWSTeamsLge.SetTwo(AValue: Integer);
+begin
+  if FTwo=AValue then Exit;
+  FTwo:=AValue;
+end;
+
+constructor TSWSTeamsLge.Create;
+begin
+
+end;
+
+destructor TSWSTeamsLge.Destroy;
+begin
+  inherited Destroy;
 end;
 
 { TSWSEurocup }
@@ -3720,6 +3792,18 @@ begin
   Fchanged := False;
 end;
 
+procedure TSWSFile.SetOrgTeamCount(AValue: Integer);
+begin
+  if FOrgTeamCount=AValue then Exit;
+  FOrgTeamCount:=AValue;
+end;
+
+procedure TSWSFile.SetOrgTeamsByDiv(AValue: TSWSTeamsLge);
+begin
+  if FOrgTeamsByDiv = AValue then Exit;
+  FOrgTeamsByDiv := AValue;
+end;
+
 procedure TSWSFile.SetTeamIndex(AValue: integer);
 begin
   if FTeamIndex=AValue then Exit;
@@ -3768,6 +3852,7 @@ begin
   FEngine := AOwner as TSWSEngine;
   FLeague := TSWSLeague.Create;
   FTeams:= TSWSTeams.Create();
+  FOrgTeamsByDiv:= TSWSTeamsLge.Create();
   inherited Create(AOwner);
 end;
 
@@ -3776,6 +3861,7 @@ begin
   FEngine := AOwner as TSWSEngine;
   FLeague := TSWSLeague.Create;
   FTeams:= TSWSTeams.Create();
+  FOrgTeamsByDiv:= TSWSTeamsLge.Create();
   inherited Create(AOwner);
 end;
 
@@ -3783,6 +3869,7 @@ destructor TSWSFile.Destroy;
 begin
   FLeague.Free;
   FTeams.Free;
+  FOrgTeamsByDiv.Free;
   inherited Destroy;
 end;
 

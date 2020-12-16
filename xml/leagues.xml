@@ -1,0 +1,119 @@
+<?xml version="1.0"?>
+<root>
+	<config>
+		<Version>
+		2.4.9
+		</Version>
+		<SWOS2020Size>
+		2891776
+		</SWOS2020Size>
+		<SWOS2020Diff>
+		-348474
+		</SWOS2020Diff>
+	</config>
+	<SWSData>
+		<Europe Name="Europe">
+			<Albania Name="Albania" Num="0" Hex="0014c941" File="TEAM.000" TMD="0" Flag="Albania.png" Pool="10" OrgTeams="16" OrgPrem="16" OrgOne="0" OrgTwo="0" OrgThree="0" OrgNL="0"/>
+			<Austria Name="Austria" Num="1" Hex="0014c955" File="TEAM.001" TMD="0" Flag="Austria.png" Pool="15" OrgTeams="10" OrgPrem="10" OrgOne="0" OrgTwo="0" OrgThree="0" OrgNL="0"/>
+			<Belarus Name="Belarus" Num="76" Hex="0014c969" File="TEAM.076" TMD="0" Flag="Belarus.png" Pool="10" OrgTeams="18" OrgPrem="16" OrgOne="0" OrgTwo="0" OrgThree="0" OrgNL="2"/>
+			<Belgium Name="Belgium" Num="2" Hex="0014c97d" File="TEAM.002" TMD="0" Flag="Belgium.png" Pool="20" OrgTeams="18" OrgPrem="18" OrgOne="0" OrgTwo="0" OrgThree="0" OrgNL="0"/>
+			<Bulgaria Name="Bulgaria" Num="3" Hex="0014c991" File="TEAM.003" TMD="0" Flag="Bulgaria.png" Pool="10" OrgTeams="16" OrgPrem="16" OrgOne="0" OrgTwo="0" OrgThree="0" OrgNL="0"/>
+			<Croatia Name="Croatia" Num="4" Hex="0014c9a5" File="TEAM.004" TMD="0" Flag="Croatia.png" Pool="10" OrgTeams="12" OrgPrem="12" OrgOne="0" OrgTwo="0" OrgThree="0" OrgNL="0"/>
+			<Cyprus Name="Cyprus" Num="5" Hex="0014c9b9" File="TEAM.005" TMD="0" Flag="Cyprus.png" Pool="10" OrgTeams="14" OrgPrem="14" OrgOne="0" OrgTwo="0" OrgThree="0" OrgNL="0"/>
+			<Czech Name="Czech Republic" Num="6" Hex="0014c9cd" File="TEAM.006" TMD="0" Flag="Czech-Republic.png" Pool="10" OrgTeams="16" OrgPrem="16" OrgOne="0" OrgTwo="0" OrgThree="0" OrgNL="0"/>
+			<Denmark Name="Denmark" Num="7" Hex="0014c9e1" File="TEAM.007" TMD="0" Flag="Denmark.png" Pool="10" OrgTeams="12" OrgPrem="12" OrgOne="0" OrgTwo="0" OrgThree="0" OrgNL="0"/>
+			<England Name="England" Num="8" Hex="0014c9f5" File="TEAM.008" TMD="0" Flag="England.png" Pool="40" OrgTeams="93" OrgPrem="20" OrgOne="24" OrgTwo="24" OrgThree="24" OrgNL="1"/>
+			<Estonia Name="Estonia" Num="10" Hex="0014cb8b" File="TEAM.010" TMD="0" Flag="Estonia.png" Pool="10" OrgTeams="14" OrgPrem="12" OrgOne="0" OrgTwo="0" OrgThree="0" OrgNL="2"/>
+			<Faroes Name="Faroe Islands" Num="11" Hex="0014cb9f" File="TEAM.011" TMD="0" Flag="Faroes.png" Pool="5" OrgTeams="12" OrgPrem="10" OrgOne="0" OrgTwo="0" OrgThree="0" OrgNL="2"/>
+			<Finland Name="Finland" Num="12" Hex="0014cbb3" File="TEAM.012" TMD="0" Flag="Finland.png" Pool="10" OrgTeams="12" OrgPrem="12" OrgOne="0" OrgTwo="0" OrgThree="0" OrgNL="0"/>
+			<France Name="France" Num="13" Hex="0014cbc7" File="TEAM.013" TMD="0" Flag="France.png" Pool="40" OrgTeams="42" OrgPrem="20" OrgOne="22" OrgTwo="0" OrgThree="0" OrgNL="0"/>
+			<Germany Name="Germany" Num="14" Hex="0014cbf1" File="TEAM.014" TMD="0" Flag="Germany.png" Pool="40" OrgTeams="46" OrgPrem="18" OrgOne="18" OrgTwo="0" OrgThree="0" OrgNL="10"/>
+			<Greece Name="Greece" Num="15" Hex="0014cc1b" File="TEAM.015" TMD="0" Flag="Greece.png" Pool="10" OrgTeams="25" OrgPrem="18" OrgOne="0" OrgTwo="0" OrgThree="0" OrgNL="7"/>
+			<Holland Name="Holland" Num="25" Hex="0014cc2f" File="TEAM.025" TMD="0" Flag="Netherlands.png" Pool="30" OrgTeams="36" OrgPrem="18" OrgOne="18" OrgTwo="0" OrgThree="0" OrgNL="0"/>
+			<Hungary Name="Hungary" Num="16" Hex="0014ccb9" File="TEAM.016" TMD="0" Flag="Hungary.png" Pool="10" OrgTeams="21" OrgPrem="16" OrgOne="0" OrgTwo="0" OrgThree="0" OrgNL="5"/>
+			<Iceland Name="Iceland" Num="17" Hex="0014cccd" File="TEAM.017" TMD="0" Flag="Iceland.png" Pool="5" OrgTeams="13" OrgPrem="10" OrgOne="0" OrgTwo="0" OrgThree="0" OrgNL="3"/>
+			<Israel Name="Israel" Num="19" Hex="0014cce1" File="TEAM.019" TMD="0" Flag="Israel.png" Pool="10" OrgTeams="17" OrgPrem="16" OrgOne="0" OrgTwo="0" OrgThree="0" OrgNL="1"/>
+			<Italy Name="Italy" Num="20" Hex="0014ccf5" File="TEAM.020" TMD="0" Flag="Italy.png" Pool="40" OrgTeams="51" OrgPrem="18" OrgOne="20" OrgTwo="0" OrgThree="0" OrgNL="13"/>
+			<Latvia Name="Latvia" Num="21" Hex="0014cd1f" File="TEAM.021" TMD="0" Flag="Latvia.png" Pool="10" OrgTeams="10" OrgPrem="10" OrgOne="0" OrgTwo="0" OrgThree="0" OrgNL="0"/>
+			<Lithuania Name="Lithuania" Num="22" Hex="0014cd33" File="TEAM.022" TMD="0" Flag="Lithuania.png" Pool="10" OrgTeams="12" OrgPrem="12" OrgOne="0" OrgTwo="0" OrgThree="0" OrgNL="0"/>
+			<Luxembourg Name="Luxembourg" Num="23" Hex="0014cd47" File="TEAM.023" TMD="0" Flag="Luxembourg.png" Pool="5" OrgTeams="16" OrgPrem="12" OrgOne="0" OrgTwo="0" OrgThree="0" OrgNL="4"/>
+			<Malta Name="Malta" Num="24" Hex="0014cd5b" File="TEAM.024" TMD="0" Flag="Malta.png" Pool="5" OrgTeams="15" OrgPrem="10" OrgOne="0" OrgTwo="0" OrgThree="0" OrgNL="5"/>
+			<NIreland Name="Northern Ireland" Num="26" Hex="0014cd6f" File="TEAM.026" TMD="0" Flag="England.png" Pool="10" OrgTeams="16" OrgPrem="16" OrgOne="0" OrgTwo="0" OrgThree="0" OrgNL="0"/>
+			<Norway Name="Norway" Num="27" Hex="0014cd83" File="TEAM.027" TMD="0" Flag="Norway.png" Pool="10" OrgTeams="21" OrgPrem="14" OrgOne="0" OrgTwo="0" OrgThree="0" OrgNL="7"/>
+			<Poland Name="Poland" Num="28" Hex="0014cd97" File="TEAM.028" TMD="0" Flag="Poland.png" Pool="25" OrgTeams="27" OrgPrem="18" OrgOne="0" OrgTwo="0" OrgThree="0" OrgNL="9"/>
+			<Portugal Name="Portugal" Num="29" Hex="0014cdab" File="TEAM.029" TMD="0" Flag="Portugal.png" Pool="20" OrgTeams="26" OrgPrem="18" OrgOne="0" OrgTwo="0" OrgThree="0" OrgNL="8"/>
+			<Ireland Name="Republic Ireland" Num="18" Hex="0014cdbf" File="TEAM.018" TMD="0" Flag="Ireland.png" Pool="10" OrgTeams="15" OrgPrem="12" OrgOne="0" OrgTwo="0" OrgThree="0" OrgNL="3"/>
+			<Romania Name="Romania" Num="30" Hex="0014cdd3" File="TEAM.030" TMD="0" Flag="Romania.png" Pool="10" OrgTeams="22" OrgPrem="18" OrgOne="0" OrgTwo="0" OrgThree="0" OrgNL="4"/>
+			<Russia Name="Russia" Num="31" Hex="0014cde7" File="TEAM.031" TMD="0" Flag="Russia.png" Pool="20" OrgTeams="23" OrgPrem="18" OrgOne="0" OrgTwo="0" OrgThree="0" OrgNL="5"/>
+			<SanMarino Name="San Marino" Num="32" Hex="0014cdfb" File="TEAM.032" TMD="0" Flag="San-Marino.png" Pool="5" OrgTeams="12" OrgPrem="10" OrgOne="0" OrgTwo="0" OrgThree="0" OrgNL="2"/>
+			<Scotland Name="Scotland" Num="33" Hex="0014ce0f" File="TEAM.033" TMD="0" Flag="Scotland.png" Pool="30" OrgTeams="40" OrgPrem="10" OrgOne="10" OrgTwo="10" OrgThree="10" OrgNL="0"/>
+			<Slovakia Name="Slovakia" Num="78" Hex="0014ce79" File="TEAM.078" TMD="0" Flag="Slovakia.png" Pool="10" OrgTeams="12" OrgPrem="12" OrgOne="0" OrgTwo="0" OrgThree="0" OrgNL="0"/>
+			<Slovenia Name="Slovenia" Num="34" Hex="0014ce8d" File="TEAM.034" TMD="0" Flag="Slovenia.png" Pool="10" OrgTeams="20" OrgPrem="16" OrgOne="0" OrgTwo="0" OrgThree="0" OrgNL="4"/>
+			<Spain Name="Spain" Num="35" Hex="0014cea1" File="TEAM.035" TMD="0" Flag="Spain.png" Pool="40" OrgTeams="48" OrgPrem="22" OrgOne="20" OrgTwo="0" OrgThree="0" OrgNL="6"/>
+			<Sweden Name="Sweden" Num="36" Hex="0014cf3b" File="TEAM.036" TMD="0" Flag="Sweden.png" Pool="10" OrgTeams="19" OrgPrem="14" OrgOne="0" OrgTwo="0" OrgThree="0" OrgNL="5"/>
+			<Switzerland Name="Switzerland" Num="37" Hex="0014cf4f" File="TEAM.037" TMD="0" Flag="Switzerland.png" Pool="10" OrgTeams="16" OrgPrem="12" OrgOne="0" OrgTwo="0" OrgThree="0" OrgNL="4"/>
+			<Turkey Name="Turkey" Num="38" Hex="0014cf63" File="TEAM.038" TMD="0" Flag="Turkey.png" Pool="20" OrgTeams="24" OrgPrem="18" OrgOne="0" OrgTwo="0" OrgThree="0" OrgNL="6"/>
+			<Ukraine Name="Ukraine" Num="39" Hex="0014cf77" File="TEAM.039" TMD="0" Flag="Ukraine.png" Pool="20" OrgTeams="18" OrgPrem="18" OrgOne="0" OrgTwo="0" OrgThree="0" OrgNL="0"/>
+			<Wales Name="Wales" Num="40" Hex="0014cf8b" File="TEAM.040" TMD="0" Flag="Wales.png" Pool="10" OrgTeams="22" OrgPrem="20" OrgOne="0" OrgTwo="0" OrgThree="0" OrgNL="2"/>
+			<Yugoslavia Name="Yugoslavia" Num="41" Hex="0014cf9f" File="TEAM.041" TMD="0" Flag="Serbia.png" Pool="10" OrgTeams="10" OrgPrem="10" OrgOne="0" OrgTwo="0" OrgThree="0" OrgNL="0"/>
+		</Europe>
+		<North_America Name="North America">
+			<Salvador Name="El Salvador" Num="51" Hex="0014d08b" File="TEAM.051" TMD="0" Flag="El-Salvador.png" Pool="10" OrgTeams="46" OrgPrem="10" OrgOne="12" OrgTwo="12" OrgThree="12" OrgNL="0"/>
+			<Mexico Name="Mexico" Num="60" Hex="0014d0ef" File="TEAM.060" TMD="0" Flag="Mexico.png" Pool="15" OrgTeams="40" OrgPrem="20" OrgOne="20" OrgTwo="0" OrgThree="0" OrgNL="0"/>
+			<USA Name="United States" Num="73" Hex="0014d203" File="TEAM.073" TMD="0" Flag="United-States.png" Pool="15" OrgTeams="18" OrgPrem="10" OrgOne="0" OrgTwo="0" OrgThree="0" OrgNL="8"/>
+		</North_America>
+		<South_America Name="South America">
+			<Argentina Name="Argentina" Num="43" Hex="0014cfc7" File="TEAM.043" TMD="0" Flag="Argentina.png" Pool="20" OrgTeams="40" OrgPrem="20" OrgOne="20" OrgTwo="0" OrgThree="0" OrgNL="0"/>
+			<Bolivia Name="Bolivia" Num="45" Hex="0014d027" File="TEAM.045" TMD="0" Flag="Bolivia.png" Pool="10" OrgTeams="14" OrgPrem="12" OrgOne="0" OrgTwo="0" OrgThree="0" OrgNL="2"/>
+			<Brazil Name="Brazil" Num="46" Hex="0014d03b" File="TEAM.046" TMD="0" Flag="Brazil.png" Pool="20" OrgTeams="24" OrgPrem="24" OrgOne="0" OrgTwo="0" OrgThree="0" OrgNL="0"/>
+			<Chile Name="Chile" Num="48" Hex="0014d04f" File="TEAM.048" TMD="0" Flag="Chile.png" Pool="10" OrgTeams="16" OrgPrem="16" OrgOne="0" OrgTwo="0" OrgThree="0" OrgNL="0"/>
+			<Colombia Name="Colombia" Num="49" Hex="0014d063" File="TEAM.049" TMD="0" Flag="Colombia.png" Pool="10" OrgTeams="17" OrgPrem="16" OrgOne="0" OrgTwo="0" OrgThree="0" OrgNL="1"/>
+			<Ecuador Name="Ecuador" Num="50" Hex="0014d077" File="TEAM.050" TMD="0" Flag="Ecuador.png" Pool="10" OrgTeams="14" OrgPrem="12" OrgOne="0" OrgTwo="0" OrgThree="0" OrgNL="2"/>
+			<Paraguay Name="Paraguay" Num="64" Hex="0014d141" File="TEAM.064" TMD="0" Flag="Paraguay.png" Pool="10" OrgTeams="12" OrgPrem="12" OrgOne="0" OrgTwo="0" OrgThree="0" OrgNL="0"/>
+			<Peru Name="Peru" Num="65" Hex="0014d155" File="TEAM.065" TMD="0" Flag="Peru.png" Pool="10" OrgTeams="16" OrgPrem="16" OrgOne="0" OrgTwo="0" OrgThree="0" OrgNL="0"/>
+			<Surinam Name="Surinam" Num="66" Hex="0014d17d" File="TEAM.066" TMD="0" Flag="Suriname.png" Pool="5" OrgTeams="10" OrgPrem="10" OrgOne="0" OrgTwo="0" OrgThree="0" OrgNL="0"/>
+			<Uruguay Name="Uruguay" Num="71" Hex="0014d1a5" File="TEAM.071" TMD="0" Flag="Uruguay.png" Pool="10" OrgTeams="26" OrgPrem="12" OrgOne="14" OrgTwo="0" OrgThree="0" OrgNL="0"/>
+			<Venezuela Name="Venezuela" Num="77" Hex="0014d217" File="TEAM.077" TMD="0" Flag="Venezuela.png" Pool="10" OrgTeams="22" OrgPrem="22" OrgOne="0" OrgTwo="0" OrgThree="0" OrgNL="0"/>
+		</South_America>
+		<Africa Name="Africa">
+			<Algeria Name="Algeria" Num="42" Hex="0014cfb3" File="TEAM.042" TMD="0" Flag="Algeria.png" Pool="10" OrgTeams="16" OrgPrem="16" OrgOne="0" OrgTwo="0" OrgThree="0" OrgNL="0"/>
+			<Ghana Name="Ghana" Num="79" Hex="0014d22b" File="TEAM.079" TMD="0" Flag="Ghana.png" Pool="5" OrgTeams="8" OrgPrem="8" OrgOne="0" OrgTwo="0" OrgThree="0" OrgNL="0"/>
+			<South_Africa Name="South Africa" Num="69" Hex="0014d169" File="TEAM.069" TMD="0" Flag="South-Africa.png" Pool="5" OrgTeams="16" OrgPrem="16" OrgOne="0" OrgTwo="0" OrgThree="0" OrgNL="0"/>
+		</Africa>
+		<Asia Name="Asia">
+			<India Name="India" Num="75" Hex="0014d0b1" File="TEAM.075" TMD="0" Flag="India.png" Pool="5" OrgTeams="6" OrgPrem="6" OrgOne="0" OrgTwo="0" OrgThree="0" OrgNL="0"/>
+			<Japan Name="Japan" Num="55" Hex="0014d0c5" File="TEAM.055" TMD="0" Flag="Japan.png" Pool="10" OrgTeams="28" OrgPrem="14" OrgOne="14" OrgTwo="0" OrgThree="0" OrgNL="0"/>
+			<Taiwan Name="Taiwan" Num="67" Hex="0014d191" File="TEAM.067" TMD="0" Flag="Taiwan.png" Pool="5" OrgTeams="12" OrgPrem="12" OrgOne="0" OrgTwo="0" OrgThree="0" OrgNL="0"/>
+		</Asia>
+		<Oceania Name="Oceania">
+			<Australia Name="Australia" Num="44" Hex="0014cfe1" File="TEAM.044" TMD="0" Flag="Australia.png" Pool="15" OrgTeams="51" OrgPrem="12" OrgOne="12" OrgTwo="14" OrgThree="12" OrgNL="1"/>
+			<Zealand Name="New Zealand" Num="62" Hex="0014d109" File="TEAM.062" TMD="0" Flag="New-Zealand.png" Pool="15" OrgTeams="30" OrgPrem="10" OrgOne="10" OrgTwo="10" OrgThree="0" OrgNL="0"/>
+		</Oceania>
+		<National Name="National Teams">
+			<Europe Name="Europe" Num="80" Hex="" File="TEAM.080" TMD="0" Flag="uefa.png" Pool="0" OrgTeams="49" OrgPrem="49" OrgOne="0" OrgTwo="0" OrgThree="0" OrgNL="0"/>
+			<Africa Name="Africa" Num="81" Hex="" File="TEAM.081" TMD="0" Flag="caf.png" Pool="0" OrgTeams="34" OrgPrem="34" OrgOne="0" OrgTwo="0" OrgThree="0" OrgNL="0"/>
+			<South_America Name="South America" Num="82" Hex="" File="TEAM.082" TMD="0" Flag="CONMEBOL.png" Pool="0" OrgTeams="10" OrgPrem="10" OrgOne="0" OrgTwo="0" OrgThree="0" OrgNL="0"/>
+			<North_America Name="North America" Num="83" Hex="" File="TEAM.083" TMD="0" Flag="CONCACAF.png" Pool="0" OrgTeams="15" OrgPrem="15" OrgOne="0" OrgTwo="0" OrgThree="0" OrgNL="0"/>
+			<Asia Name="Asia" Num="84" Hex="" File="TEAM.084" TMD="0" Flag="AFC.png" Pool="0" OrgTeams="31" OrgPrem="31" OrgOne="0" OrgTwo="0" OrgThree="0" OrgNL="0"/>
+			<Oceania Name="Oceania" Num="85" Hex="" File="TEAM.085" TMD="0" Flag="ofc.png" Pool="0" OrgTeams="4" OrgPrem="4" OrgOne="0" OrgTwo="0" OrgThree="0" OrgNL="0"/>
+		</National>
+		<Custom Name="Custom Teams">
+		    <Original Name="Original Custom Teams" Num="72" Hex="" File="TEAM.072" TMD="0" Flag="Unknown.png" Pool="0" OrgTeams="48" OrgPrem="48" OrgOne="0" OrgTwo="0" OrgThree="0" OrgNL="0"/>
+			<Origin2 Name="Other Custom Teams" Num="-1" Hex="" File="TEAM.CUS" TMD="0" Flag="Unknown.png" Pool="0" OrgTeams="64" OrgPrem="64" OrgOne="0" OrgTwo="0" OrgThree="0" OrgNL="0"/>
+			<Origin3 Name="Custom.EDT Teams" Num="-1" Hex="" File="./../CUSTOMS.EDT" TMD="0" Flag="Unknown.png" Pool="0"/>
+		</Custom>
+		<Extras Name="TMD Cup Files">
+			<Eurocup Name="European Cup" Num="-1" Hex="" File="EUROCUP.TMD" TMD="1" Teams="16" Flag="uefa.png" Pool="0" OrgTeams="16" OrgPrem="16" OrgOne="0" OrgTwo="0" OrgThree="0" OrgNL="0"/>
+			<Eurocwc Name="Euro Cup Winners Cup" Num="-1" Hex="" File="EUROCWC.TMD" TMD="1" Teams="32" Flag="uefa.png" Pool="0" OrgTeams="32" OrgPrem="31" OrgOne="1" OrgTwo="0" OrgThree="0" OrgNL="0"/>
+			<UefaCup Name="UEFA Cup" Num="-1" Hex="" File="UEFACUP.TMD" TMD="1" Teams="32" Flag="uefa.png" Pool="0" OrgTeams="32" OrgPrem="32" OrgOne="0" OrgTwo="0" OrgThree="0" OrgNL="0"/>
+		</Extras>
+		<Others Name="Others Teams">
+			<Costarica Name="Costa Rica" Num="47" Hex="" File="TEAM.047" TMD="0" Flag="Costa-Rica.png" Pool="0"/>
+			<Other_National_Teams Name="Other National Teams" Num="68" Hex="" File="TEAM.068" TMD="0" Flag="Unknown.png" Pool="0"/>
+			<South_Korea_National Name="South Korea National" Num="57" Hex="" File="TEAM.057" TMD="0" Flag="South-Korea.png" Pool="0"/>
+			<Malaysia_National Name="Malaysia National" Num="59" Hex="" File="TEAM.059" TMD="0" Flag="Malaysia.png" Pool="0"/>
+			<Tanzania_National Name="Tanzania National" Num="70" Hex="" File="TEAM.070" TMD="0" Flag="Tanzania.png" Pool="0"/>
+			<Another_World_Cup Name="Another World Cup" Num="74" Hex="" File="TEAM.074" TMD="0" Flag="Unknown.png" Pool="0"/>
+		</Others>
+	</SWSData>
+</root>
