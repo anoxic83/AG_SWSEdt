@@ -16,7 +16,8 @@ Is allows to editing teams, players and them attributtes.
 ----
 ### Donations
 
-Support the author of the project with a donation 
+Support the author of the project with a donation:
+
 [![paypal](https://www.paypalobjects.com/en_US/PL/i/btn/btn_donateCC_LG.gif)](https://www.paypal.com/donate?cmd=_s-xclick&hosted_button_id=VJE4C4DGHF2CU)
 
 ----
