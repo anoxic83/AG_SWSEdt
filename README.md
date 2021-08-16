@@ -13,6 +13,11 @@ Is allows to editing teams, players and them attributtes.
 
 [Change Log](#change-log)
 
+----
+### Donations
+
+Support the author of the project with a donation 
+https://www.paypal.com/donate?hosted_button_id=VJE4C4DGHF2CU
 
 ----
 ### First Steps
