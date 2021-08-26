@@ -1,0 +1,9 @@
+{"version":1,"strings":[
+{"hash":227648320,"name":"tfrmclip.caption","sourcebytes":[70,114,109,67,108,105,112],"value":"FrmClip"},
+{"hash":4808778,"name":"tfrmclip.lbclteam.caption","sourcebytes":[84,101,97,109,115,32,105,110,32,67,108,105,112,98,111,97,114,100,58],"value":"Teams in Clipboard:"},
+{"hash":244181306,"name":"tfrmclip.lbclplayers.caption","sourcebytes":[80,108,97,121,101,114,115,32,105,110,32,67,108,105,112,98,111,97,114,100,58],"value":"Players in Clipboard:"},
+{"hash":4860802,"name":"tfrmclip.btcleart.caption","sourcebytes":[67,108,101,97,114],"value":"Clear"},
+{"hash":4860802,"name":"tfrmclip.btclearp.caption","sourcebytes":[67,108,101,97,114],"value":"Clear"},
+{"hash":132268882,"name":"tfrmclip.btnaddtocar.caption","sourcebytes":[65,100,100,32,84,111,32,67,97,114,114,101,114,32,74,111,98,32,79,102,102,101,114],"value":"Add To Carrer Job Offer"},
+{"hash":80705172,"name":"tfrmclip.btnexp.caption","sourcebytes":[69,120,112,111,114,116],"value":"Export"}
+]}

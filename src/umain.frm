@@ -19,7 +19,7 @@ object MainForm: TMainForm
   OnDestroy = FormDestroy
   OnDropFiles = FormDropFiles
   OnPaint = FormPaint
-  LCLVersion = '7.2'
+  LCLVersion = '7.4'
   object PCtrl: TPageControl
     Left = 0
     Height = 713

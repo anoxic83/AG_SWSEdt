@@ -32,7 +32,7 @@ uses
   uabout {$IFDEF DEBUG}, heaptrc{$ENDIF};
 
 const
-  SWSEdtVer = $0002000400090007;
+  SWSEdtVer = $00020004005B0001;
 
 type
 
