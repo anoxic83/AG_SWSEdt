@@ -69,6 +69,9 @@ To compilation download [CodeTyphon](https://www.pilotlogic.com/sitejoom/index.p
 CodeTyphon is the Next Generation "Pascal Visual Programming Studio".
 
 ### Change Log
+**ver 2.4.91**
+- Update league executable veryfication to SWOS 2020 v.2.3.8
+
 **ver 2.4.9a**
 - Add Compare Report to original 96/97 data.
 - Support executable veryfication to version SWOS 2020 1.3.5
