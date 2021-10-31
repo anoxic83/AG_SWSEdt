@@ -3152,7 +3152,7 @@ end;
 function TSWSTeam.GetPosition(Index: integer): byte;
 begin
   if (Index < 0) or (Index > 15) then
-    Exit;
+    Exit(0);
   Result := Fplposit[Index];
 end;
 
@@ -3969,6 +3969,7 @@ begin
     Tmp.Fplayers[Tmp.PlPosition[a]].PName :=
       'PLAYER ' + IntToStr(a + 1);
     Tmp.Fplayers[Tmp.PlPosition[a]].Number := a + 1;
+    Tmp.FPlayers[a].PlayInTeam:=a;
   end;
   for a := 0 to 1 do
     Tmp.Fplayers[a].Position := 0;

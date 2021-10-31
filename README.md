@@ -69,6 +69,13 @@ To compilation download [CodeTyphon](https://www.pilotlogic.com/sitejoom/index.p
 CodeTyphon is the Next Generation "Pascal Visual Programming Studio".
 
 ### Change Log
+**ver 2.5.0a**
+- Add Compute original price for all teams (General Tab)
+- Add Change attributtes to 7 for all teams (General Tab)
+- Add Sort players No. by position for all teams (General Tab)
+- Add Generate all Team players [very weak - star] (Squad Tab)
+- Update to SWOS 2020 v.2.4.1
+
 **ver 2.4.91**
 - Update league executable veryfication to SWOS 2020 v.2.3.8
 

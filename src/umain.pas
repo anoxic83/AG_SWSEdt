@@ -26,13 +26,13 @@ interface
 uses
   Classes, SysUtils, FileUtil, Forms, Controls, Graphics, Dialogs, Menus,
   uagswos, LResources, ExtCtrls, ComCtrls, utextstr, laz2_DOM, laz2_XMLWrite,
-  AdvLed, BGRABitmap, TplProgressBarUnit, BGRAImageList, dynlibs,
+  AdvLed, BGRABitmap, TplProgressBarUnit, BGRAImageList, dynlibs, actnlist,
   BGRASpeedButton, LCLType, LCLIntf, StdCtrls, ColorBox, PopupNotifier, Buttons,
-  ActnList, usettings, uslpload, uclipfrm, ulgstufrm, upoolplyr, ueccfrm,
+  usettings, uslpload, uclipfrm, ulgstufrm, upoolplyr, ueccfrm,
   uabout {$IFDEF DEBUG}, heaptrc{$ENDIF};
 
 const
-  SWSEdtVer = $00020004005B0001;
+  SWSEdtVer = $0002000500000026;
 
 type
 
@@ -48,6 +48,10 @@ type
     AdvLed1: TAdvLed;
     btCompAttributtebyVal: TButton;
     btCompAttributtebyVal1: TButton;
+    btRandTeamSum: TButton;
+    btCompAttributteto7Gen: TButton;
+    btNumberTeamsGen: TButton;
+    btOrgPriceTeamsGen: TButton;
     btOvrSwsChange: TButton;
     btNumber: TButton;
     btGenPosVal: TButton;
@@ -198,6 +202,12 @@ type
     MDirtyRep: TMenuItem;
     MCOPAll: TMenuItem;
     MCheckTC96: TMenuItem;
+    MPWeak: TMenuItem;
+    MPMed: TMenuItem;
+    MPGood: TMenuItem;
+    MPVgood: TMenuItem;
+    MPStar: TMenuItem;
+    MPVWeak: TMenuItem;
     MGNonLge: TMenuItem;
     MGThree: TMenuItem;
     MGTwo: TMenuItem;
@@ -266,6 +276,7 @@ type
     PGePopup: TPopupMenu;
     MSqPopup: TPopupMenu;
     MPGenPosVal: TPopupMenu;
+    PM_RandomTeam: TPopupMenu;
     Reserve1: TLabel;
     lbForm: TLabel;
     lbReserve: TLabel;
@@ -358,7 +369,9 @@ type
     procedure AGeneralExecute(Sender: TObject);
     procedure AOverviewExecute(Sender: TObject);
     procedure btCompAttributtebyVal1Click(Sender: TObject);
+    procedure btRandTeamSumClick(Sender: TObject);
     procedure btCompAttributtebyValClick(Sender: TObject);
+    procedure btCompAttributteto7GenClick(Sender: TObject);
     procedure btCompOrgClick(Sender: TObject);
     procedure btEdtLeagStrucClick(Sender: TObject);
     procedure btGenPosValClick(Sender: TObject);
@@ -367,6 +380,8 @@ type
     procedure btGenPosValMouseDown(Sender: TObject; Button: TMouseButton;
       Shift: TShiftState; X, Y: Integer);
     procedure btNumberClick(Sender: TObject);
+    procedure btNumberTeamsGenClick(Sender: TObject);
+    procedure btOrgPriceTeamsGenClick(Sender: TObject);
     procedure btOrgPriceAllClick(Sender: TObject);
     procedure CBDivisionChange(Sender: TObject);
     procedure cbFormChange(Sender: TObject);
@@ -479,11 +494,17 @@ type
     procedure MPcomplClick(Sender: TObject);
     procedure MPDefClick(Sender: TObject);
     procedure MPDMClick(Sender: TObject);
+    procedure MPGoodClick(Sender: TObject);
+    procedure MPMedClick(Sender: TObject);
     procedure MPMidClick(Sender: TObject);
     procedure MPScClick(Sender: TObject);
     procedure MPShowPlayClick(Sender: TObject);
     procedure MPSiteBackClick(Sender: TObject);
     procedure MPSiteMClick(Sender: TObject);
+    procedure MPStarClick(Sender: TObject);
+    procedure MPVgoodClick(Sender: TObject);
+    procedure MPVWeakClick(Sender: TObject);
+    procedure MPWeakClick(Sender: TObject);
     procedure MPWingClick(Sender: TObject);
     procedure MreadTeamClick(Sender: TObject);
     procedure MreloadClick(Sender: TObject);
@@ -519,6 +540,7 @@ type
     DropFile: boolean;
     NameDrop: array of string;
     procedure CustomExceptionHandler(Sender: TObject; E: Exception);
+    procedure CountingSort( var a: array of Integer; asc: Boolean );
     { private declarations }
   public
     AppDir: UTF8string;
@@ -532,6 +554,7 @@ type
     procedure RefPlayer;
     procedure RefReserve;
     procedure Gener(val: integer);
+    procedure RandomTeam(TID: Integer; SumAttr: Integer);
     procedure SetEnables(LoadAll: boolean; Ebn: boolean);
     procedure GetLangs;
     { public declarations }
@@ -1695,6 +1718,18 @@ begin
   Gener(4);
 end;
 
+procedure TMainForm.MPGoodClick(Sender: TObject);
+begin
+  RandomTeam(SWSDB.SWSFiles[SWSDB.FileIndex].TeamIndex, 380);
+  RefSquad;
+end;
+
+procedure TMainForm.MPMedClick(Sender: TObject);
+begin
+  RandomTeam(SWSDB.SWSFiles[SWSDB.FileIndex].TeamIndex, 280);
+  RefSquad;
+end;
+
 procedure TMainForm.MPMidClick(Sender: TObject);
 begin
   Gener(5);
@@ -1731,6 +1766,30 @@ end;
 procedure TMainForm.MPSiteMClick(Sender: TObject);
 begin
   Gener(2);
+end;
+
+procedure TMainForm.MPStarClick(Sender: TObject);
+begin
+  RandomTeam(SWSDB.SWSFiles[SWSDB.FileIndex].TeamIndex, 560);
+  RefSquad;
+end;
+
+procedure TMainForm.MPVgoodClick(Sender: TObject);
+begin
+  RandomTeam(SWSDB.SWSFiles[SWSDB.FileIndex].TeamIndex, 500);
+  RefSquad;
+end;
+
+procedure TMainForm.MPVWeakClick(Sender: TObject);
+begin
+  RandomTeam(SWSDB.SWSFiles[SWSDB.FileIndex].TeamIndex, 80);
+  RefSquad;
+end;
+
+procedure TMainForm.MPWeakClick(Sender: TObject);
+begin
+  RandomTeam(SWSDB.SWSFiles[SWSDB.FileIndex].TeamIndex, 160);
+  RefSquad;
 end;
 
 procedure TMainForm.MPWingClick(Sender: TObject);
@@ -2308,6 +2367,32 @@ procedure TMainForm.CustomExceptionHandler(Sender: TObject; E: Exception);
 begin
   DumpExceptionCallStack(E);
   Halt;
+end;
+
+procedure TMainForm.CountingSort(var a: array of Integer; asc: Boolean);
+var
+  min, max : Integer;
+  count_a  : array of integer;
+  i, j, z  : integer;
+begin
+  min := high( a );
+  max := min;
+  for i := low( a ) to high( a ) do
+    begin
+      if a[ i ] < min then min := a[ i ];
+      if a[ i ] > max then max := a[ i ];
+    end;
+  SetLength( count_a, max - min + 1);
+  for i := 0 to ( max - min ) do count_a[ i ] := 0;
+  for i := low( a ) to high( a ) do
+    count_a[ a[ i ] - min ] := count_a[ a[ i ] - min ] + 1;
+  if asc then z:= low( a ) else z := high( a );
+  for i := min to max do
+     for j := 0 to ( count_a[ i - min ] - 1 ) do
+       begin
+         a[ z ] := i;
+         if asc then inc( z ) else dec( z );
+       end;
 end;
 
 procedure TMainForm.LoadTP;
@@ -2988,6 +3073,90 @@ begin
 
 end;
 
+procedure TMainForm.RandomTeam(TID: Integer; SumAttr: Integer);
+var
+  fa : array[0..9] of Integer;
+  ra : array[0..3] of Integer;
+  SumFE, SumRes, SumAdd: Integer;
+  f, r, p, pr: Integer;
+  temp: Integer;
+  PID: Integer;
+begin
+  //Randomize;
+  if (SumAttr > 686) then
+    SumAttr := 680;
+  SumFE:= Round(SumAttr*0.75);
+  SumRes:= Round(SumAttr * 0.25);
+
+  pr := Random(Round(SumAttr * 0.2));
+  SumAdd := Random(pr);
+  SumAdd := SumAdd - ((pr - 1) div 2);
+  SumFE:= SumFE + SumAdd;
+  SumRes:= SumRes + SumAdd;
+  for f:=0 to 9 do begin
+    fa[f]:= round(SumFE/10);
+    pr:= Random(5);
+    pr:= pr - 2;
+    fa[f]:= fa[f] + pr;
+    if (fa[f] < 0) then fa[f]:=0;
+    if (fa[f] > 49) then fa[f]:=49;
+  end;
+  //CountingSort(fa, false);
+  // Reserve
+  pr := 49;
+  for r:=0 to 3 do begin
+    ra[r]:= round(SumRes/4);
+    pr:= Random(3);
+    pr:= pr - 1;
+    ra[r]:= ra[r] + pr;
+    if (ra[r] < 0) then ra[r]:=0;
+    if (ra[r] > 49) then ra[r]:=49;
+  end;
+  //CountingSort(ra, false);
+  // Assign values to players..
+  for p:=0 to 9 do begin
+    PID := SWSDB.SWSFiles[SWSDB.FileIndex].Team[TID].PlPosition[p+1];
+    SWSDB.SWSFiles[SWSDB.FileIndex].Team[TID].Player[PID].Value:=fa[p];
+  end;
+  for p:=0 to 3 do begin
+    PID := SWSDB.SWSFiles[SWSDB.FileIndex].Team[TID].PlPosition[12+p];
+    SWSDB.SWSFiles[SWSDB.FileIndex].Team[TID].Player[PID].Value:=ra[p];
+  end;
+  // Assign Goalkeepers
+  f:= Random(10);
+  r:= Random(4);
+  PID := SWSDB.SWSFiles[SWSDB.FileIndex].Team[TID].PlPosition[0];
+  SWSDB.SWSFiles[SWSDB.FileIndex].Team[TID].Player[PID].Value:=fa[f];
+  PID := SWSDB.SWSFiles[SWSDB.FileIndex].Team[TID].PlPosition[11];
+  SWSDB.SWSFiles[SWSDB.FileIndex].Team[TID].Player[PID].Value:=ra[r];
+  for p:=0 to 16 do begin
+    if (SWSDB.SWSFiles[SWSDb.FileIndex].Team[TID].Player[p].Position <> 0) then begin
+      SWSDB.SWSFiles[SWSDb.FileIndex].Team[TID].PlayerIndex:=p;
+      case SWSDB.SWSFiles[SWSDb.FileIndex].Team[TID].Player[p].Position of
+        1: Gener(0);
+        2: Gener(0);
+        3: Gener(1);
+        4: begin
+          pr:= Random(2);
+          Gener(2+pr);
+        end;
+        5: begin
+          pr:= Random(2);
+          Gener(2+pr);
+        end;
+        6: begin
+          pr:= Random(3);
+          Gener(4+pr);
+        end;
+        7: begin
+          pr:= Random(2);
+          Gener(7+pr);
+        end;
+      end;
+    end;
+  end;
+end;
+
 procedure TMainForm.SetEnables(LoadAll: boolean; Ebn: boolean);
 begin
   MWriteAll.Enabled := ebn;
@@ -3337,6 +3506,14 @@ begin
   RefSquad;
 end;
 
+procedure TMainForm.btRandTeamSumClick(Sender: TObject);
+
+begin
+  PM_RandomTeam.PopUp(Mouse.CursorPos.X, Mouse.CursorPos.Y);
+  RefTeam;
+  RefSquad;
+end;
+
 procedure TMainForm.btCompAttributtebyValClick(Sender: TObject);
 var
   TDX, i: integer;
@@ -3372,6 +3549,18 @@ begin
     end;
   end;
   RefSquad;
+end;
+
+procedure TMainForm.btCompAttributteto7GenClick(Sender: TObject);
+var
+  t, i: Integer;
+begin
+  for t:=0 to SWSDB.SWSFiles[SWSDB.FileIndex].TeamCount-1 do begin
+    for i:=0 to 15 do begin
+       SWSDB.SWSFiles[SWSDb.FileIndex].Team[t].Player[i].ChangeAllTo7();
+    end;
+  end;
+  LoadGeneral;
 end;
 
 procedure TMainForm.AGeneralExecute(Sender: TObject);
@@ -3448,6 +3637,32 @@ begin
     SWSDB.SWSFiles[SWSDb.FileIndex].Team[TIDX].Player[PIDX].Number := a + 1;
   end;
   RefSquad;
+end;
+
+procedure TMainForm.btNumberTeamsGenClick(Sender: TObject);
+var
+  t, i, PIDX: Integer;
+begin
+  for t:=0 to SWSDB.SWSFiles[SWSDB.FileIndex].TeamCount-1 do begin
+    for i:=0 to 15 do begin
+      PIDX := SWSDB.SWSFiles[SWSDb.FileIndex].Team[t].PlPosition[i];
+      SWSDB.SWSFiles[SWSDb.FileIndex].Team[t].Player[PIDX].Number := i + 1;
+    end;
+  end;
+  LoadGeneral;
+end;
+
+procedure TMainForm.btOrgPriceTeamsGenClick(Sender: TObject);
+var
+  t, i: Integer;
+begin
+  for t:=0 to SWSDB.SWSFiles[SWSDB.FileIndex].TeamCount-1 do begin
+    for i:=0 to 15 do begin
+      if SWSDB.SWSFiles[SWSDb.FileIndex].Team[t].Player[i].Position <> 0 then
+        SWSDB.SWSFiles[SWSDb.FileIndex].Team[t].Player[i].Value :=
+          SWSDB.SWSFiles[SWSDb.FileIndex].Team[t].Player[i].CalcPlay(True);
+    end;
+  end;
 end;
 
 procedure TMainForm.btOrgPriceAllClick(Sender: TObject);

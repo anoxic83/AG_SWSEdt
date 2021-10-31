@@ -11,6 +11,10 @@
       <Title Value="AG_SWSEDT"/>
       <ResourceType Value="res"/>
       <UseXPManifest Value="True"/>
+      <XPManifest>
+        <TextName Value="Anoxic.SWOS.AG_SWSEdt"/>
+        <TextDesc Value="SWOS Editor"/>
+      </XPManifest>
       <Icon Value="0"/>
     </General>
     <i18n>
@@ -19,14 +23,12 @@
     </i18n>
     <VersionInfo>
       <UseVersionInfo Value="True"/>
-      <AutoIncrementBuild Value="True"/>
       <MajorVersionNr Value="2"/>
-      <MinorVersionNr Value="4"/>
-      <RevisionNr Value="9"/>
-      <BuildNr Value="6"/>
-      <StringTable InternalName="AG_SWSEDT" LegalCopyright="(c) 2013-20 Anoxic. GNU3 General Public License." LegalTrademarks="(c) 2013-20 Anoxic. GNU3 General Public License." OriginalFilename="AG_SWSEDT" ProductName="AG_SWSEDT" ProductVersion="2.4.91.1"/>
+      <MinorVersionNr Value="5"/>
+      <BuildNr Value="38"/>
+      <StringTable Comments="https://github.com/anoxic83/AG_SWSEdt" InternalName="AG_SWSEDT" LegalCopyright="(c) 2013-21 Anoxic. GNU3 General Public License." OriginalFilename="AG_SWSEDT" ProductName="AG_SWSEDT" ProductVersion="2.5.0.38"/>
     </VersionInfo>
-    <BuildModes Count="3">
+    <BuildModes Count="4">
       <Item1 Name="Debug" Default="True"/>
       <Item2 Name="Release">
         <CompilerOptions>
@@ -94,8 +96,44 @@
           </Linking>
         </CompilerOptions>
       </Item3>
-      <SharedMatrixOptions Count="1">
+      <Item4 Name="Release-Mac">
+        <MacroValues Count="1">
+          <Macro2 Name="LCLWidgetType" Value="cocoa"/>
+        </MacroValues>
+        <CompilerOptions>
+          <Version Value="11"/>
+          <PathDelim Value="\"/>
+          <Target>
+            <Filename Value="..\bin\$(TargetCPU)-$(TargetOS)\AG_SWSEDT"/>
+          </Target>
+          <SearchPaths>
+            <IncludeFiles Value="$(ProjOutDir)"/>
+            <UnitOutputDirectory Value="lib\$(TargetCPU)-$(TargetOS)"/>
+          </SearchPaths>
+          <CodeGeneration>
+            <TargetCPU Value="x86_64"/>
+            <TargetOS Value="darwin"/>
+            <Optimizations>
+              <OptimizationLevel Value="3"/>
+            </Optimizations>
+          </CodeGeneration>
+          <Linking>
+            <Debugging>
+              <GenerateDebugInfo Value="False"/>
+              <StripSymbols Value="True"/>
+            </Debugging>
+            <LinkSmart Value="True"/>
+            <Options>
+              <Win32>
+                <GraphicApplication Value="True"/>
+              </Win32>
+            </Options>
+          </Linking>
+        </CompilerOptions>
+      </Item4>
+      <SharedMatrixOptions Count="2">
         <Item1 ID="929963419258" Modes="Release-Lin" Type="IDEMacro" MacroName="LCLWidgetType" Value="gtk3"/>
+        <Item2 ID="929963419258" Modes="Release-Mac" Type="IDEMacro" MacroName="LCLWidgetType" Value="cocoa"/>
       </SharedMatrixOptions>
     </BuildModes>
     <PublishOptions>

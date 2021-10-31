@@ -30,6 +30,9 @@
 {"hash":2576934,"name":"tmainform.label40.caption","sourcebytes":[82,101,108,101,32,32,45,32,32,32,82,45,111,102,102],"value":"Rele  -   R-off"},
 {"hash":85138741,"name":"tmainform.lbversws.caption","sourcebytes":[86,101,114,105,102,105,99,97,116,105,111,110,32,84,101,97,109,115,32,105,110,32,70,105,108,101,32,97,110,100,32,83,87,79,83,32,101,120,101],"value":"Verification Teams in File and SWOS exe"},
 {"hash":124290805,"name":"tmainform.btedtleagstruc.caption","sourcebytes":[69,100,105,116,32,76,101,97,103,117,101,32,83,116,114,117,99,116,117,114,101],"value":"Edit League Structure"},
+{"hash":126236259,"name":"tmainform.btorgpriceteamsgen.caption","sourcebytes":[67,111,109,112,117,116,101,32,79,114,105,103,105,110,97,108,32,80,114,105,99,101,32,102,111,114,32,65,108,108,32,84,101,97,109,115],"value":"Compute Original Price for All Teams"},
+{"hash":237474147,"name":"tmainform.btcompattributteto7gen.caption","sourcebytes":[67,104,97,110,103,101,32,65,116,116,114,105,98,117,116,116,101,115,32,116,111,32,55,32,102,111,114,32,65,108,108,32,84,101,97,109,115],"value":"Change Attributtes to 7 for All Teams"},
+{"hash":55746195,"name":"tmainform.btnumberteamsgen.caption","sourcebytes":[83,111,114,116,32,80,108,97,121,101,114,115,32,78,111,46,32,98,121,32,80,111,115,46,32,65,108,108,32,84,101,97,109,115],"value":"Sort Players No. by Pos. All Teams"},
 {"hash":371581,"name":"tmainform.tbteam.caption","sourcebytes":[84,101,97,109],"value":"Team"},
 {"hash":145725064,"name":"tmainform.grtmnavi.caption","sourcebytes":[78,97,118,105,103,97,116,105,111,110,32,66,111,120],"value":"Navigation Box"},
 {"hash":201090682,"name":"tmainform.lbtmteamed.caption","sourcebytes":[84,101,97,109,32,84,111,32,69,100,105,116,58],"value":"Team To Edit:"},
@@ -73,6 +76,7 @@
 {"hash":246167726,"name":"tmainform.btnumber.caption","sourcebytes":[83,111,114,116,32,80,108,97,121,101,114,32,78,117,109,98,101,114,115,32,98,121,32,80,111,115,105,116,105,111,110],"value":"Sort Player Numbers by Position"},
 {"hash":13176771,"name":"tmainform.btcompattributtebyval.caption","sourcebytes":[67,111,109,112,117,116,101,32,65,116,116,114,105,98,117,116,116,101,115,32,102,111,114,32,65,108,108,32,80,108,97,121,101,114,115],"value":"Compute Attributtes for All Players"},
 {"hash":202363571,"name":"tmainform.btcompattributtebyval1.caption","sourcebytes":[67,104,97,110,103,101,32,65,116,116,114,105,98,117,116,116,101,115,32,116,111,32,55,32,102,111,114,32,65,108,108,32,80,108,97,121,101,114,115],"value":"Change Attributtes to 7 for All Players"},
+{"hash":249602973,"name":"tmainform.btrandteamsum.caption","sourcebytes":[71,101,110,101,114,97,116,101,32,82,97,110,100,111,109,32,84,101,97,109],"value":"Generate Random Team"},
 {"hash":94943098,"name":"tmainform.lbsquadinf.caption","sourcebytes":[83,113,117,97,100,58],"value":"Squad:"},
 {"hash":91393986,"name":"tmainform.tbplayer.caption","sourcebytes":[80,108,97,121,101,114],"value":"Player"},
 {"hash":145725064,"name":"tmainform.gsqnavi1.caption","sourcebytes":[78,97,118,105,103,97,116,105,111,110,32,66,111,120],"value":"Navigation Box"},
@@ -200,5 +204,11 @@
 {"hash":231001132,"name":"tmainform.ageneral.caption","sourcebytes":[65,71,101,110,101,114,97,108],"value":"AGeneral"},
 {"hash":4631421,"name":"tmainform.ateam.caption","sourcebytes":[65,84,101,97,109],"value":"ATeam"},
 {"hash":74091380,"name":"tmainform.asquad.caption","sourcebytes":[65,83,113,117,97,100],"value":"ASquad"},
-{"hash":108171138,"name":"tmainform.aplayer.caption","sourcebytes":[65,80,108,97,121,101,114],"value":"APlayer"}
+{"hash":108171138,"name":"tmainform.aplayer.caption","sourcebytes":[65,80,108,97,121,101,114],"value":"APlayer"},
+{"hash":162891707,"name":"tmainform.mpvweak.caption","sourcebytes":[86,101,114,121,32,87,101,97,107],"value":"Very Weak"},
+{"hash":383867,"name":"tmainform.mpweak.caption","sourcebytes":[87,101,97,107],"value":"Weak"},
+{"hash":87797949,"name":"tmainform.mpmed.caption","sourcebytes":[77,101,100,105,117,109],"value":"Medium"},
+{"hash":321108,"name":"tmainform.mpgood.caption","sourcebytes":[71,111,111,100],"value":"Good"},
+{"hash":162830996,"name":"tmainform.mpvgood.caption","sourcebytes":[86,101,114,121,32,71,111,111,100],"value":"Very Good"},
+{"hash":371330,"name":"tmainform.mpstar.caption","sourcebytes":[83,116,97,114],"value":"Star"}
 ]}

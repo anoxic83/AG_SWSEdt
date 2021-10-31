@@ -19,15 +19,15 @@ object MainForm: TMainForm
   OnDestroy = FormDestroy
   OnDropFiles = FormDropFiles
   OnPaint = FormPaint
-  LCLVersion = '7.4'
+  LCLVersion = '7.5'
   object PCtrl: TPageControl
     Left = 0
     Height = 713
     Top = 0
     Width = 597
-    ActivePage = tbOver
+    ActivePage = tbGeneral
     Align = alClient
-    TabIndex = 0
+    TabIndex = 1
     TabOrder = 0
     OnChange = PCtrlChange
     OnChanging = PCtrlChanging
@@ -59,7 +59,6 @@ object MainForm: TMainForm
         Top = 22
         Width = 100
         Caption = 'Select Team to Load:'
-        ParentColor = False
       end
       object ESWSdir: TEdit
         Left = 12
@@ -74,7 +73,6 @@ object MainForm: TMainForm
         Top = 640
         Width = 110
         Caption = 'Actual SWOS Data Dir:'
-        ParentColor = False
       end
       object btOvrSwsChange: TButton
         Left = 460
@@ -102,7 +100,6 @@ object MainForm: TMainForm
         Top = 43
         Width = 116
         Caption = 'Total Pack Data Version:'
-        ParentColor = False
       end
       object grOverStats: TGroupBox
         Left = 355
@@ -121,7 +118,6 @@ object MainForm: TMainForm
           Alignment = taCenter
           AutoSize = False
           Caption = 'Files Loaded/Files in Data Folder'
-          ParentColor = False
         end
         object lbFLFiDF: TLabel
           Left = 7
@@ -131,7 +127,6 @@ object MainForm: TMainForm
           Alignment = taCenter
           AutoSize = False
           Caption = 'lbFLFiDF'
-          ParentColor = False
         end
         object lbTeamEdited: TLabel
           Left = 7
@@ -140,7 +135,6 @@ object MainForm: TMainForm
           Width = 201
           Alignment = taCenter
           AutoSize = False
-          ParentColor = False
         end
       end
     end
@@ -150,10 +144,10 @@ object MainForm: TMainForm
       ClientWidth = 589
       Enabled = False
       object LBTeams: TListView
-        Left = 12
-        Height = 488
-        Top = 184
-        Width = 576
+        Left = 4
+        Height = 464
+        Top = 208
+        Width = 584
         Columns = <>
         GridLines = True
         ReadOnly = True
@@ -171,15 +165,14 @@ object MainForm: TMainForm
       object lbTeamlist: TLabel
         Left = 4
         Height = 14
-        Top = 168
+        Top = 192
         Width = 48
         Caption = 'Team List:'
-        ParentColor = False
       end
       object GTeamInfo: TGroupBox
         Left = 4
         Height = 128
-        Top = 10
+        Top = 8
         Width = 272
         Caption = 'Team File Info'
         ClientHeight = 109
@@ -191,7 +184,6 @@ object MainForm: TMainForm
           Top = 1
           Width = 111
           Caption = 'Number of Team in File:'
-          ParentColor = False
         end
         object LTC: TLabel
           Left = 230
@@ -202,7 +194,6 @@ object MainForm: TMainForm
           Font.Height = -11
           Font.Name = 'Segoe UI'
           Font.Style = [fsBold]
-          ParentColor = False
           ParentFont = False
         end
         object LbGeTinPD: TLabel
@@ -211,7 +202,6 @@ object MainForm: TMainForm
           Top = 22
           Width = 124
           Caption = 'Teams in Premier Division:'
-          ParentColor = False
         end
         object lbGeTinD2: TLabel
           Left = 6
@@ -219,7 +209,6 @@ object MainForm: TMainForm
           Top = 56
           Width = 109
           Caption = 'Teams in Division Two:'
-          ParentColor = False
         end
         object lbGeTinD3: TLabel
           Left = 6
@@ -227,7 +216,6 @@ object MainForm: TMainForm
           Top = 72
           Width = 116
           Caption = 'Teams in Division Three:'
-          ParentColor = False
         end
         object lbGeTinD1: TLabel
           Left = 6
@@ -235,7 +223,6 @@ object MainForm: TMainForm
           Top = 40
           Width = 108
           Caption = 'Teams in Division One:'
-          ParentColor = False
         end
         object DPT: TLabel
           Left = 230
@@ -246,7 +233,6 @@ object MainForm: TMainForm
           Font.Height = -11
           Font.Name = 'Segoe UI'
           Font.Style = [fsBold]
-          ParentColor = False
           ParentFont = False
         end
         object D1T: TLabel
@@ -258,7 +244,6 @@ object MainForm: TMainForm
           Font.Height = -11
           Font.Name = 'Segoe UI'
           Font.Style = [fsBold]
-          ParentColor = False
           ParentFont = False
         end
         object D2T: TLabel
@@ -270,7 +255,6 @@ object MainForm: TMainForm
           Font.Height = -11
           Font.Name = 'Segoe UI'
           Font.Style = [fsBold]
-          ParentColor = False
           ParentFont = False
         end
         object D3T: TLabel
@@ -282,7 +266,6 @@ object MainForm: TMainForm
           Font.Height = -11
           Font.Name = 'Segoe UI'
           Font.Style = [fsBold]
-          ParentColor = False
           ParentFont = False
         end
         object lbGeTinNL: TLabel
@@ -291,7 +274,6 @@ object MainForm: TMainForm
           Top = 88
           Width = 105
           Caption = 'Teams non in League:'
-          ParentColor = False
         end
         object DNT: TLabel
           Left = 230
@@ -302,7 +284,6 @@ object MainForm: TMainForm
           Font.Height = -11
           Font.Name = 'Segoe UI'
           Font.Style = [fsBold]
-          ParentColor = False
           ParentFont = False
         end
       end
@@ -323,7 +304,6 @@ object MainForm: TMainForm
           Top = 1
           Width = 31
           Caption = 'Teams'
-          ParentColor = False
         end
         object Label39: TLabel
           Left = 62
@@ -331,7 +311,6 @@ object MainForm: TMainForm
           Top = 1
           Width = 58
           Caption = 'Prom - P-off'
-          ParentColor = False
         end
         object Label40: TLabel
           Left = 142
@@ -339,147 +318,126 @@ object MainForm: TMainForm
           Top = 1
           Width = 65
           Caption = 'Rele  -   R-off'
-          ParentColor = False
         end
         object LD1: TLabel
           Left = 22
           Height = 1
           Top = 22
           Width = 1
-          ParentColor = False
         end
         object LD2: TLabel
           Left = 22
           Height = 1
           Top = 40
           Width = 1
-          ParentColor = False
         end
         object LD3: TLabel
           Left = 22
           Height = 1
           Top = 56
           Width = 1
-          ParentColor = False
         end
         object LD4: TLabel
           Left = 22
           Height = 1
           Top = 72
           Width = 1
-          ParentColor = False
         end
         object LP1: TLabel
           Left = 62
           Height = 1
           Top = 22
           Width = 1
-          ParentColor = False
         end
         object LP2: TLabel
           Left = 62
           Height = 1
           Top = 40
           Width = 1
-          ParentColor = False
         end
         object LP3: TLabel
           Left = 62
           Height = 1
           Top = 56
           Width = 1
-          ParentColor = False
         end
         object LP4: TLabel
           Left = 62
           Height = 1
           Top = 72
           Width = 1
-          ParentColor = False
         end
         object LX1: TLabel
           Left = 102
           Height = 1
           Top = 22
           Width = 1
-          ParentColor = False
         end
         object LX2: TLabel
           Left = 102
           Height = 1
           Top = 40
           Width = 1
-          ParentColor = False
         end
         object LX3: TLabel
           Left = 102
           Height = 1
           Top = 56
           Width = 1
-          ParentColor = False
         end
         object LX4: TLabel
           Left = 102
           Height = 1
           Top = 72
           Width = 1
-          ParentColor = False
         end
         object LR1: TLabel
           Left = 142
           Height = 1
           Top = 22
           Width = 1
-          ParentColor = False
         end
         object LR2: TLabel
           Left = 142
           Height = 1
           Top = 40
           Width = 1
-          ParentColor = False
         end
         object LR3: TLabel
           Left = 142
           Height = 1
           Top = 56
           Width = 1
-          ParentColor = False
         end
         object LR4: TLabel
           Left = 142
           Height = 1
           Top = 72
           Width = 1
-          ParentColor = False
         end
         object LV1: TLabel
           Left = 182
           Height = 1
           Top = 22
           Width = 1
-          ParentColor = False
         end
         object LV2: TLabel
           Left = 182
           Height = 1
           Top = 40
           Width = 1
-          ParentColor = False
         end
         object LV3: TLabel
           Left = 182
           Height = 1
           Top = 56
           Width = 1
-          ParentColor = False
         end
         object LV4: TLabel
           Left = 182
           Height = 1
           Top = 72
           Width = 1
-          ParentColor = False
         end
       end
       object AdvLed1: TAdvLed
@@ -498,7 +456,6 @@ object MainForm: TMainForm
         Top = 144
         Width = 195
         Caption = 'Verification Teams in File and SWOS exe'
-        ParentColor = False
       end
       object btEdtLeagStruc: TButton
         Left = 316
@@ -508,6 +465,33 @@ object MainForm: TMainForm
         Caption = 'Edit League Structure'
         OnClick = btEdtLeagStrucClick
         TabOrder = 3
+      end
+      object btOrgPriceTeamsGen: TButton
+        Left = 4
+        Height = 16
+        Top = 168
+        Width = 190
+        Caption = 'Compute Original Price for All Teams'
+        OnClick = btOrgPriceTeamsGenClick
+        TabOrder = 4
+      end
+      object btCompAttributteto7Gen: TButton
+        Left = 198
+        Height = 16
+        Top = 168
+        Width = 190
+        Caption = 'Change Attributtes to 7 for All Teams'
+        OnClick = btCompAttributteto7GenClick
+        TabOrder = 5
+      end
+      object btNumberTeamsGen: TButton
+        Left = 392
+        Height = 16
+        Top = 168
+        Width = 190
+        Caption = 'Sort Players No. by Pos. All Teams'
+        OnClick = btNumberTeamsGenClick
+        TabOrder = 6
       end
     end
     object tbTeam: TTabSheet
@@ -532,9 +516,8 @@ object MainForm: TMainForm
           Left = 14
           Height = 15
           Top = 8
-          Width = 71
+          Width = 69
           Caption = 'Team To Edit:'
-          ParentColor = False
           ParentFont = False
         end
         object CBTeams: TComboBox
@@ -571,7 +554,6 @@ object MainForm: TMainForm
           Alignment = taCenter
           AutoSize = False
           Caption = 'lbtmCnt'
-          ParentColor = False
         end
       end
       object grTeamGen: TGroupBox
@@ -590,7 +572,6 @@ object MainForm: TMainForm
           Top = 16
           Width = 58
           Caption = 'Team Name:'
-          ParentColor = False
         end
         object ETeamname: TEdit
           Left = 302
@@ -618,7 +599,6 @@ object MainForm: TMainForm
           Top = 48
           Width = 109
           Caption = 'Team National Number:'
-          ParentColor = False
         end
         object ETeamNum: TEdit
           Left = 302
@@ -635,7 +615,6 @@ object MainForm: TMainForm
           Top = 80
           Width = 98
           Caption = 'Team Number in File:'
-          ParentColor = False
         end
         object ESWSgennum: TEdit
           Left = 302
@@ -652,7 +631,6 @@ object MainForm: TMainForm
           Top = 112
           Width = 144
           Caption = 'SWOS General Team Number:'
-          ParentColor = False
         end
         object CBDivision: TComboBox
           Left = 302
@@ -669,7 +647,6 @@ object MainForm: TMainForm
           Top = 144
           Width = 68
           Caption = 'Team Division:'
-          ParentColor = False
         end
         object lbCoach: TLabel
           Left = 14
@@ -677,7 +654,6 @@ object MainForm: TMainForm
           Top = 176
           Width = 62
           Caption = 'Team Coach:'
-          ParentColor = False
         end
         object ECoach: TEdit
           Left = 302
@@ -707,7 +683,6 @@ object MainForm: TMainForm
           Top = 16
           Width = 35
           Caption = 'Kit Typ:'
-          ParentColor = False
         end
         object CBHKitTyp: TComboBox
           Left = 94
@@ -752,7 +727,6 @@ object MainForm: TMainForm
           Top = 56
           Width = 59
           Caption = 'Shirt Colors:'
-          ParentColor = False
         end
         object cbHShirtCol1: TColorBox
           Left = 14
@@ -790,7 +764,6 @@ object MainForm: TMainForm
           Top = 134
           Width = 57
           Caption = 'Short Color:'
-          ParentColor = False
         end
         object lbHSockCol: TLabel
           Left = 12
@@ -798,7 +771,6 @@ object MainForm: TMainForm
           Top = 184
           Width = 61
           Caption = 'Socks Color:'
-          ParentColor = False
         end
         object cbHSockCol: TColorBox
           Left = 14
@@ -855,7 +827,6 @@ object MainForm: TMainForm
           Top = 16
           Width = 35
           Caption = 'Kit Typ:'
-          ParentColor = False
         end
         object cbAKitTyp: TComboBox
           Left = 94
@@ -908,7 +879,6 @@ object MainForm: TMainForm
           Top = 184
           Width = 61
           Caption = 'Socks Color:'
-          ParentColor = False
         end
         object lbAshoCol: TLabel
           Left = 14
@@ -916,7 +886,6 @@ object MainForm: TMainForm
           Top = 134
           Width = 57
           Caption = 'Short Color:'
-          ParentColor = False
         end
         object lbAShCol: TLabel
           Left = 14
@@ -924,7 +893,6 @@ object MainForm: TMainForm
           Top = 56
           Width = 59
           Caption = 'Shirt Colors:'
-          ParentColor = False
         end
       end
       object grTeamStats: TGroupBox
@@ -942,7 +910,6 @@ object MainForm: TMainForm
           Top = 8
           Width = 100
           Caption = 'Team Attribute Points'
-          ParentColor = False
         end
         object lbtmAttPtsb7: TLabel
           Left = 13
@@ -950,7 +917,6 @@ object MainForm: TMainForm
           Top = 32
           Width = 60
           Caption = 'lbtmAttPtsb7'
-          ParentColor = False
         end
       end
     end
@@ -977,7 +943,6 @@ object MainForm: TMainForm
           Top = 8
           Width = 69
           Caption = 'Team To Edit:'
-          ParentColor = False
           ParentFont = False
         end
         object CBSquad: TComboBox
@@ -1014,7 +979,6 @@ object MainForm: TMainForm
           Alignment = taCenter
           AutoSize = False
           Caption = 'LbSqCnt'
-          ParentColor = False
         end
         object UpDownPlaySq: TUpDown
           Left = 486
@@ -1035,7 +999,6 @@ object MainForm: TMainForm
           Alignment = taCenter
           AutoSize = False
           Caption = 'lbPlCntSq'
-          ParentColor = False
         end
       end
       object LBSquad: TListView
@@ -1064,11 +1027,11 @@ object MainForm: TMainForm
       end
       object grTactics: TGroupBox
         Left = 4
-        Height = 240
+        Height = 248
         Top = 440
         Width = 577
         Caption = 'Tactic'
-        ClientHeight = 221
+        ClientHeight = 229
         ClientWidth = 573
         TabOrder = 2
         object pbTac: TPaintBox
@@ -1079,9 +1042,9 @@ object MainForm: TMainForm
           OnPaint = pbTacPaint
         end
         object cbForm: TComboBox
-          Left = 343
+          Left = 344
           Height = 22
-          Top = 24
+          Top = 16
           Width = 216
           ItemHeight = 14
           OnChange = cbFormChange
@@ -1090,63 +1053,56 @@ object MainForm: TMainForm
         object lbForm: TLabel
           Left = 343
           Height = 14
-          Top = 8
+          Top = 0
           Width = 50
           Caption = 'Formation:'
-          ParentColor = False
         end
         object lbReserve: TLabel
           Left = 343
           Height = 14
-          Top = 48
+          Top = 40
           Width = 41
           Caption = 'Reserve'
-          ParentColor = False
         end
         object Reserve1: TLabel
           Left = 343
           Height = 14
-          Top = 72
+          Top = 56
           Width = 47
           Caption = 'Reserve1'
-          ParentColor = False
         end
         object Reserve2: TLabel
           Left = 344
           Height = 14
-          Top = 88
+          Top = 72
           Width = 47
           Caption = 'Reserve2'
-          ParentColor = False
         end
         object Reserve3: TLabel
           Left = 343
           Height = 14
-          Top = 104
+          Top = 88
           Width = 47
           Caption = 'Reserve3'
-          ParentColor = False
         end
         object Reserve4: TLabel
           Left = 343
           Height = 14
-          Top = 120
+          Top = 104
           Width = 47
           Caption = 'Reserve4'
-          ParentColor = False
         end
         object Reserve5: TLabel
           Left = 343
           Height = 14
-          Top = 136
+          Top = 120
           Width = 47
           Caption = 'Reserve5'
-          ParentColor = False
         end
         object btOrgPriceAll: TButton
           Left = 344
           Height = 16
-          Top = 168
+          Top = 152
           Width = 216
           Caption = 'Compute Original Price for All Players'
           OnClick = btOrgPriceAllClick
@@ -1155,7 +1111,7 @@ object MainForm: TMainForm
         object btNumber: TButton
           Left = 344
           Height = 16
-          Top = 152
+          Top = 136
           Width = 216
           Caption = 'Sort Player Numbers by Position'
           OnClick = btNumberClick
@@ -1164,20 +1120,29 @@ object MainForm: TMainForm
         object btCompAttributtebyVal: TButton
           Left = 344
           Height = 16
-          Top = 184
+          Top = 168
           Width = 216
           Caption = 'Compute Attributtes for All Players'
           OnClick = btCompAttributtebyValClick
           TabOrder = 3
         end
         object btCompAttributtebyVal1: TButton
-          Left = 343
+          Left = 344
           Height = 16
-          Top = 200
+          Top = 184
           Width = 216
           Caption = 'Change Attributtes to 7 for All Players'
           OnClick = btCompAttributtebyVal1Click
           TabOrder = 4
+        end
+        object btRandTeamSum: TButton
+          Left = 343
+          Height = 16
+          Top = 208
+          Width = 216
+          Caption = 'Generate Random Team'
+          OnClick = btRandTeamSumClick
+          TabOrder = 5
         end
       end
       object lbSquadInf: TLabel
@@ -1186,7 +1151,6 @@ object MainForm: TMainForm
         Top = 87
         Width = 34
         Caption = 'Squad:'
-        ParentColor = False
       end
     end
     object tbPlayer: TTabSheet
@@ -1213,7 +1177,6 @@ object MainForm: TMainForm
           Top = 8
           Width = 73
           Caption = 'Player To Edit:'
-          ParentColor = False
           ParentFont = False
         end
         object CBPlayer: TComboBox
@@ -1243,7 +1206,6 @@ object MainForm: TMainForm
           Top = 8
           Width = 38
           Caption = 'LbFind1'
-          ParentColor = False
           OnClick = LbFind1Click
           OnMouseEnter = LbFind1MouseEnter
           OnMouseLeave = LbFind1MouseLeave
@@ -1254,7 +1216,6 @@ object MainForm: TMainForm
           Top = 32
           Width = 38
           Caption = 'LbFind2'
-          ParentColor = False
           OnClick = LbFind2Click
           OnMouseEnter = LbFind2MouseEnter
           OnMouseLeave = LbFind2MouseLeave
@@ -1267,7 +1228,6 @@ object MainForm: TMainForm
           Alignment = taCenter
           AutoSize = False
           Caption = 'lbPlCnt'
-          ParentColor = False
         end
       end
       object grPlayGen: TGroupBox
@@ -1286,7 +1246,6 @@ object MainForm: TMainForm
           Top = 16
           Width = 63
           Caption = 'Player Name:'
-          ParentColor = False
         end
         object Epname: TEdit
           Left = 302
@@ -1306,7 +1265,6 @@ object MainForm: TMainForm
           Top = 48
           Width = 73
           Caption = 'Player Number:'
-          ParentColor = False
         end
         object Enumb: TEdit
           Left = 302
@@ -1332,7 +1290,6 @@ object MainForm: TMainForm
           Top = 80
           Width = 94
           Caption = 'Skin and Hair Color:'
-          ParentColor = False
         end
         object cbpNation: TComboBox
           Left = 302
@@ -1349,7 +1306,6 @@ object MainForm: TMainForm
           Top = 112
           Width = 52
           Caption = 'Nationality:'
-          ParentColor = False
         end
         object imSkin: TBGRASpeedButton
           Left = 270
@@ -1387,7 +1343,6 @@ object MainForm: TMainForm
           Top = 16
           Width = 40
           Caption = 'Position:'
-          ParentColor = False
         end
         object CBposit: TComboBox
           Left = 302
@@ -1719,7 +1674,6 @@ object MainForm: TMainForm
           Top = 336
           Width = 79
           Caption = 'Market Value (£)'
-          ParentColor = False
         end
         object CBValue: TComboBox
           Left = 326
@@ -1864,7 +1818,6 @@ object MainForm: TMainForm
               Top = 64
               Width = 36
               Caption = 'lbAttCH'
-              ParentColor = False
             end
             object pbAC2: TplProgressBar
               Left = 35
@@ -1915,7 +1868,6 @@ object MainForm: TMainForm
             Top = 8
             Width = 81
             Caption = 'Attributtes Code:'
-            ParentColor = False
           end
           object lbAttCode: TLabel
             Left = 246
@@ -1924,7 +1876,6 @@ object MainForm: TMainForm
             Width = 22
             Caption = 'FHS'
             Font.Style = [fsBold]
-            ParentColor = False
             ParentFont = False
           end
           object lbWAM: TLabel
@@ -1933,7 +1884,6 @@ object MainForm: TMainForm
             Top = 32
             Width = 56
             Caption = 'Predictions:'
-            ParentColor = False
           end
           object lbWAMcalc: TLabel
             Left = 246
@@ -1941,7 +1891,6 @@ object MainForm: TMainForm
             Top = 32
             Width = 54
             Caption = 'lbWAMcalc'
-            ParentColor = False
           end
           object Label2: TLabel
             Left = 14
@@ -1949,7 +1898,6 @@ object MainForm: TMainForm
             Top = 56
             Width = 114
             Caption = 'Player Attributes Points:'
-            ParentColor = False
           end
           object Label3: TLabel
             Left = 14
@@ -1957,7 +1905,6 @@ object MainForm: TMainForm
             Top = 80
             Width = 138
             Caption = 'Player Attributes Points by 7:'
-            ParentColor = False
           end
           object lbPAP: TLabel
             Left = 246
@@ -1965,7 +1912,6 @@ object MainForm: TMainForm
             Top = 56
             Width = 27
             Caption = 'lbPAP'
-            ParentColor = False
           end
           object lbPAPb7: TLabel
             Left = 246
@@ -1973,7 +1919,6 @@ object MainForm: TMainForm
             Top = 80
             Width = 39
             Caption = 'lbPAPb7'
-            ParentColor = False
           end
         end
         object btCompOrg: TButton
@@ -2671,6 +2616,34 @@ object MainForm: TMainForm
       Caption = 'APlayer'
       OnExecute = APlayerExecute
       ShortCut = 116
+    end
+  end
+  object PM_RandomTeam: TPopupMenu
+    Left = 248
+    Top = 8
+    object MPVWeak: TMenuItem
+      Caption = 'Very Weak'
+      OnClick = MPVWeakClick
+    end
+    object MPWeak: TMenuItem
+      Caption = 'Weak'
+      OnClick = MPWeakClick
+    end
+    object MPMed: TMenuItem
+      Caption = 'Medium'
+      OnClick = MPMedClick
+    end
+    object MPGood: TMenuItem
+      Caption = 'Good'
+      OnClick = MPGoodClick
+    end
+    object MPVgood: TMenuItem
+      Caption = 'Very Good'
+      OnClick = MPVgoodClick
+    end
+    object MPStar: TMenuItem
+      Caption = 'Star'
+      OnClick = MPStarClick
     end
   end
 end
