@@ -1,7 +1,7 @@
 object AboutFrm: TAboutFrm
-  Left = 389
+  Left = 387
   Height = 247
-  Top = 232
+  Top = 227
   Width = 544
   BorderStyle = bsDialog
   Caption = 'About'
@@ -9,7 +9,7 @@ object AboutFrm: TAboutFrm
   ClientWidth = 544
   OnActivate = FormActivate
   OnCreate = FormCreate
-  LCLVersion = '7.0'
+  LCLVersion = '7.5'
   object Image1: TImage
     Left = 8
     Height = 184
@@ -2144,7 +2144,6 @@ object AboutFrm: TAboutFrm
     Caption = 'lbAbPrgName'
     Font.Height = -27
     Font.Style = [fsBold]
-    ParentColor = False
     ParentFont = False
   end
   object lbAbPrgVer: TLabel
@@ -2155,7 +2154,6 @@ object AboutFrm: TAboutFrm
     Alignment = taCenter
     AutoSize = False
     Caption = 'lbAbPrgVer'
-    ParentColor = False
   end
   object btAbCheck: TButton
     Left = 222
@@ -2174,7 +2172,6 @@ object AboutFrm: TAboutFrm
     Alignment = taCenter
     AutoSize = False
     Caption = 'lbAbCod'
-    ParentColor = False
   end
   object lbAbSup: TLabel
     Left = 222
@@ -2184,7 +2181,6 @@ object AboutFrm: TAboutFrm
     Alignment = taCenter
     AutoSize = False
     Caption = 'lbAbSup'
-    ParentColor = False
   end
   object lbAbCopy: TLabel
     Left = 8
@@ -2194,7 +2190,6 @@ object AboutFrm: TAboutFrm
     Alignment = taCenter
     AutoSize = False
     Caption = 'lbAbCopy'
-    ParentColor = False
   end
   object lbabbug: TLabel
     Left = 8
@@ -2204,6 +2199,5 @@ object AboutFrm: TAboutFrm
     Alignment = taCenter
     AutoSize = False
     Caption = 'lbabbug'
-    ParentColor = False
   end
 end

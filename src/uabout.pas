@@ -55,7 +55,7 @@ begin
   lbAbSup.Caption := 'Thanks for Support: Bliszka, Tom+ (www.swos.pl)';
   lbAbBug.Caption := Format(rsPleaseReport, ['https://github.com/anoxic83/AG_SWSEdt']);
   lbAbCopy.Caption :=
-    '© 2013-19 Anoxic . All rights reserved. Upper Silesia. Poland';
+    '© 2013-21 Anoxic . All rights reserved. Upper Silesia. Poland. License: GPL3';
   if (eoAutoUpdate in EdtSett.EditOptions) then
   begin
     UpdNow := True;

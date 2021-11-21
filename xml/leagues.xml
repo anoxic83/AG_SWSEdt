@@ -2,13 +2,13 @@
 <root>
 	<config>
 		<Version>
-		2.4.91
+		2.5.1
 		</Version>
 		<SWOS2020Size>
-		2956800
+		3101184
 		</SWOS2020Size>
 		<SWOS2020Diff>
-		-408378
+		-541498
 		</SWOS2020Diff>
 	</config>
 	<SWSData>

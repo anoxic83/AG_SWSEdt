@@ -25,8 +25,9 @@
       <UseVersionInfo Value="True"/>
       <MajorVersionNr Value="2"/>
       <MinorVersionNr Value="5"/>
-      <BuildNr Value="38"/>
-      <StringTable Comments="https://github.com/anoxic83/AG_SWSEdt" InternalName="AG_SWSEDT" LegalCopyright="(c) 2013-21 Anoxic. GNU3 General Public License." OriginalFilename="AG_SWSEDT" ProductName="AG_SWSEDT" ProductVersion="2.5.0.38"/>
+      <RevisionNr Value="1"/>
+      <BuildNr Value="1"/>
+      <StringTable Comments="https://github.com/anoxic83/AG_SWSEdt" InternalName="AG_SWSEDT" LegalCopyright="(c) 2013-21 Anoxic. GNU3 General Public License." OriginalFilename="AG_SWSEDT" ProductName="AG_SWSEDT" ProductVersion="2.5.1.1"/>
     </VersionInfo>
     <BuildModes Count="4">
       <Item1 Name="Debug" Default="True"/>

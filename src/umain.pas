@@ -4,7 +4,7 @@ unit umain;
 
 { AG_SWSEDT - umain.pas  - Main Editor Source
 
-  Copyright (C) 2013-17 Anoxic // Atomic Group Software
+  Copyright (C) 2013-21 Anoxic
 
   This source is free software; you can redistribute it and/or modify it under the terms of the GNU General Public
   License as published by the Free Software Foundation; either version 2 of the License, or (at your option) any later
@@ -32,7 +32,7 @@ uses
   uabout {$IFDEF DEBUG}, heaptrc{$ENDIF};
 
 const
-  SWSEdtVer = $0002000500000026;
+  SWSEdtVer = $0002000500010001;
 
 type
 
@@ -1788,7 +1788,7 @@ end;
 
 procedure TMainForm.MPWeakClick(Sender: TObject);
 begin
-  RandomTeam(SWSDB.SWSFiles[SWSDB.FileIndex].TeamIndex, 160);
+  RandomTeam(SWSDB.SWSFiles[SWSDB.FileIndex].TeamIndex, 180);
   RefSquad;
 end;
 
@@ -3088,7 +3088,9 @@ begin
   SumFE:= Round(SumAttr*0.75);
   SumRes:= Round(SumAttr * 0.25);
 
-  pr := Random(Round(SumAttr * 0.2));
+  pr := Random(Round(SumAttr * 0.3));
+  if (pr < 30) then pr:= 30;
+  if (pr > 100) then pr:= 100;
   SumAdd := Random(pr);
   SumAdd := SumAdd - ((pr - 1) div 2);
   SumFE:= SumFE + SumAdd;

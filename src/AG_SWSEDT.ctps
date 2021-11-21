@@ -24,8 +24,8 @@
         <IsVisibleTab Value="True"/>
         <EditorIndex Value="0"/>
         <WindowIndex Value="0"/>
-        <TopLine Value="26"/>
-        <CursorPos X="32" Y="35"/>
+        <TopLine Value="21"/>
+        <CursorPos X="31" Y="35"/>
         <UsageCount Value="200"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
@@ -35,8 +35,7 @@
         <IsPartOfProject Value="True"/>
         <EditorIndex Value="1"/>
         <WindowIndex Value="0"/>
-        <TopLine Value="266"/>
-        <CursorPos X="35" Y="3972"/>
+        <CursorPos X="32" Y="7"/>
         <UsageCount Value="200"/>
         <Loaded Value="True"/>
       </Unit2>
@@ -126,8 +125,8 @@
         <ResourceBaseClass Value="Form"/>
         <EditorIndex Value="4"/>
         <WindowIndex Value="0"/>
-        <TopLine Value="115"/>
-        <CursorPos X="15" Y="121"/>
+        <TopLine Value="38"/>
+        <CursorPos X="82" Y="58"/>
         <UsageCount Value="209"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
@@ -571,7 +570,7 @@
         <UsageCount Value="10"/>
       </Unit59>
     </Units>
-    <JumpHistory Count="29" HistoryIndex="28">
+    <JumpHistory Count="30" HistoryIndex="29">
       <Position1>
         <Filename Value="uagswos.pas"/>
         <Caret Line="466" Column="70" TopLine="437"/>
@@ -688,6 +687,10 @@
         <Filename Value="umain.pas"/>
         <Caret Line="505" Column="18" TopLine="477"/>
       </Position29>
+      <Position30>
+        <Filename Value="umain.pas"/>
+        <Caret Line="557" Column="20" TopLine="537"/>
+      </Position30>
     </JumpHistory>
     <RunParams>
       <FormatVersion Value="2"/>
