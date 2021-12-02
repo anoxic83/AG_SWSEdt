@@ -4,11 +4,14 @@
 		<Version>
 		2.5.1
 		</Version>
+		<SWOS2020VersionCompatibility>
+			3.0.8
+		</SWOS2020VersionCompatibility>
 		<SWOS2020Size>
-		3101184
+		3107840
 		</SWOS2020Size>
 		<SWOS2020Diff>
-		-541498
+		-547130
 		</SWOS2020Diff>
 	</config>
 	<SWSData>
