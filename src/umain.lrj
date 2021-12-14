@@ -158,6 +158,7 @@
 {"hash":80398196,"name":"tmainform.mxmlexp.caption","sourcebytes":[88,77,76,32,69,120,112,111,114,116],"value":"XML Export"},
 {"hash":120126659,"name":"tmainform.mxmlpl.caption","sourcebytes":[80,108,97,121,101,114,115],"value":"Players"},
 {"hash":5945411,"name":"tmainform.mxmlteam.caption","sourcebytes":[84,101,97,109,115],"value":"Teams"},
+{"hash":7032275,"name":"tmainform.mshowallplay.caption","sourcebytes":[83,104,111,119,32,65,108,108,32,80,108,97,121,101,114,115],"value":"Show All Players"},
 {"hash":94079128,"name":"tmainform.msearch.caption","sourcebytes":[83,101,97,114,99,104],"value":"Search"},
 {"hash":206781749,"name":"tmainform.mftbyname.caption","sourcebytes":[70,105,110,100,32,84,101,97,109,32,98,121,32,78,97,109,101],"value":"Find Team by Name"},
 {"hash":104916837,"name":"tmainform.mfpbyname.caption","sourcebytes":[70,105,110,100,32,80,108,97,121,101,114,32,98,121,32,78,97,109,101],"value":"Find Player by Name"},

@@ -28,11 +28,12 @@ uses
   uagswos, LResources, ExtCtrls, ComCtrls, utextstr, laz2_DOM, laz2_XMLWrite,
   AdvLed, BGRABitmap, TplProgressBarUnit, BGRAImageList, dynlibs, actnlist,
   BGRASpeedButton, LCLType, LCLIntf, StdCtrls, ColorBox, PopupNotifier, Buttons,
-  usettings, uslpload, uclipfrm, ulgstufrm, upoolplyr, ueccfrm,
+  usettings, uslpload, uclipfrm, ulgstufrm, upoolplyr, ueccfrm, uplayershow,
   uabout {$IFDEF DEBUG}, heaptrc{$ENDIF};
 
 const
-  SWSEdtVer = $0002000500010001;
+  SWSEdtVer = $0002000500020011;
+  SWSStrVer = 'v2.5.2a';
 
 type
 
@@ -202,6 +203,8 @@ type
     MDirtyRep: TMenuItem;
     MCOPAll: TMenuItem;
     MCheckTC96: TMenuItem;
+    MShowAllPlay: TMenuItem;
+    N1: TMenuItem;
     MPWeak: TMenuItem;
     MPMed: TMenuItem;
     MPGood: TMenuItem;
@@ -511,6 +514,7 @@ type
     procedure MRemoveTeamClick(Sender: TObject);
     procedure MReplaceCSVClick(Sender: TObject);
     procedure MSettingsClick(Sender: TObject);
+    procedure MShowAllPlayClick(Sender: TObject);
     procedure MShowPoolClick(Sender: TObject);
     procedure MShowRandomClick(Sender: TObject);
     procedure MShSquadClick(Sender: TObject);
@@ -1992,6 +1996,11 @@ begin
     LoadOver;
   end;
   PCtrl.ActivePage := tbOver;
+end;
+
+procedure TMainForm.MShowAllPlayClick(Sender: TObject);
+begin
+  PlayerShowFrm.ShowModal();
 end;
 
 procedure TMainForm.MShowPoolClick(Sender: TObject);

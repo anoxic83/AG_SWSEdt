@@ -19,7 +19,7 @@ object MainForm: TMainForm
   OnDestroy = FormDestroy
   OnDropFiles = FormDropFiles
   OnPaint = FormPaint
-  LCLVersion = '7.5'
+  LCLVersion = '7.6'
   object PCtrl: TPageControl
     Left = 0
     Height = 713
@@ -2113,6 +2113,13 @@ object MainForm: TMainForm
           Caption = 'Teams'
           OnClick = MXMLteamClick
         end
+      end
+      object N1: TMenuItem
+        Caption = '-'
+      end
+      object MShowAllPlay: TMenuItem
+        Caption = 'Show All Players'
+        OnClick = MShowAllPlayClick
       end
     end
     object MSearch: TMenuItem

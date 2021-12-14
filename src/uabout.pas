@@ -6,7 +6,7 @@ interface
 
 uses
   Classes, SysUtils, FileUtil, Forms, Controls, Graphics, Dialogs, ExtCtrls,
-  StdCtrls, utextstr, LCLIntf, IniFiles, uagswos, strutils, httpsend;
+  StdCtrls, utextstr, LCLIntf, fpjson, jsonparser, uagswos, strutils, httpsend, ssl_openssl;
 
 type
 
@@ -95,7 +95,6 @@ end;
 
 procedure TAboutFrm.FormCreate(Sender: TObject);
 begin
-  UpdNow := True;
 end;
 
 function TAboutFrm.GetStrVersion(WithBuild: boolean): string;
@@ -114,21 +113,26 @@ end;
 
 function TAboutFrm.CheckForUpd: boolean;
 var
-  Ini: TIniFile;
-  StrV: string;
-  IntV: QWord;
+  StrV, StrVV: string;
+
+  IntV: Integer;
+  js : TJSONData;
+  jobjl: TJSONObject;
 begin
-  Exit(false);
   Result := False;
   VerHTTP := THTTPSend.Create;
+  VerHTTP.Sock.CreateWithSSL(TSSLOpenSSL);
+  VerHTTP.Sock.SSLDoConnect();
   with VerHTTP do
   begin
-    if HTTPMethod('GET', 'http://atomicgroup.tk/down/swsedt2/swsver.ini') then
+    if HTTPMethod('GET', 'https://api.github.com/repos/anoxic83/AG_SWSEdt/releases/latest') then
     begin
-      ini := TIniFile.Create(Document);
-      StrV := ini.ReadString('ver', 'Ver', IntToHex(umain.SWSEdtVer, 16));
-      IntV := StrToInt64('$' + StrV);
-      if IntV > QWord(umain.SWSEdtVer) then
+      js := GetJSON(Document);
+      jobjl := js as TJSONObject;
+      StrV := jobjl.Get('name');
+      IntV := Pos('v', StrV);
+      StrVV:= Copy(StrV, IntV, Length(StrV)-IntV+1);
+      if (SWSStrVer <> StrVV) then
         Result := True
       else
         Result := False;
@@ -139,6 +143,7 @@ begin
       Result := False;
     end;
   end;
+  VerHTTP.Sock.SSLDoShutdown();
   VerHTTP.Free;
 end;
 

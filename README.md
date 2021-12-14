@@ -77,6 +77,11 @@ To compilation download [CodeTyphon](https://www.pilotlogic.com/sitejoom/index.p
 CodeTyphon is the Next Generation "Pascal Visual Programming Studio".
 
 ### Change Log
+**ver 2.5.2a**
+- Add feature Show All Players (Menu->Global) [Working for loading all data]
+- Fix auto-update checking to github.com
+- Update to SWOS 2020 v3.0.15
+
 **ver 2.5.1a**
 - Fix Generate team player (more randomization).
 - Update to SWOS 2020 v3.0.0

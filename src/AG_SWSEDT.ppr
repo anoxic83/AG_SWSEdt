@@ -25,7 +25,7 @@ uses {$IFDEF UNIX} {$IFDEF UseCThreads}
   uslpload,
   uclipfrm,
   ulgstufrm,
-  uabout, ueccfrm;
+  uabout, ueccfrm, uplayershow;
 
 {$R *.res}
 
@@ -57,5 +57,6 @@ begin
   Application.CreateForm(TLgeStrForm, LgeStrForm);
   Application.CreateForm(TPoolForm, PoolForm);
   Application.CreateForm(TECCFrm, ECCFrm);
+  Application.CreateForm(TPlayerShowFrm, PlayerShowFrm);
   Application.Run;
 end.

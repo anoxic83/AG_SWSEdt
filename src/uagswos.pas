@@ -687,6 +687,8 @@ type
     FLeaguesVer: string;
     FSWS2020Dif: DWORD;
     FSWS2020Size: DWORD;
+    FSWS2020Ver: string;
+    FLeagueFileVer: string;
     FLeaguesFile: TXMLDocument;
     FFileIndex: integer;
     FLoadAll: boolean;
@@ -1658,6 +1660,8 @@ begin
     FSWS2020Dif:= StrToInt(Trim(ETmp.TextContent));
     Etmp := XMTmp.FindNode('SWOS2020Size');
     FSWS2020Size:= StrToInt(Trim(ETmp.TextContent));
+    Etmp := XMTmp.FindNode('SWOS2020VersionCompatibility');
+    FSWS2020Ver:= Etmp.TextContent;
   finally
     XMTmp.Free;
   end;

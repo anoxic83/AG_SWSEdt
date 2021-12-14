@@ -1,7 +1,7 @@
 object SplashLoad: TSplashLoad
-  Left = 612
+  Left = 616
   Height = 96
-  Top = 335
+  Top = 327
   Width = 294
   BorderIcons = []
   Caption = 'SWSEDT'
@@ -9,7 +9,7 @@ object SplashLoad: TSplashLoad
   ClientWidth = 294
   FormStyle = fsStayOnTop
   Position = poMainFormCenter
-  LCLVersion = '6.0'
+  LCLVersion = '7.6'
   object lbLoading: TLabel
     Left = 0
     Height = 15
@@ -18,7 +18,6 @@ object SplashLoad: TSplashLoad
     Alignment = taCenter
     AutoSize = False
     Caption = 'Loading...'
-    ParentColor = False
   end
   object lbLoadData: TLabel
     Left = 0
@@ -28,7 +27,6 @@ object SplashLoad: TSplashLoad
     Alignment = taCenter
     AutoSize = False
     Caption = 'lbLoadData'
-    ParentColor = False
   end
   object pbload: TProgressBar
     Left = 8

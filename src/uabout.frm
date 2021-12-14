@@ -9,7 +9,7 @@ object AboutFrm: TAboutFrm
   ClientWidth = 544
   OnActivate = FormActivate
   OnCreate = FormCreate
-  LCLVersion = '7.5'
+  LCLVersion = '7.6'
   object Image1: TImage
     Left = 8
     Height = 184
