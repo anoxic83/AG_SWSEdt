@@ -186,7 +186,8 @@ resourcestring
   rsMustBeOnTeam = 'Must be minimum one team in Clipboard';
   rsChangedDivCo = 'Divisions Count Changed. This value cannot be write to orginal SWOS.exe file';
   rsSelectCustom96 = 'Will select own custom 96/97 data folder to compare? If No, editor use data from Leagues.xml.';
-
+  rsCustomRandomCap = 'Enter custom value';
+  rsCustomRandomText = 'Enter custom value (0-686) for team, this value must be randomize by generator';
 
 function CheckisDir(Path: string): string;
 function getlanguagename(langcode:string):string;

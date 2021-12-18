@@ -25,9 +25,9 @@ object MainForm: TMainForm
     Height = 713
     Top = 0
     Width = 597
-    ActivePage = tbGeneral
+    ActivePage = tbOver
     Align = alClient
-    TabIndex = 1
+    TabIndex = 0
     TabOrder = 0
     OnChange = PCtrlChange
     OnChanging = PCtrlChanging
@@ -2651,6 +2651,13 @@ object MainForm: TMainForm
     object MPStar: TMenuItem
       Caption = 'Star'
       OnClick = MPStarClick
+    end
+    object N2: TMenuItem
+      Caption = '-'
+    end
+    object MPCustom: TMenuItem
+      Caption = 'Custom'
+      OnClick = MPCustomClick
     end
   end
 end

@@ -32,8 +32,8 @@ uses
   uabout {$IFDEF DEBUG}, heaptrc{$ENDIF};
 
 const
-  SWSEdtVer = $0002000500020011;
-  SWSStrVer = 'v2.5.2a';
+  SWSEdtVer = $0002000500030005;
+  SWSStrVer = 'v2.5.3a';
 
 type
 
@@ -203,6 +203,8 @@ type
     MDirtyRep: TMenuItem;
     MCOPAll: TMenuItem;
     MCheckTC96: TMenuItem;
+    MPCustom: TMenuItem;
+    N2: TMenuItem;
     MShowAllPlay: TMenuItem;
     N1: TMenuItem;
     MPWeak: TMenuItem;
@@ -495,6 +497,7 @@ type
     procedure MpaTeamClick(Sender: TObject);
     procedure MPAttackerClick(Sender: TObject);
     procedure MPcomplClick(Sender: TObject);
+    procedure MPCustomClick(Sender: TObject);
     procedure MPDefClick(Sender: TObject);
     procedure MPDMClick(Sender: TObject);
     procedure MPGoodClick(Sender: TObject);
@@ -1056,8 +1059,9 @@ procedure TMainForm.LBTeamsCustomDrawItem(Sender: TCustomListView;
 var
   idx: integer;
 begin
-  if (Item.Data <> nil) then
-     idx := PtrUInt(Item.Data);
+  idx := PtrUInt(Item.Data);
+  if ((idx<0)or(idx>SWSDB.SWSFiles[SWSDB.FileIndex].TeamCount-1)) then
+     Exit;
   if EdtSett.UseColors then BEGIN
      case (SWSDB.SWSFiles[SWSDB.FileIndex].Team[idx].Division) of
        0: sender.Canvas.Brush.Color:=$B0FFFF;
@@ -1710,6 +1714,22 @@ begin
   PDX := SWSDB.SWSFiles[SWSDb.FileIndex].Team[TDX].PlayerIndex;
   SWSDB.SWSFiles[SWSDb.FileIndex].Team[TDX].Player[PDX].GenerateAttrbyValue;
   RefPlayer;
+end;
+
+procedure TMainForm.MPCustomClick(Sender: TObject);
+var
+  CusVal: Integer;
+  CusValStr: String;
+
+begin
+  CusVal:=0;
+  CusValStr:='300';
+  if (InputQuery(rsCustomRandomCap, rsCustomRandomText, CusValStr)) then
+     if TryStrToInt(CusValStr, CusVal) then begin
+       RandomTeam(SWSDB.SWSFiles[SWSDB.FileIndex].TeamIndex, CusVal);
+       RefSquad;
+     end else
+       ShowMessage(rsThisValueMus);
 end;
 
 procedure TMainForm.MPDefClick(Sender: TObject);
