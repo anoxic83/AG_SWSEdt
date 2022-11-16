@@ -77,6 +77,10 @@ To compilation download [CodeTyphon](https://www.pilotlogic.com/sitejoom/index.p
 CodeTyphon is the Next Generation "Pascal Visual Programming Studio".
 
 ### Change Log
+**ver 2.5.4a**
+- Add check and highlight duplicate ordinal number of team in file
+- Fix some errors
+
 **ver 2.5.3a**
 - Add custom value for generate random Team
 - Fix some errors

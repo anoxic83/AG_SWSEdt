@@ -601,6 +601,7 @@ type
 
 
   TSWSTeams = specialize TFPGObjectList<TSWSTeam>;
+  TIntList = specialize TFPGList<Integer>;
 
   { TSWSFile }
 
@@ -612,6 +613,7 @@ type
     FLeagueName: string;
     FOrgTeamCount: Integer;
     FOrgTeamsByDiv: TSWSTeamsLge;
+    FRNC: Boolean;
     FTeams: TSWSTeams;
     FEngine: TSWSEngine;
     FTeamIndex: integer;
@@ -623,9 +625,11 @@ type
     FonLoadFile: TOnLoadFile;
     FonSaveFile: TonSaveFile;
     FLeague: TSWSLeague;
+    FDuplicateNumbers: TIntList;
     function LoadFile: boolean;
     procedure SetOrgTeamCount(AValue: Integer);
     procedure SetOrgTeamsByDiv(AValue: TSWSTeamsLge);
+    procedure SetRNC(AValue: Boolean);
     procedure SetTeamIndex(AValue: integer);
     function WriteFile(AFN: string): boolean;
   public
@@ -650,6 +654,7 @@ type
     property FileName: string read FFileName write FFileName;
     property FileNumber: byte read FFileNumber write FFileNumber;
     function TeamCount: integer;
+    procedure GetDuplicateNumbers;
     property Team: TSWSTeams read FTeams write FTeams;
     property Engine: TSWSEngine read FEngine write FEngine;
     property FileEngineID: integer read FFileEngineID write FFileEngineID;
@@ -663,6 +668,8 @@ type
     property onLoadFile: TOnLoadFile read FonLoadFile write FonLoadFile;
     property onSaveFile: TOnSaveFile read FonSaveFile write FonSaveFile;
     property Pool: integer read Fpool write Fpool;
+    property RNC: Boolean read FRNC write SetRNC;
+    property DuplicateNumbers: TIntList read FDuplicateNumbers write FDuplicateNumbers;
   end;
 
   TSWSFiles = specialize TFPGObjectList<TSWSFile>;
@@ -3244,6 +3251,7 @@ begin
   Fchanged := True;
 end;
 
+
 procedure TSWSTeam.SetSws_gen_nr(AValue: word);
 begin
   if FSws_gen_nr = AValue then
@@ -3796,6 +3804,19 @@ begin
   Fchanged := False;
 end;
 
+procedure TSWSFile.GetDuplicateNumbers;
+var
+   i, j : Integer;
+begin
+  FDuplicateNumbers.Clear;
+  for i := 0 to TeamCount-1 do
+      for j := i+1 to TeamCount-1 do
+          if FTeams[i].TeamNum = FTeams[j].TeamNum then begin
+             FDuplicateNumbers.Add(i);
+             FDuplicateNumbers.Add(j);
+          end;
+end;
+
 procedure TSWSFile.SetOrgTeamCount(AValue: Integer);
 begin
   if FOrgTeamCount=AValue then Exit;
@@ -3806,6 +3827,12 @@ procedure TSWSFile.SetOrgTeamsByDiv(AValue: TSWSTeamsLge);
 begin
   if FOrgTeamsByDiv = AValue then Exit;
   FOrgTeamsByDiv := AValue;
+end;
+
+procedure TSWSFile.SetRNC(AValue: Boolean);
+begin
+  if FRNC=AValue then Exit;
+  FRNC:=AValue;
 end;
 
 procedure TSWSFile.SetTeamIndex(AValue: integer);
@@ -3857,6 +3884,7 @@ begin
   FLeague := TSWSLeague.Create;
   FTeams:= TSWSTeams.Create();
   FOrgTeamsByDiv:= TSWSTeamsLge.Create();
+  FDuplicateNumbers := TIntList.Create();
   inherited Create(AOwner);
 end;
 
@@ -3866,6 +3894,7 @@ begin
   FLeague := TSWSLeague.Create;
   FTeams:= TSWSTeams.Create();
   FOrgTeamsByDiv:= TSWSTeamsLge.Create();
+  FDuplicateNumbers := TIntList.Create();
   inherited Create(AOwner);
 end;
 
@@ -3874,6 +3903,7 @@ begin
   FLeague.Free;
   FTeams.Free;
   FOrgTeamsByDiv.Free;
+  FDuplicateNumbers.Free;
   inherited Destroy;
 end;
 

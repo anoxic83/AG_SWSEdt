@@ -131,6 +131,7 @@
 {"hash":113263436,"name":"tmainform.mopenall.caption","sourcebytes":[79,112,101,110,32,65,108,108],"value":"Open All"},
 {"hash":117242260,"name":"tmainform.mreload.caption","sourcebytes":[82,101,108,111,97,100,32,67,117,114,114,101,110,116],"value":"Reload Current"},
 {"hash":72953156,"name":"tmainform.mwritecur.caption","sourcebytes":[87,114,105,116,101,32,67,117,114,114,101,110,116],"value":"Write Current"},
+{"hash":34704974,"name":"tmainform.mwritecuras.caption","sourcebytes":[87,114,105,116,101,32,67,117,114,114,101,110,116,32,65,115,46,46,46],"value":"Write Current As..."},
 {"hash":10951356,"name":"tmainform.mwriteall.caption","sourcebytes":[87,114,105,116,101,32,65,108,108],"value":"Write All"},
 {"hash":91456284,"name":"tmainform.munloadall.caption","sourcebytes":[85,110,108,111,97,100,32,65,108,108],"value":"Unload All"},
 {"hash":4863637,"name":"tmainform.mclose.caption","sourcebytes":[67,108,111,115,101],"value":"Close"},

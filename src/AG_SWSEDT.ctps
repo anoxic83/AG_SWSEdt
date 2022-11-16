@@ -8,7 +8,7 @@
       <Unit0>
         <Filename Value="AG_SWSEDT.ppr"/>
         <IsPartOfProject Value="True"/>
-        <EditorIndex Value="11"/>
+        <EditorIndex Value="12"/>
         <WindowIndex Value="0"/>
         <TopLine Value="29"/>
         <CursorPos Y="62"/>
@@ -25,8 +25,8 @@
         <IsVisibleTab Value="True"/>
         <EditorIndex Value="0"/>
         <WindowIndex Value="0"/>
-        <TopLine Value="1054"/>
-        <CursorPos Y="1063"/>
+        <TopLine Value="21"/>
+        <CursorPos X="3" Y="36"/>
         <UsageCount Value="200"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
@@ -34,17 +34,17 @@
       <Unit2>
         <Filename Value="uagswos.pas"/>
         <IsPartOfProject Value="True"/>
-        <EditorIndex Value="2"/>
+        <EditorIndex Value="4"/>
         <WindowIndex Value="0"/>
-        <TopLine Value="1643"/>
-        <CursorPos X="35" Y="1664"/>
+        <TopLine Value="3805"/>
+        <CursorPos X="26" Y="3811"/>
         <UsageCount Value="200"/>
         <Loaded Value="True"/>
       </Unit2>
       <Unit3>
         <Filename Value="utextstr.pas"/>
         <IsPartOfProject Value="True"/>
-        <EditorIndex Value="3"/>
+        <EditorIndex Value="6"/>
         <WindowIndex Value="0"/>
         <TopLine Value="170"/>
         <CursorPos X="42" Y="190"/>
@@ -71,7 +71,7 @@
         <ComponentName Value="SplashLoad"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
-        <EditorIndex Value="1"/>
+        <EditorIndex Value="3"/>
         <WindowIndex Value="0"/>
         <TopLine Value="17"/>
         <CursorPos X="12" Y="31"/>
@@ -99,7 +99,7 @@
         <ComponentName Value="LgeStrForm"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
-        <EditorIndex Value="12"/>
+        <EditorIndex Value="13"/>
         <WindowIndex Value="0"/>
         <TopLine Value="134"/>
         <CursorPos X="111" Y="148"/>
@@ -113,7 +113,7 @@
         <ComponentName Value="PoolForm"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
-        <EditorIndex Value="9"/>
+        <EditorIndex Value="10"/>
         <WindowIndex Value="0"/>
         <CursorPos X="26" Y="76"/>
         <UsageCount Value="200"/>
@@ -126,10 +126,10 @@
         <ComponentName Value="AboutFrm"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
-        <EditorIndex Value="5"/>
+        <EditorIndex Value="8"/>
         <WindowIndex Value="0"/>
-        <TopLine Value="111"/>
-        <CursorPos Y="135"/>
+        <TopLine Value="112"/>
+        <CursorPos X="9" Y="116"/>
         <UsageCount Value="209"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
@@ -141,25 +141,25 @@
         <ComponentName Value="ECCFrm"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
-        <EditorIndex Value="4"/>
+        <EditorIndex Value="7"/>
         <WindowIndex Value="0"/>
         <TopLine Value="81"/>
         <CursorPos X="10" Y="108"/>
-        <UsageCount Value="147"/>
+        <UsageCount Value="151"/>
         <Loaded Value="True"/>
       </Unit10>
       <Unit11>
         <Filename Value="uplayershow.pas"/>
-        <FRMtype Value="0"/>
+        <FRMtype Value="200"/>
         <IsPartOfProject Value="True"/>
         <ComponentName Value="PlayerShowFrm"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
-        <EditorIndex Value="10"/>
+        <EditorIndex Value="11"/>
         <WindowIndex Value="0"/>
         <TopLine Value="85"/>
         <CursorPos X="65" Y="110"/>
-        <UsageCount Value="26"/>
+        <UsageCount Value="30"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
       </Unit11>
@@ -183,11 +183,12 @@
       </Unit13>
       <Unit14>
         <Filename Value="C:\codetyphon\fpcsrc\rtl\objpas\classes\classesh.inc"/>
-        <EditorIndex Value="-1"/>
+        <EditorIndex Value="5"/>
         <WindowIndex Value="0"/>
-        <TopLine Value="2063"/>
-        <CursorPos X="17" Y="2076"/>
-        <UsageCount Value="3"/>
+        <TopLine Value="2136"/>
+        <CursorPos X="17" Y="2150"/>
+        <UsageCount Value="11"/>
+        <Loaded Value="True"/>
       </Unit14>
       <Unit15>
         <Filename Value="C:\codetyphon\fpcsrc\rtl\inc\systemh.inc"/>
@@ -217,11 +218,12 @@
       </Unit17>
       <Unit18>
         <Filename Value="C:\codetyphon\typhon\lcl\include\customform.inc"/>
-        <EditorIndex Value="-1"/>
+        <EditorIndex Value="2"/>
         <WindowIndex Value="0"/>
-        <TopLine Value="1907"/>
-        <CursorPos Y="1921"/>
-        <UsageCount Value="3"/>
+        <TopLine Value="2293"/>
+        <CursorPos X="3" Y="2301"/>
+        <UsageCount Value="11"/>
+        <Loaded Value="True"/>
       </Unit18>
       <Unit19>
         <Filename Value="C:\codetyphon\fpcsrc\rtl\objpas\types.pp"/>
@@ -310,11 +312,12 @@
       <Unit29>
         <Filename Value="C:\codetyphon\typhon\lcl\forms.pp"/>
         <UnitName Value="Forms"/>
-        <EditorIndex Value="-1"/>
+        <EditorIndex Value="1"/>
         <WindowIndex Value="0"/>
-        <TopLine Value="864"/>
-        <CursorPos X="40" Y="889"/>
-        <UsageCount Value="10"/>
+        <TopLine Value="664"/>
+        <CursorPos X="15" Y="679"/>
+        <UsageCount Value="11"/>
+        <Loaded Value="True"/>
       </Unit29>
       <Unit30>
         <Filename Value="C:\codetyphon\fpcsrc\rtl\inc\objpash.inc"/>
@@ -590,21 +593,20 @@
       <Unit61>
         <Filename Value="C:\codetyphon\fpcsrc\packages\fcl-json\src\jsonreader.pp"/>
         <FRMtype Value="0"/>
-        <EditorIndex Value="8"/>
+        <EditorIndex Value="9"/>
         <WindowIndex Value="0"/>
         <TopLine Value="61"/>
-        <UsageCount Value="11"/>
+        <UsageCount Value="13"/>
         <Loaded Value="True"/>
       </Unit61>
       <Unit62>
         <Filename Value="C:\codetyphon\typhon\components\pl_Synapse\source\httpsend.pas"/>
         <FRMtype Value="0"/>
-        <EditorIndex Value="7"/>
+        <EditorIndex Value="-1"/>
         <WindowIndex Value="0"/>
         <TopLine Value="599"/>
         <CursorPos X="47" Y="258"/>
-        <UsageCount Value="10"/>
-        <Loaded Value="True"/>
+        <UsageCount Value="11"/>
       </Unit62>
       <Unit63>
         <Filename Value="C:\codetyphon\fpcsrc\packages\fcl-net\src\sslsockets.pp"/>
@@ -617,130 +619,133 @@
       <Unit64>
         <Filename Value="C:\codetyphon\typhon\components\pl_Synapse\source\ssl_openssl.pas"/>
         <FRMtype Value="0"/>
-        <EditorIndex Value="6"/>
+        <EditorIndex Value="-1"/>
         <WindowIndex Value="0"/>
         <TopLine Value="100"/>
-        <UsageCount Value="10"/>
-        <Loaded Value="True"/>
+        <UsageCount Value="11"/>
       </Unit64>
     </Units>
-    <JumpHistory Count="29" HistoryIndex="28">
+    <JumpHistory Count="30" HistoryIndex="29">
       <Position1>
         <Filename Value="umain.pas"/>
-        <Caret Line="36" Column="22" TopLine="13"/>
+        <Caret Line="692" TopLine="673"/>
       </Position1>
       <Position2>
         <Filename Value="umain.pas"/>
-        <Caret Line="1137" Column="3" TopLine="1132"/>
+        <Caret Line="873" Column="11" TopLine="855"/>
       </Position2>
       <Position3>
-        <Filename Value="umain.pas"/>
-        <Caret Line="1138" Column="3" TopLine="1133"/>
+        <Filename Value="C:\codetyphon\typhon\lcl\forms.pp"/>
+        <Caret Line="679" Column="15" TopLine="664"/>
       </Position3>
       <Position4>
         <Filename Value="umain.pas"/>
-        <Caret Line="1140" Column="3" TopLine="1135"/>
+        <Caret Line="873" Column="11" TopLine="855"/>
       </Position4>
       <Position5>
         <Filename Value="umain.pas"/>
-        <Caret Line="563" Column="15" TopLine="547"/>
+        <Caret Line="568" Column="15" TopLine="553"/>
       </Position5>
       <Position6>
         <Filename Value="umain.pas"/>
-        <Caret Line="3085" Column="3" TopLine="3080"/>
+        <Caret Line="567" Column="16" TopLine="560"/>
       </Position6>
       <Position7>
         <Filename Value="umain.pas"/>
-        <Caret Line="1785" Column="3" TopLine="1783"/>
+        <Caret Line="568" Column="23" TopLine="557"/>
       </Position7>
       <Position8>
         <Filename Value="umain.pas"/>
-        <Caret Line="1720" Column="3" TopLine="1718"/>
+        <Caret Line="2665" Column="32" TopLine="2653"/>
       </Position8>
       <Position9>
         <Filename Value="umain.pas"/>
-        <Caret Line="1791" Column="3" TopLine="1789"/>
+        <Caret Line="1097" Column="54" TopLine="1079"/>
       </Position9>
       <Position10>
-        <Filename Value="umain.pas"/>
-        <Caret Line="1731" Column="36" TopLine="1718"/>
+        <Filename Value="uagswos.pas"/>
+        <Caret Line="738" Column="14" TopLine="725"/>
       </Position10>
       <Position11>
-        <Filename Value="umain.pas"/>
-        <Caret Line="1726" Column="68" TopLine="1709"/>
+        <Filename Value="uagswos.pas"/>
+        <Caret Line="671" Column="3" TopLine="655"/>
       </Position11>
       <Position12>
-        <Filename Value="umain.pas"/>
-        <Caret Line="1032" TopLine="364"/>
+        <Filename Value="uagswos.pas"/>
+        <Caret Line="670" Column="30" TopLine="651"/>
       </Position12>
       <Position13>
-        <Filename Value="umain.pas"/>
-        <Caret Line="851" Column="7" TopLine="830"/>
+        <Filename Value="uagswos.pas"/>
+        <Caret Line="651" Column="21" TopLine="635"/>
       </Position13>
       <Position14>
-        <Filename Value="umain.pas"/>
-        <Caret Line="558" Column="15" TopLine="543"/>
+        <Filename Value="uagswos.pas"/>
+        <Caret Line="671" Column="51" TopLine="657"/>
       </Position14>
       <Position15>
-        <Filename Value="umain.pas"/>
-        <Caret Line="2627" TopLine="2613"/>
+        <Filename Value="uagswos.pas"/>
+        <Caret Line="672" Column="46" TopLine="658"/>
       </Position15>
       <Position16>
         <Filename Value="umain.pas"/>
-        <Caret Line="2628" TopLine="2613"/>
+        <Caret Line="1097" Column="54" TopLine="1079"/>
       </Position16>
       <Position17>
         <Filename Value="umain.pas"/>
-        <Caret Line="2614" TopLine="2608"/>
+        <Caret Line="1096" Column="43" TopLine="1075"/>
       </Position17>
       <Position18>
         <Filename Value="umain.pas"/>
-        <Caret Line="2616" TopLine="2608"/>
+        <Caret Line="1094" Column="76" TopLine="1081"/>
       </Position18>
       <Position19>
-        <Filename Value="umain.pas"/>
-        <Caret Line="2618" TopLine="2608"/>
+        <Filename Value="uagswos.pas"/>
+        <Caret Line="3811" Column="28" TopLine="3805"/>
       </Position19>
       <Position20>
         <Filename Value="umain.pas"/>
-        <Caret Line="2619" TopLine="2608"/>
+        <Caret Line="1094" TopLine="1079"/>
       </Position20>
       <Position21>
-        <Filename Value="umain.pas"/>
-        <Caret Line="2620" TopLine="2608"/>
+        <Filename Value="uagswos.pas"/>
+        <Caret Line="672" Column="14" TopLine="659"/>
       </Position21>
       <Position22>
-        <Filename Value="umain.pas"/>
-        <Caret Line="2621" TopLine="2608"/>
+        <Filename Value="uagswos.pas"/>
+        <Caret Line="629" Column="23" TopLine="615"/>
       </Position22>
       <Position23>
-        <Filename Value="umain.pas"/>
-        <Caret Line="2622" TopLine="2608"/>
+        <Filename Value="uagswos.pas"/>
+        <Caret Line="3817" Column="6" TopLine="3805"/>
       </Position23>
       <Position24>
-        <Filename Value="umain.pas"/>
-        <Caret Line="2623" TopLine="2608"/>
+        <Filename Value="uagswos.pas"/>
+        <Caret Line="637" Column="20" TopLine="620"/>
       </Position24>
       <Position25>
-        <Filename Value="umain.pas"/>
-        <Caret Line="2624" TopLine="2608"/>
+        <Filename Value="uagswos.pas"/>
+        <Caret Line="629" Column="24" TopLine="618"/>
       </Position25>
       <Position26>
         <Filename Value="umain.pas"/>
-        <Caret Line="2627" TopLine="2608"/>
+        <Caret Line="567" Column="21" TopLine="560"/>
       </Position26>
       <Position27>
         <Filename Value="umain.pas"/>
-        <Caret Line="1062" TopLine="1049"/>
+        <Caret Line="568" Column="20" TopLine="561"/>
       </Position27>
       <Position28>
-        <Filename Value="umain.pas"/>
-        <Caret Line="2627" TopLine="2612"/>
+        <Filename Value="uagswos.pas"/>
+        <Caret Line="657" Column="18" TopLine="642"/>
       </Position28>
       <Position29>
-        <Filename Value="umain.pas"/>
-        <Caret Line="1062" Column="3" TopLine="1055"/>
+        <Filename Value="uabout.pas"/>
+        <Caret Line="135" TopLine="121"/>
       </Position29>
+      <Position30>
+        <Filename Value="uabout.pas"/>
+        <Caret Line="116" Column="9" TopLine="112"/>
+      </Position30>
     </JumpHistory>
     <RunParams>
       <FormatVersion Value="2"/>

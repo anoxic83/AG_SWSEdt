@@ -18,16 +18,17 @@ object MainForm: TMainForm
   OnCreate = FormCreate
   OnDestroy = FormDestroy
   OnDropFiles = FormDropFiles
+  OnKeyDown = FormKeyDown
   OnPaint = FormPaint
-  LCLVersion = '7.6'
+  LCLVersion = '7.9'
   object PCtrl: TPageControl
     Left = 0
     Height = 713
     Top = 0
     Width = 597
-    ActivePage = tbOver
+    ActivePage = tbGeneral
     Align = alClient
-    TabIndex = 0
+    TabIndex = 1
     TabOrder = 0
     OnChange = PCtrlChange
     OnChanging = PCtrlChanging
@@ -446,8 +447,6 @@ object MainForm: TMainForm
         Top = 138
         Width = 24
         Kind = lkGreenLight
-        State = lsDisabled
-        Blink = False
         AutoSize = False
       end
       object lbVerSWS: TLabel
@@ -1967,11 +1966,18 @@ object MainForm: TMainForm
         ShortCut = 16466
         OnClick = MreloadClick
       end
+      object N3: TMenuItem
+        Caption = '-'
+      end
       object MWriteCur: TMenuItem
         Caption = 'Write Current'
         Enabled = False
         ShortCut = 16467
         OnClick = MWriteCurClick
+      end
+      object MWriteCurAs: TMenuItem
+        Caption = 'Write Current As...'
+        OnClick = MWriteCurAsClick
       end
       object MWriteAll: TMenuItem
         Caption = 'Write All'

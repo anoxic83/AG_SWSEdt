@@ -25,9 +25,9 @@
       <UseVersionInfo Value="True"/>
       <MajorVersionNr Value="2"/>
       <MinorVersionNr Value="5"/>
-      <RevisionNr Value="3"/>
-      <BuildNr Value="5"/>
-      <StringTable Comments="https://github.com/anoxic83/AG_SWSEdt" InternalName="AG_SWSEDT" LegalCopyright="(c) 2013-21 Anoxic. GNU3 General Public License." OriginalFilename="AG_SWSEDT" ProductName="AG_SWSEDT" ProductVersion="2.5.3.5"/>
+      <RevisionNr Value="4"/>
+      <BuildNr Value="7"/>
+      <StringTable Comments="https://github.com/anoxic83/AG_SWSEdt" InternalName="AG_SWSEDT" LegalCopyright="(c) 2013-21 Anoxic. GNU3 General Public License." OriginalFilename="AG_SWSEDT" ProductName="AG_SWSEDT" ProductVersion="2.5.4.7"/>
     </VersionInfo>
     <BuildModes Count="4">
       <Item1 Name="Debug" Default="True"/>
@@ -242,7 +242,7 @@
       </Unit10>
       <Unit11>
         <Filename Value="uplayershow.pas"/>
-        <FRMtype Value="0"/>
+        <FRMtype Value="200"/>
         <IsPartOfProject Value="True"/>
         <ComponentName Value="PlayerShowFrm"/>
         <HasResources Value="True"/>

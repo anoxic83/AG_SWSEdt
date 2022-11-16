@@ -32,8 +32,11 @@ uses
   uabout {$IFDEF DEBUG}, heaptrc{$ENDIF};
 
 const
-  SWSEdtVer = $0002000500030005;
-  SWSStrVer = 'v2.5.3a';
+  SWSEdtVer = $0002000500040007;
+  SWSStrVer = 'v2.5.4a';
+
+  //procedure UnPackFile(infile: PChar; outfile: PChar);  cdecl; external 'librnc.dll' name 'UnPackFile';
+  //procedure PackFile(infile: PChar; outfile: PChar; method: Integer);  cdecl; external 'librnc.dll' name 'PackFile';
 
 type
 
@@ -203,6 +206,8 @@ type
     MDirtyRep: TMenuItem;
     MCOPAll: TMenuItem;
     MCheckTC96: TMenuItem;
+    N3: TMenuItem;
+    MWriteCurAs: TMenuItem;
     MPCustom: TMenuItem;
     N2: TMenuItem;
     MShowAllPlay: TMenuItem;
@@ -424,6 +429,7 @@ type
     procedure FormCreate(Sender: TObject);
     procedure FormDestroy(Sender: TObject);
     procedure FormDropFiles(Sender: TObject; const FileNames: array of string);
+    procedure FormKeyDown(Sender: TObject; var Key: Word; Shift: TShiftState);
     procedure FormPaint(Sender: TObject);
     procedure gbAttributessMouseDown(Sender: TObject; Button: TMouseButton;
       Shift: TShiftState; X, Y: integer);
@@ -492,6 +498,7 @@ type
     procedure MGTwoClick(Sender: TObject);
     procedure MHelpPClick(Sender: TObject);
     procedure MOpenAllClick(Sender: TObject);
+    procedure MOpenRNCClick(Sender: TObject);
     procedure MPAMClick(Sender: TObject);
     procedure MPaPlayerClick(Sender: TObject);
     procedure MpaTeamClick(Sender: TObject);
@@ -523,6 +530,7 @@ type
     procedure MShSquadClick(Sender: TObject);
     procedure MUnloadAllClick(Sender: TObject);
     procedure MWriteAllClick(Sender: TObject);
+    procedure MWriteCurAsClick(Sender: TObject);
     procedure MWriteCurClick(Sender: TObject);
     procedure MXMLPlClick(Sender: TObject);
     procedure MXMLteamClick(Sender: TObject);
@@ -545,6 +553,7 @@ type
     TeamsCol: integer;
     SquadCol: integer;
     DropFile: boolean;
+    RNCFile: boolean;
     NameDrop: array of string;
     procedure CustomExceptionHandler(Sender: TObject; E: Exception);
     procedure CountingSort( var a: array of Integer; asc: Boolean );
@@ -552,6 +561,7 @@ type
   public
     AppDir: UTF8string;
     CfgDir: UTF8String;
+    TmpDir: UTF8String;
     FlagDir: UTF8string;
     procedure LoadTP;
     procedure LoadOver;
@@ -599,6 +609,9 @@ begin
   CfgDir := GetEnvironmentVariable('appdata') + PathDelim + 'swsedt_2.2.0' + PathDelim;
   if not DirectoryExists(CfgDir) then
      CreateDir(CfgDir);
+  TmpDir := GetEnvironmentVariable('TEMP') + PathDelim + 'agswseditor' + PathDelim;
+  if not DirectoryExists(TmpDir) then
+       CreateDir(TmpDir);
   //ForceDirectory(CfgDir);
   {$ENDIF}
   Application.CreateForm(TAboutFrm, AboutFrm);
@@ -671,6 +684,12 @@ begin
   MreadTeamClick(self);
   DropFile := False;
   SetLength(NameDrop, 0);
+end;
+
+procedure TMainForm.FormKeyDown(Sender: TObject; var Key: Word;
+  Shift: TShiftState);
+begin
+
 end;
 
 procedure TMainForm.FormPaint(Sender: TObject);
@@ -1057,7 +1076,7 @@ end;
 procedure TMainForm.LBTeamsCustomDrawItem(Sender: TCustomListView;
   Item: TListItem; State: TCustomDrawState; var DefaultDraw: Boolean);
 var
-  idx: integer;
+  idx, i: integer;
 begin
   idx := PtrUInt(Item.Data);
   if ((idx<0)or(idx>SWSDB.SWSFiles[SWSDB.FileIndex].TeamCount-1)) then
@@ -1071,6 +1090,10 @@ begin
        4: sender.Canvas.Brush.Color:=$9090FF;
      end;
   end;
+
+  for i:=0 to SWSDB.SWSFiles[SWSDB.FileIndex].DuplicateNumbers.Count-1 do
+      if SWSDB.SWSFiles[SWSDB.FileIndex].DuplicateNumbers[i] = idx then
+         Sender.Canvas.Brush.Color:=clBlue;
 
   if (SWSDB.SWSFiles[SWSDB.FileIndex].Team[idx].CalcTeamSkill(5, true) > 82) then
      Sender.Canvas.Brush.Color:=clRed;
@@ -1653,6 +1676,11 @@ begin
   ShowMessage(rsFilesLoaded + IntToStr(SWSDB.FileCount));
 end;
 
+procedure TMainForm.MOpenRNCClick(Sender: TObject);
+begin
+
+end;
+
 procedure TMainForm.MPAMClick(Sender: TObject);
 begin
   Gener(6);
@@ -2076,6 +2104,18 @@ begin
   licz := SWSDB.WriteAll(EdtSett.SWSDataPath);
   SplashLoad.Hide;
   ShowMessage(rsFilesSaved + IntToStr(licz));
+end;
+
+procedure TMainForm.MWriteCurAsClick(Sender: TObject);
+begin
+  sav.Filter:='TEAM File|TEAM.*|All Files|*.*';
+  if sav.Execute() then
+     if sav.FileName <> '' then
+      begin
+        SplashLoad.Show;
+        SWSDB.SWSFiles[SWSDB.FileIndex].Write(sav.FileName);
+        SplashLoad.hide;
+      end;
 end;
 
 procedure TMainForm.MWriteCurClick(Sender: TObject);
@@ -2729,6 +2769,7 @@ begin
     SWSVer.Enabled := League.Loaded;
     btEdtLeagStruc.Enabled := League.Loaded;
   end;
+  SWSDB.SWSFiles[SWSDB.FileIndex].GetDuplicateNumbers;
 end;
 
 procedure TMainForm.RefTeam;
